@@ -11,3 +11,7 @@ Write-Output ("Running with BackupFile: {0}" -f $config.BackupFile )
 Remove-DbaDatabase -SqlInstance $config.Instance2016 -Database $config.Database -Confirm:$false
 
 Restore-DbaDatabase -SqlInstance $config.Instance2016 -Path $config.BackupFile -DatabaseName $Config.Database -useDestinationDefaultDirectories
+
+## Run Some Activity
+
+$null = Invoke-Sqlcmd2 -ServerInstance $config.Instance2016 -Database $config.Database -InputFile $config.WorkloadFile -ParseGO
