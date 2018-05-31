@@ -13,5 +13,8 @@ Remove-DbaDatabase -SqlInstance $config.Instance2016 -Database $config.Database 
 Restore-DbaDatabase -SqlInstance $config.Instance2016 -Path $config.BackupFile -DatabaseName $Config.Database -useDestinationDefaultDirectories
 
 ## Run Some Activity
-
+Write-Output ("Running workload from {0}" -f $config.WorkloadFile)
 $null = Invoke-Sqlcmd2 -ServerInstance $config.Instance2016 -Database $config.Database -InputFile $config.WorkloadFile -ParseGO
+
+Write-Output '-----'
+Write-Output 'Go filter SSMS for sales schema'
