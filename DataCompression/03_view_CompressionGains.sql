@@ -1,5 +1,5 @@
 use AdventureWorks2016
---10 seconds 
+--12 seconds 
 
 -- 2010-09-22 Pedro Lopes (Microsoft) pedro.lopes@microsoft.com (http://aka.ms/sqlinsights)
 --

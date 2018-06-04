@@ -20,3 +20,5 @@ WHERE obj.schema_id <> 4
 	--AND schema_name(obj.schema_id) = 'schemaName'
 	AND obj.name = 'SalesOrderDetail'
 ORDER BY SizeUsedMB desc
+
+-- End of Demo 1
