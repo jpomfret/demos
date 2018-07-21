@@ -22,7 +22,10 @@ Set-DbaDbCompression `
 -Database AdventureWorks2016 `
 -InputObject $results
 
+## Get current compression
+Get-DbaDbCompression -SqlInstance localhost\sql2016 -Database AdventureWorks2016 | Out-GridView
+
 Set-DbaDbCompression `
 -SqlInstance localhost\sql2016 `
 -Database AdventureWorks2016 `
--CompressionType Row ## Page, Recommended
+-CompressionType Row ## Page, Recommended, None
