@@ -5,27 +5,27 @@
 *            for use in demonstrating SQL Server performance tuning and
 *            execution plan issues.
 *
-*   Date: November 14, 2011 
+*   Date: November 14, 2011
 *
 *   SQL Server Versions:
 *         2008, 2008R2, 2012
-*         
+*
 ******************************************************************************
 *   Copyright (C) 2011 Jonathan M. Kehayias, SQLskills.com
-*   All rights reserved. 
+*   All rights reserved.
 *
-*   For more scripts and sample code, check out 
+*   For more scripts and sample code, check out
 *      http://sqlskills.com/blogs/jonathan
 *
 *   You may alter this code for your own *non-commercial* purposes. You may
-*   republish altered code as long as you include this copyright and give 
-*	due credit. 
+*   republish altered code as long as you include this copyright and give
+*	due credit.
 *
 *
-*   THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF 
-*   ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED 
+*   THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF
+*   ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
 *   TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-*   PARTICULAR PURPOSE. 
+*   PARTICULAR PURPOSE.
 *
 ******************************************************************************/
 
@@ -34,11 +34,11 @@
 USE SalesOrderLarge;
 GO
 
-IF OBJECT_ID('Sales.SalesOrderHeaderEnlarged') IS NOT NULL
-	DROP TABLE Sales.SalesOrderHeaderEnlarged;
+IF OBJECT_ID('Sales.SalesOrderHeaderEnlarged_ROW') IS NOT NULL
+	DROP TABLE Sales.SalesOrderHeaderEnlarged_ROW;
 GO
 
-CREATE TABLE Sales.SalesOrderHeaderEnlarged
+CREATE TABLE Sales.SalesOrderHeaderEnlarged_ROW
 	(
 	SalesOrderID int NOT NULL IDENTITY (1, 1) NOT FOR REPLICATION,
 	RevisionNumber tinyint NOT NULL,
@@ -69,51 +69,51 @@ CREATE TABLE Sales.SalesOrderHeaderEnlarged
 	)  ON [PRIMARY]
 GO
 
-SET IDENTITY_INSERT Sales.SalesOrderHeaderEnlarged ON
+SET IDENTITY_INSERT Sales.SalesOrderHeaderEnlarged_ROW ON
 GO
-INSERT INTO Sales.SalesOrderHeaderEnlarged (SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID, BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, rowguid, ModifiedDate)
-SELECT SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID, BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, rowguid, ModifiedDate 
+INSERT INTO Sales.SalesOrderHeaderEnlarged_ROW (SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID, BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, rowguid, ModifiedDate)
+SELECT SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID, BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, rowguid, ModifiedDate
 FROM AdventureWorks2016.Sales.SalesOrderHeader WITH (HOLDLOCK TABLOCKX)
 GO
-SET IDENTITY_INSERT Sales.SalesOrderHeaderEnlarged OFF
+SET IDENTITY_INSERT Sales.SalesOrderHeaderEnlarged_ROW OFF
 
 GO
-ALTER TABLE Sales.SalesOrderHeaderEnlarged ADD CONSTRAINT
-	PK_SalesOrderHeaderEnlarged_SalesOrderID PRIMARY KEY CLUSTERED 
+ALTER TABLE Sales.SalesOrderHeaderEnlarged_ROW ADD CONSTRAINT
+	PK_SalesOrderHeaderEnlarged_ROW_SalesOrderID PRIMARY KEY CLUSTERED
 	(
 	SalesOrderID
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
 
-CREATE UNIQUE NONCLUSTERED INDEX AK_SalesOrderHeaderEnlarged_rowguid ON Sales.SalesOrderHeaderEnlarged
+CREATE UNIQUE NONCLUSTERED INDEX AK_SalesOrderHeaderEnlarged_ROW_rowguid ON Sales.SalesOrderHeaderEnlarged_ROW
 	(
 	rowguid
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 
-CREATE UNIQUE NONCLUSTERED INDEX AK_SalesOrderHeaderEnlarged_SalesOrderNumber ON Sales.SalesOrderHeaderEnlarged
+CREATE UNIQUE NONCLUSTERED INDEX AK_SalesOrderHeaderEnlarged_ROW_SalesOrderNumber ON Sales.SalesOrderHeaderEnlarged_ROW
 	(
 	SalesOrderNumber
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 
-CREATE NONCLUSTERED INDEX IX_SalesOrderHeaderEnlarged_CustomerID ON Sales.SalesOrderHeaderEnlarged
+CREATE NONCLUSTERED INDEX IX_SalesOrderHeaderEnlarged_ROW_CustomerID ON Sales.SalesOrderHeaderEnlarged_ROW
 	(
 	CustomerID
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 
-CREATE NONCLUSTERED INDEX IX_SalesOrderHeaderEnlarged_SalesPersonID ON Sales.SalesOrderHeaderEnlarged
+CREATE NONCLUSTERED INDEX IX_SalesOrderHeaderEnlarged_ROW_SalesPersonID ON Sales.SalesOrderHeaderEnlarged_ROW
 	(
 	SalesPersonID
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 
-IF OBJECT_ID('Sales.SalesOrderDetailEnlarged') IS NOT NULL
-	DROP TABLE Sales.SalesOrderDetailEnlarged;
+IF OBJECT_ID('Sales.SalesOrderDetailEnlarged_ROW') IS NOT NULL
+	DROP TABLE Sales.SalesOrderDetailEnlarged_ROW;
 GO
-CREATE TABLE Sales.SalesOrderDetailEnlarged
+CREATE TABLE Sales.SalesOrderDetailEnlarged_ROW
 	(
 	SalesOrderID int NOT NULL,
 	SalesOrderDetailID int NOT NULL IDENTITY (1, 1),
@@ -129,28 +129,28 @@ CREATE TABLE Sales.SalesOrderDetailEnlarged
 	)  ON [PRIMARY]
 GO
 
-SET IDENTITY_INSERT Sales.SalesOrderDetailEnlarged ON
+SET IDENTITY_INSERT Sales.SalesOrderDetailEnlarged_ROW ON
 GO
-INSERT INTO Sales.SalesOrderDetailEnlarged (SalesOrderID, SalesOrderDetailID, CarrierTrackingNumber, OrderQty, ProductID, SpecialOfferID, UnitPrice, UnitPriceDiscount, rowguid, ModifiedDate)
-SELECT SalesOrderID, SalesOrderDetailID, CarrierTrackingNumber, OrderQty, ProductID, SpecialOfferID, UnitPrice, UnitPriceDiscount, rowguid, ModifiedDate 
+INSERT INTO Sales.SalesOrderDetailEnlarged_ROW (SalesOrderID, SalesOrderDetailID, CarrierTrackingNumber, OrderQty, ProductID, SpecialOfferID, UnitPrice, UnitPriceDiscount, rowguid, ModifiedDate)
+SELECT SalesOrderID, SalesOrderDetailID, CarrierTrackingNumber, OrderQty, ProductID, SpecialOfferID, UnitPrice, UnitPriceDiscount, rowguid, ModifiedDate
 FROM AdventureWorks2016.Sales.SalesOrderDetail WITH (HOLDLOCK TABLOCKX)
 GO
-SET IDENTITY_INSERT Sales.SalesOrderDetailEnlarged OFF
+SET IDENTITY_INSERT Sales.SalesOrderDetailEnlarged_ROW OFF
 GO
-ALTER TABLE Sales.SalesOrderDetailEnlarged ADD CONSTRAINT
-	PK_SalesOrderDetailEnlarged_SalesOrderID_SalesOrderDetailID PRIMARY KEY CLUSTERED 
+ALTER TABLE Sales.SalesOrderDetailEnlarged_ROW ADD CONSTRAINT
+	PK_SalesOrderDetailEnlarged_ROW_SalesOrderID_SalesOrderDetailID PRIMARY KEY CLUSTERED
 	(
 	SalesOrderID,
 	SalesOrderDetailID
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX AK_SalesOrderDetailEnlarged_rowguid ON Sales.SalesOrderDetailEnlarged
+CREATE UNIQUE NONCLUSTERED INDEX AK_SalesOrderDetailEnlarged_ROW_rowguid ON Sales.SalesOrderDetailEnlarged_ROW
 	(
 	rowguid
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-CREATE NONCLUSTERED INDEX IX_SalesOrderDetailEnlarged_ProductID ON Sales.SalesOrderDetailEnlarged
+CREATE NONCLUSTERED INDEX IX_SalesOrderDetailEnlarged_ROW_ProductID ON Sales.SalesOrderDetailEnlarged_ROW
 	(
 	ProductID
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -163,22 +163,22 @@ BEGIN TRANSACTION
 DECLARE @TableVar TABLE
 (OrigSalesOrderID int, NewSalesOrderID int)
 
-INSERT INTO Sales.SalesOrderHeaderEnlarged 
-	(RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, 
-	 PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID, 
-	 BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, 
-	 CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, 
+INSERT INTO Sales.SalesOrderHeaderEnlarged_ROW
+	(RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag,
+	 PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID,
+	 BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID,
+	 CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment,
 	 rowguid, ModifiedDate)
 OUTPUT inserted.Comment, inserted.SalesOrderID
 	INTO @TableVar
-SELECT RevisionNumber, DATEADD(dd, number, OrderDate) AS OrderDate, 
-	 DATEADD(dd, number, DueDate),  DATEADD(dd, number, ShipDate), 
-	 Status, OnlineOrderFlag, 
-	 PurchaseOrderNumber, 
-	 AccountNumber, 
-	 CustomerID, SalesPersonID, TerritoryID, BillToAddressID, 
-	 ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode, 
-	 CurrencyRateID, SubTotal, TaxAmt, Freight, SalesOrderID, 
+SELECT RevisionNumber, DATEADD(dd, number, OrderDate) AS OrderDate,
+	 DATEADD(dd, number, DueDate),  DATEADD(dd, number, ShipDate),
+	 Status, OnlineOrderFlag,
+	 PurchaseOrderNumber,
+	 AccountNumber,
+	 CustomerID, SalesPersonID, TerritoryID, BillToAddressID,
+	 ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode,
+	 CurrencyRateID, SubTotal, TaxAmt, Freight, SalesOrderID,
 	 NEWID(), DATEADD(dd, number, ModifiedDate)
 FROM AdventureWorks2016.Sales.SalesOrderHeader AS soh WITH (HOLDLOCK TABLOCKX)
 CROSS JOIN (
@@ -187,38 +187,56 @@ CROSS JOIN (
 				FROM master.dbo.spt_values
 				WHERE type = N'P'
 				  AND number < 1000
-				ORDER BY NEWID() DESC 
+				ORDER BY NEWID() DESC
 			UNION
 				SELECT TOP 10 number
 				FROM master.dbo.spt_values
 				WHERE type = N'P'
 				  AND number < 1000
-				ORDER BY NEWID() DESC 
+				ORDER BY NEWID() DESC
 			UNION
 				SELECT TOP 10 number
 				FROM master.dbo.spt_values
 				WHERE type = N'P'
 				  AND number < 1000
-				ORDER BY NEWID() DESC 
+				ORDER BY NEWID() DESC
 			UNION
 				SELECT TOP 10 number
 				FROM master.dbo.spt_values
 				WHERE type = N'P'
 				  AND number < 1000
-				ORDER BY NEWID() DESC 
+				ORDER BY NEWID() DESC
 		  ) AS tab
 ) AS Randomizer
 ORDER BY OrderDate, number
 
-INSERT INTO Sales.SalesOrderDetailEnlarged 
-	(SalesOrderID, CarrierTrackingNumber, OrderQty, ProductID, 
+INSERT INTO Sales.SalesOrderDetailEnlarged_ROW
+	(SalesOrderID, CarrierTrackingNumber, OrderQty, ProductID,
 	 SpecialOfferID, UnitPrice, UnitPriceDiscount, rowguid, ModifiedDate)
-SELECT 
-	tv.NewSalesOrderID, CarrierTrackingNumber, OrderQty, ProductID, 
-	SpecialOfferID, UnitPrice, UnitPriceDiscount, NEWID(), ModifiedDate 
+SELECT
+	tv.NewSalesOrderID, CarrierTrackingNumber, OrderQty, ProductID,
+	SpecialOfferID, UnitPrice, UnitPriceDiscount, NEWID(), ModifiedDate
 FROM AdventureWorks2016.Sales.SalesOrderDetail AS sod
 JOIN @TableVar AS tv
 	ON sod.SalesOrderID = tv.OrigSalesOrderID
 ORDER BY sod.SalesOrderDetailID
 
 COMMIT
+
+
+-- ROW COMPRESS
+-- Apply compression to the CL
+ALTER TABLE [Sales].[SalesOrderHeaderEnlarged_ROW] REBUILD PARTITION = ALL
+WITH (DATA_COMPRESSION = ROW)
+
+ALTER TABLE [Sales].[SalesOrderDetailEnlarged_ROW] REBUILD PARTITION = ALL
+WITH (DATA_COMPRESSION = ROW)
+
+-- Apply compression to the indexes
+ALTER INDEX ALL
+ON [Sales].[SalesOrderHeaderEnlarged_ROW] REBUILD PARTITION = ALL
+WITH (DATA_COMPRESSION = ROW)
+
+ALTER INDEX ALL
+ON [Sales].[SalesOrderDetailEnlarged_ROW] REBUILD PARTITION = ALL
+WITH (DATA_COMPRESSION = ROW)
