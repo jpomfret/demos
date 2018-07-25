@@ -1,6 +1,5 @@
 Use SalesOrderLarge
 -- Lesson in T-SQL Bad practices
-	-- Select *
 	-- Functions in the WHERE Clause - LEFT() - Forces a table scan, LIKE 'ASDF%' would be able to use an index
 	-- OPTION (MAXDOP 1) - Force only 1 CPU usage, keeps this test fair, probably best to presume the SQL engine knows best
 	-- DBCC FREEPROCCACHE -- Removes all elements from the plan cache
