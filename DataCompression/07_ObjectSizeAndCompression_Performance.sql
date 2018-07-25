@@ -1,4 +1,4 @@
-Use AdventureWorks2016
+Use SalesOrderLarge
 
 SELECT
 	schema_name(obj.SCHEMA_ID) as SchemaName,
@@ -20,7 +20,7 @@ INNER JOIN sys.dm_db_partition_stats pas
 	ON pas.partition_id = par.partition_id
 WHERE obj.schema_id <> 4
 	--AND schema_name(obj.schema_id) = 'schemaName'
-	AND obj.name = 'SalesOrderDetail'
-ORDER BY SizeUsedMB desc
+	AND obj.name like 'SalesOrderDetail%'
+ORDER BY TableName, IndexName
 
 -- End of Demo 1
