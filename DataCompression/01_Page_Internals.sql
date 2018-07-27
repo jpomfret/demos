@@ -14,10 +14,11 @@ INSERT INTO employee
 values	(1, 'Alex','Young','2 Sand Run','Akron'),
 		(2, 'Richard','Young','77 High St.','Akron'),
 		(3, 'Alexis','Young','1 First Ave.','Richfield')
-		
+
 
 -- Find pages in Employee table
 DBCC IND ('CompressTest', 'employee', 1);
+-- can also use sys.dm_db_database_page_allocations
 
 -- PAGETYPE
 	-- 1 = DATA
@@ -32,7 +33,7 @@ DBCC PAGE('CompressTest',1,416,3)
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 6545
 
-ALTER TABLE employee REBUILD PARTITION = ALL 
+ALTER TABLE employee REBUILD PARTITION = ALL
 WITH (DATA_COMPRESSION = ROW)
 
 -- Find pages in Employee table
@@ -44,7 +45,7 @@ DBCC PAGE('CompressTest',1,424,3)
 -- m_freeCnt - bytes of free space on the page	-- 7971
 
 
-ALTER TABLE employee REBUILD PARTITION = ALL 
+ALTER TABLE employee REBUILD PARTITION = ALL
 WITH (DATA_COMPRESSION = PAGE)
 
 -- Find pages in Employee table
@@ -55,7 +56,9 @@ DBCC PAGE('CompressTest',1,464,3)
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 7971
 
-ALTER TABLE employee 
-ADD comments char(1500) DEFAULT REPLICATE('A',1500) WITH VALUES
 
-SELECT * FROM employee
+-- Each row PAGE compressed is about 40 bytes
+-- 7971 free / 40 = 200 ish
+
+INSERT INTO employee (employeeId, firstName,lastName, address1, city)
+SELECT TOP 200 BusinessEntityID, FirstName, LastName, AddressLine1, CITY FROM AdventureWorks2014.HumanResources.vEmployee WHERE BusinessEntityID > 3
