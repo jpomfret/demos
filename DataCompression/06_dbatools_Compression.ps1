@@ -1,10 +1,10 @@
-Import-Module C:\github\dbatools\dbatools.psd1 -Force
+Import-Module dbatools
 
 ## Get Compression functions from dbatools module
 Get-Command -Module dbatools -Name *Compression*
 
 ## Get help for a Function
-Get-Help Get-DbaDbCompression
+Get-Help Get-DbaDbCompression -ShowWindow
 
 ## What should we compress - Tiger team SQL Script
 $results = Test-DbaDbCompression `
