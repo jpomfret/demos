@@ -6,7 +6,7 @@ $config = Import-PowerShellDataFile -Path "$path\Config.psd1"
 
 Write-Output ("Running with Instance: {0}" -f $config.Instance2016 )
 Write-Output ("Running with PrimaryDatabase: {0}" -f $config.PrimaryDatabase )
-Write-Output ("Running with SecondaryDatabase: {0}" -f $config.SecondaryDatabase )
+#Write-Output ("Running with SecondaryDatabase: {0}" -f $config.SecondaryDatabase )
 Write-Output ("Running with BackupFile: {0}" -f $config.BackupFile )
 
 ## get first database up and running
