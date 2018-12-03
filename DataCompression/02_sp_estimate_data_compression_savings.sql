@@ -8,9 +8,11 @@ Use AdventureWorks2016
 -- Row compression 
 exec sp_estimate_data_compression_savings 'Sales','SalesOrderDetail',NULL,NULL,'ROW'
 -- index id 7 - NC Unique index on rowguid
+-- Index 1 - 10320KB --> 7240KB
 
 -- Page compression
 exec sp_estimate_data_compression_savings 'Sales','SalesOrderDetail',NULL,NULL,'PAGE'
+-- Index 1 - 10320KB --> 4976KB
 
 -- 2) SSMS GUI
 -- Right click on table or index > Storage > Manage Compression

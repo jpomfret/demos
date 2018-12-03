@@ -32,7 +32,7 @@ DBCC IND ('CompressTest', 'employee', 1);
 -- TF to output in messages instead of event log
 DBCC TRACEON (3604);
 GO
-DBCC PAGE('CompressTest',1,456,3)
+DBCC PAGE('CompressTest',1,384,3)
 -- pminlen - size of fixed length records		-- 512
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 6545
@@ -43,7 +43,7 @@ WITH (DATA_COMPRESSION = ROW)
 -- Find pages in Employee table
 DBCC IND ('CompressTest', 'employee', 1);
 
-DBCC PAGE('CompressTest',1,376,3)
+DBCC PAGE('CompressTest',1,408,3)
 -- pminlen - size of fixed length records		-- 5
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 7971
@@ -55,7 +55,7 @@ WITH (DATA_COMPRESSION = PAGE)
 -- Find pages in Employee table
 DBCC IND ('CompressTest', 'employee', 1);
 
-DBCC PAGE('CompressTest',1,432,3)
+DBCC PAGE('CompressTest',1,416,3)
 -- pminlen - size of fixed length records		-- 5
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 7971
@@ -70,7 +70,7 @@ SELECT TOP 200 BusinessEntityID, FirstName, LastName, AddressLine1, CITY FROM Ad
 -- Find pages in Employee table
 DBCC IND ('CompressTest', 'employee', 1);
 
-DBCC PAGE('CompressTest',1,432,3)
+DBCC PAGE('CompressTest',1,416,3)
 -- pminlen - size of fixed length records		-- 5
--- m_slotCnt - records on the page				-- 3
--- m_freeCnt - bytes of free space on the page	-- 7971
+-- m_slotCnt - records on the page				-- 104
+-- m_freeCnt - bytes of free space on the page	-- 3438

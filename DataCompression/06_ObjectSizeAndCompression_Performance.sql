@@ -22,5 +22,3 @@ WHERE obj.schema_id <> 4
 	--AND schema_name(obj.schema_id) = 'schemaName'
 	AND obj.name like 'SalesOrderDetail%'
 ORDER BY TableName, IndexName
-
--- End of Demo 1
