@@ -73,7 +73,7 @@ SET IDENTITY_INSERT Sales.SalesOrderHeaderEnlarged_PAGE ON
 GO
 INSERT INTO Sales.SalesOrderHeaderEnlarged_PAGE (SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID, BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, rowguid, ModifiedDate)
 SELECT SalesOrderID, RevisionNumber, OrderDate, DueDate, ShipDate, Status, OnlineOrderFlag, PurchaseOrderNumber, AccountNumber, CustomerID, SalesPersonID, TerritoryID, BillToAddressID, ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode, CurrencyRateID, SubTotal, TaxAmt, Freight, Comment, rowguid, ModifiedDate
-FROM AdventureWorks2016.Sales.SalesOrderHeader WITH (HOLDLOCK TABLOCKX)
+FROM AdventureWorks2017.Sales.SalesOrderHeader WITH (HOLDLOCK TABLOCKX)
 GO
 SET IDENTITY_INSERT Sales.SalesOrderHeaderEnlarged_PAGE OFF
 
@@ -133,7 +133,7 @@ SET IDENTITY_INSERT Sales.SalesOrderDetailEnlarged_PAGE ON
 GO
 INSERT INTO Sales.SalesOrderDetailEnlarged_PAGE (SalesOrderID, SalesOrderDetailID, CarrierTrackingNumber, OrderQty, ProductID, SpecialOfferID, UnitPrice, UnitPriceDiscount, rowguid, ModifiedDate)
 SELECT SalesOrderID, SalesOrderDetailID, CarrierTrackingNumber, OrderQty, ProductID, SpecialOfferID, UnitPrice, UnitPriceDiscount, rowguid, ModifiedDate
-FROM AdventureWorks2016.Sales.SalesOrderDetail WITH (HOLDLOCK TABLOCKX)
+FROM AdventureWorks2017.Sales.SalesOrderDetail WITH (HOLDLOCK TABLOCKX)
 GO
 SET IDENTITY_INSERT Sales.SalesOrderDetailEnlarged_PAGE OFF
 GO
@@ -180,7 +180,7 @@ SELECT RevisionNumber, DATEADD(dd, number, OrderDate) AS OrderDate,
 	 ShipToAddressID, ShipMethodID, CreditCardID, CreditCardApprovalCode,
 	 CurrencyRateID, SubTotal, TaxAmt, Freight, SalesOrderID,
 	 NEWID(), DATEADD(dd, number, ModifiedDate)
-FROM AdventureWorks2016.Sales.SalesOrderHeader AS soh WITH (HOLDLOCK TABLOCKX)
+FROM AdventureWorks2017.Sales.SalesOrderHeader AS soh WITH (HOLDLOCK TABLOCKX)
 CROSS JOIN (
 		SELECT number
 		FROM (	SELECT TOP 10 number
@@ -216,7 +216,7 @@ INSERT INTO Sales.SalesOrderDetailEnlarged_PAGE
 SELECT
 	tv.NewSalesOrderID, CarrierTrackingNumber, OrderQty, ProductID,
 	SpecialOfferID, UnitPrice, UnitPriceDiscount, NEWID(), ModifiedDate
-FROM AdventureWorks2016.Sales.SalesOrderDetail AS sod
+FROM AdventureWorks2017.Sales.SalesOrderDetail AS sod
 JOIN @TableVar AS tv
 	ON sod.SalesOrderID = tv.OrigSalesOrderID
 ORDER BY sod.SalesOrderDetailID
