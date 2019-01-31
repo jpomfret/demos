@@ -2,7 +2,7 @@
 Use AdventureWorks2017
 
 -- 1) sp_estimate_data_compression_savings
--- 2 seconds
+-- 5 seconds
 
 
 -- Row compression 

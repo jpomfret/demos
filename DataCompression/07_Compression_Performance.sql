@@ -19,15 +19,15 @@ inner join sales.SalesOrderDetailEnlarged sod
 where LEFT(sod.CarrierTrackingNumber,4) = 'D0CE'
 OPTION (MAXDOP 1)
 
---SQL Server parse and compile time: 
---   CPU time = 7 ms, elapsed time = 12 ms.
---
---(1400 rows affected)
---Table 'SalesOrderHeaderEnlarged'. Scan count 0, logical reads 7664, physical reads 1, read-ahead reads 80, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
---Table 'SalesOrderDetailEnlarged'. Scan count 1, logical reads 73824, physical reads 1, read-ahead reads 73991, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
---
--- SQL Server Execution Times:
---   CPU time = 3052 ms,  elapsed time = 3813 ms.
+--  SQL Server Execution Times:
+--    CPU time = 58 ms,  elapsed time = 57 ms.
+-- 
+-- (1435 rows affected)
+-- Table 'SalesOrderHeaderEnlarged'. Scan count 0, logical reads 7773, physical reads 1, read-ahead reads 419, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
+-- Table 'SalesOrderDetailEnlarged'. Scan count 1, logical reads 50791, physical reads 3, read-ahead reads 52243, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
+-- 
+--  SQL Server Execution Times:
+--    CPU time = 3191 ms,  elapsed time = 3745 ms.
 
 
 DBCC FREEPROCCACHE
@@ -40,15 +40,16 @@ inner join sales.SalesOrderDetailEnlarged_ROW sod
 where LEFT(CarrierTrackingNumber,4) = 'D0CE'
 OPTION (MAXDOP 1)
 
---SQL Server parse and compile time: 
---   CPU time = 7 ms, elapsed time = 13 ms.
---
---(1435 rows affected)
---Table 'SalesOrderHeaderEnlarged_ROW'. Scan count 0, logical reads 6847, physical reads 7, read-ahead reads 320, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
---Table 'SalesOrderDetailEnlarged_ROW'. Scan count 1, logical reads 35677, physical reads 1, read-ahead reads 35682, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
---
--- SQL Server Execution Times:
---   CPU time = 1384 ms,  elapsed time = 1415 ms.
+--  SQL Server Execution Times:
+--    CPU time = 8 ms,  elapsed time = 7 ms.
+-- 
+-- (1435 rows affected)
+-- Table 'SalesOrderHeaderEnlarged_ROW'. Scan count 0, logical reads 7228, physical reads 1, read-ahead reads 360, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
+-- Table 'SalesOrderDetailEnlarged_ROW'. Scan count 1, logical reads 35677, physical reads 1, read-ahead reads 35669, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
+-- 
+--  SQL Server Execution Times:
+--    CPU time = 1254 ms,  elapsed time = 1270 ms.
+
 
 
 DBCC FREEPROCCACHE
@@ -61,12 +62,13 @@ inner join sales.SalesOrderDetailEnlarged_PAGE sod
 where LEFT(CarrierTrackingNumber,4) = 'D0CE'
 OPTION (MAXDOP 1)
 
---SQL Server parse and compile time: 
---   CPU time = 6 ms, elapsed time = 28 ms.
---
---(1435 rows affected)
---Table 'SalesOrderHeaderEnlarged_PAGE'. Scan count 0, logical reads 7176, physical reads 1, read-ahead reads 352, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
---Table 'SalesOrderDetailEnlarged_PAGE'. Scan count 1, logical reads 24866, physical reads 1, read-ahead reads 24864, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
---
 -- SQL Server Execution Times:
---   CPU time = 1381 ms,  elapsed time = 1389 ms.
+--    CPU time = 16 ms,  elapsed time = 15 ms.
+-- 
+-- (1435 rows affected)
+-- Table 'SalesOrderHeaderEnlarged_PAGE'. Scan count 0, logical reads 7201, physical reads 1, read-ahead reads 352, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
+-- Table 'SalesOrderDetailEnlarged_PAGE'. Scan count 1, logical reads 24866, physical reads 1, read-ahead reads 24864, lob logical reads 0, lob physical reads 0, lob read-ahead reads 0.
+-- 
+--  SQL Server Execution Times:
+--    CPU time = 1158 ms,  elapsed time = 1191 ms.
+
