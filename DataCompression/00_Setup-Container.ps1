@@ -5,9 +5,11 @@ $path = Split-Path $MyInvocation.MyCommand.Path
 $config = Import-PowerShellDataFile -Path "$path\Config.psd1"
 
 ## if container already running kill it
-write-verbose "Removing containers if exists"
-docker stop $(docker ps --filter "ancestor=jpomfret7/datacompression:demo" -a -q)
-docker rm $(docker ps --filter "ancestor=jpomfret7/datacompression:demo" -a -q)
+if ($(docker ps --filter "ancestor=jpomfret7/datacompression:demo" -a -q)) {
+    write-verbose "Removing old containers"
+    docker stop $(docker ps --filter "ancestor=jpomfret7/datacompression:demo" -a -q)
+    docker rm $(docker ps --filter "ancestor=jpomfret7/datacompression:demo" -a -q)
+}
 
 write-verbose "Start up a container"
 ## start up the container with the super secret password (needs to match the dockerfile that attachs databases)

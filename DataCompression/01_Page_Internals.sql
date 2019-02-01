@@ -37,6 +37,8 @@ DBCC PAGE('CompressTest',1,376,3)
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 6545
 
+-- Record Size = 515
+
 ALTER TABLE employee REBUILD PARTITION = ALL
 WITH (DATA_COMPRESSION = ROW)
 
@@ -48,6 +50,7 @@ DBCC PAGE('CompressTest',1,384,3)
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 7971
 
+-- Record size = 35
 
 ALTER TABLE employee REBUILD PARTITION = ALL
 WITH (DATA_COMPRESSION = PAGE)
@@ -74,3 +77,5 @@ DBCC PAGE('CompressTest',1,376,3)
 -- pminlen - size of fixed length records		-- 5
 -- m_slotCnt - records on the page				-- 102
 -- m_freeCnt - bytes of free space on the page	-- 3496
+
+-- Record size = 24
