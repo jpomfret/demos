@@ -32,10 +32,12 @@ DBCC IND ('CompressTest', 'employee', 1);
 -- TF to output in messages instead of event log
 DBCC TRACEON (3604);
 GO
-DBCC PAGE('CompressTest',1,384,3)
+DBCC PAGE('CompressTest',1,376,3)
 -- pminlen - size of fixed length records		-- 512
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 6545
+
+-- Record Size = 515
 
 ALTER TABLE employee REBUILD PARTITION = ALL
 WITH (DATA_COMPRESSION = ROW)
@@ -43,11 +45,12 @@ WITH (DATA_COMPRESSION = ROW)
 -- Find pages in Employee table
 DBCC IND ('CompressTest', 'employee', 1);
 
-DBCC PAGE('CompressTest',1,408,3)
+DBCC PAGE('CompressTest',1,384,3)
 -- pminlen - size of fixed length records		-- 5
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 7971
 
+-- Record size = 35
 
 ALTER TABLE employee REBUILD PARTITION = ALL
 WITH (DATA_COMPRESSION = PAGE)
@@ -55,7 +58,7 @@ WITH (DATA_COMPRESSION = PAGE)
 -- Find pages in Employee table
 DBCC IND ('CompressTest', 'employee', 1);
 
-DBCC PAGE('CompressTest',1,416,3)
+DBCC PAGE('CompressTest',1,376,3)
 -- pminlen - size of fixed length records		-- 5
 -- m_slotCnt - records on the page				-- 3
 -- m_freeCnt - bytes of free space on the page	-- 7971
@@ -65,12 +68,14 @@ DBCC PAGE('CompressTest',1,416,3)
 -- 7971 free / 40 = 200 ish
 
 INSERT INTO employee (employeeId, firstName,lastName, address1, city)
-SELECT TOP 200 BusinessEntityID, FirstName, LastName, AddressLine1, CITY FROM AdventureWorks2016.HumanResources.vEmployee WHERE BusinessEntityID > 3
+SELECT TOP 200 BusinessEntityID, FirstName, LastName, AddressLine1, CITY FROM AdventureWorks2017.HumanResources.vEmployee WHERE BusinessEntityID > 3
 
 -- Find pages in Employee table
 DBCC IND ('CompressTest', 'employee', 1);
 
-DBCC PAGE('CompressTest',1,416,3)
+DBCC PAGE('CompressTest',1,376,3)
 -- pminlen - size of fixed length records		-- 5
--- m_slotCnt - records on the page				-- 104
--- m_freeCnt - bytes of free space on the page	-- 3438
+-- m_slotCnt - records on the page				-- 102
+-- m_freeCnt - bytes of free space on the page	-- 3496
+
+-- Record size = 24

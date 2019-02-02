@@ -1,4 +1,4 @@
-use AdventureWorks2016
+use AdventureWorks2017
 --12 seconds 
 
 -- 2010-09-22 Pedro Lopes (Microsoft) pedro.lopes@microsoft.com (http://aka.ms/sqlinsights)

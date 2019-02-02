@@ -1,4 +1,4 @@
-Use AdventureWorks2016
+Use AdventureWorks2017
 
 SELECT
 	schema_name(obj.SCHEMA_ID) as SchemaName,
