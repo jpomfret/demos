@@ -10,20 +10,45 @@ if(Get-Service *sql* -cn dscsvr2) {
 ## remove firewall rule - not working in SqlServerDsc module
 Get-NetFirewallRule -CimSession dscsvr2 -DisplayName *SQL* | Remove-NetFirewallRule
 
-
 Configuration ResetServer {
+    Import-DscResource -ModuleName PSDesiredStateConfiguration
+ 
     Node DscSvr2 {
         WindowsFeature RemoveDotNet {
             Name = 'NET-Framework-Features'
-            Ensure = 'Absent'
+            Ensure = 'Present'
         }
         WindowsFeature RemoveADPosh {
             Name = 'RSAT-AD-PowerShell'
-            Ensure = 'Absent'
+            Ensure = 'Present'
+        }
+
+        File RemoveInstallDir {
+            DestinationPath = "C:\SQL2017\Install\"
+            Ensure          = 'Absent'
+            Type            = 'Directory'
+        }
+        File RemoveDataDir {
+            DestinationPath = "C:\SQL2017\SQLData\"
+            Ensure          = 'Absent'
+            Type            = 'Directory'
+        }
+        File RemoveLogsDir {
+            DestinationPath = "C:\SQL2017\SQLLogs\"
+            Ensure          = 'Absent'
+            Type            = 'Directory'
+        }
+        File RemoveSql2017Dir {
+            DestinationPath = "C:\SQL2017\"
+            Ensure          = 'Absent'
+            Type            = 'Directory'
         }
     }
 }
 
-ResetServer -output .\output\
+ResetServer -Output .\output\
 
 Start-DscConfiguration -Path .\output\ -ComputerName DscSvr2 -Wait -Verbose
+
+## Empty Output folder
+Remove-Item .\output\*
