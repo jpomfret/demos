@@ -27,21 +27,25 @@ Configuration ResetServer {
             DestinationPath = "C:\SQL2017\Install\"
             Ensure          = 'Absent'
             Type            = 'Directory'
+            Force           = $true
         }
         File RemoveDataDir {
             DestinationPath = "C:\SQL2017\SQLData\"
             Ensure          = 'Absent'
             Type            = 'Directory'
+            Force           = $true
         }
         File RemoveLogsDir {
             DestinationPath = "C:\SQL2017\SQLLogs\"
             Ensure          = 'Absent'
             Type            = 'Directory'
+            Force           = $true
         }
         File RemoveSql2017Dir {
             DestinationPath = "C:\SQL2017\"
             Ensure          = 'Absent'
             Type            = 'Directory'
+            Force           = $true
         }
     }
 }
