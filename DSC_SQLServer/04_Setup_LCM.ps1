@@ -24,3 +24,4 @@ Set-DscLocalConfigurationManager -Path .\output\ -ComputerName dscsvr2 -Verbose
 
 ## Get New settings
 Get-DscLocalConfigurationManager -CimSession dscsvr2
+

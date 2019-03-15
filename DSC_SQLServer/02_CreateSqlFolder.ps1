@@ -17,3 +17,6 @@ Configuration CreateSqlFolder {
 }
 
 CreateSqlFolder -Output .\Output\ 
+
+## cleanup
+Remove-Item .\output\*.mof

@@ -9,26 +9,22 @@ Configuration CreateSqlFolder {
             Type            = 'Directory'
         }
         File CreateLogDir {
-            DestinationPath = 'C:\SQL2017\SQLLogs\'
+            DestinationPath = $ConfigurationData.NonNodeData.LogDir
+            Ensure          = 'Present'
+            Type            = 'Directory'
+        }
+    }
+
+    Node $AllNodes.Where{$_.Environment -eq "Test"}.NodeName {
+        File CreateTestDir {
+            DestinationPath = $ConfigurationData.NonNodeData.TestDir
             Ensure          = 'Present'
             Type            = 'Directory'
         }
     }
 }
 
-$configData = @{
-    AllNodes = @(
-        @{
-            NodeName = "DSCSVR1"
-        }
-    )
-    NonNodeData = @{
-        DataDir = "C:\SQL2016\SQLData\"
-    }
-}
+CreateSqlFolder -Output .\Output\  -ConfigurationData .\03d_ConfigurationData.psd1
 
-CreateSqlFolder -Output .\Output\  -ConfigurationData $configData
-
-## 1) Add a node
-## 2) Add LogDir to NonNodeData
-## 3) Change folders to SQL2016
+## Cleanup
+Remove-Item .\Output\*.Mof

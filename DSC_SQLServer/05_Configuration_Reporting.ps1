@@ -6,4 +6,4 @@ Get-DscConfigurationStatus -CimSession dscsvr2 | select *
 (Get-DscConfigurationStatus -CimSession dscsvr2).ResourcesInDesiredState
 
 ## Test the current configuration
-Test-DscConfiguration -ComputerName DscSvr2
+Test-DscConfiguration -ComputerName DscSvr2 -Verbose

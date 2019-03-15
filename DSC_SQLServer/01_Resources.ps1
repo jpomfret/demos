@@ -23,6 +23,7 @@ Get-DscResource -Name File -Syntax
 
 ## Look at what makes up a resource 
 Get-DscResource -Name Service -Module PSDesiredStateConfiguration | Select-Object *
+Code #OPEN
 ## Open Path - look at Get, Test, Set
 
 ## Discover resources in the galley

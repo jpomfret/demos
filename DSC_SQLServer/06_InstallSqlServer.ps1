@@ -2,13 +2,13 @@ Configuration InstallSqlServer {
  
     Import-DscResource -ModuleName PSDesiredStateConfiguration
     Import-DscResource -ModuleName SqlServerDsc
- 
+    
     Node $AllNodes.NodeName {
         WindowsFeature InstallDotNet {
             Name                = 'NET-Framework-Features'
             Ensure              = 'Present'
         }
-
+        
         File CreateInstallDir {
             DestinationPath     = $ConfigurationData.NonNodeData.InstallDir
             Ensure              = 'Present'
@@ -31,6 +31,7 @@ Configuration InstallSqlServer {
         }
 
         SqlSetup InstallSql {
+            DependsOn           = '[WindowsFeature]InstallDotNet'
             InstanceName        = 'MSSQLSERVER'
             SourcePath          = 'C:\Software\SQLServer2017\'
             Features            = 'SQLEngine'
@@ -39,9 +40,13 @@ Configuration InstallSqlServer {
             SQLUserDBLogDir     = $ConfigurationData.NonNodeData.LogDir
             InstallSharedDir    = $ConfigurationData.NonNodeData.InstallDir
             InstanceDir         = $ConfigurationData.NonNodeData.InstanceDir
+            SecurityMode        = 'SQL'
+            SAPwd               = (Get-Credential -Credential sa)
+
         }
         
         SqlServerNetwork EnableTcpIp {
+            DependsOn           = '[SqlSetup]InstallSql'
             InstanceName        = 'MSSQLSERVER'
             ProtocolName        = 'Tcp'
             IsEnabled           = $true
@@ -50,61 +55,36 @@ Configuration InstallSqlServer {
         }
         
         SqlWindowsFirewall AllowFirewall {
+            DependsOn           = '[SqlSetup]InstallSql'
             InstanceName        = 'MSSQLSERVER'
             Features            = 'SQLEngine'
             SourcePath          = 'C:\Software\SQLServer2017\'
         }
-
+        
         $ConfigurationData.NonNodeData.ConfigOptions.foreach{
             SqlServerConfiguration ("SetConfigOption{0}" -f $_.name) {
-                ServerName      = $Node.NodeName  ## node?!?
+                DependsOn       = '[SqlSetup]InstallSql'
+                ServerName      = $Node.NodeName
                 InstanceName    = 'MSSQLSERVER'
                 OptionName      = $_.Name
                 OptionValue     = $_.Setting
             }
         }
-
+        
         SqlDatabase CreateDbaDatabase {
-            ServerName          = $Node.NodeName #$AllNodes.NodeName  ## node?!?
+            DependsOn           = '[SqlSetup]InstallSql'
+            ServerName          = $Node.NodeName
             InstanceName        = 'MSSQLSERVER'
             Name                = 'DBA'
         }
     }
 }
 
-$configData = @{
-    AllNodes = @(
-        @{
-            NodeName = "DSCSVR1"
-            Environment = "Test"
-        },
-        @{
-            NodeName = "DSCSVR2"
-            Environment = "Production"
-        }
-    )
-    NonNodeData = @{
-        DataDir = "C:\SQL2017\SQLData\"
-        LogDir = "C:\SQL2017\SQLLogs\"
-        InstallDir = "C:\SQL2017\Install\"
-        InstanceDir =  "C:\SQL2017\Instance\"
-        ConfigOptions = @(
-            @{
-                Name    = "backup compression default"
-                Setting = 1
-            },
-            @{
-                Name    = "cost threshold for parallelism"
-                Setting = 25
-            },
-            @{
-                Name    = "max degree of parallelism"
-                Setting = 4
-            }
-        )
-    }
-}
+## 1) DependsOn 
+## 2) PsDscRunAsCredential
+## 3) sa password
+## 4) make a change - rerun
 
-InstallSqlServer -Output .\Output\ -ConfigurationData $configData
+InstallSqlServer -Output .\Output\ -ConfigurationData .\06_SqlServer_ConfigData.psd1
 
 Start-DscConfiguration -Path .\Output\ -ComputerName DscSvr2 -Wait -Verbose -Force
