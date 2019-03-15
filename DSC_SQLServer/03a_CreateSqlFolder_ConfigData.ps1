@@ -9,7 +9,7 @@ Configuration CreateSqlFolder {
             Type            = 'Directory'
         }
         File CreateLogDir {
-            DestinationPath = $ConfigurationData.NonNodeData.LogDir
+            DestinationPath = 'C:\SQL2017\SQLLogs\'
             Ensure          = 'Present'
             Type            = 'Directory'
         }
@@ -20,14 +20,10 @@ $configData = @{
     AllNodes = @(
         @{
             NodeName = "DSCSVR1"
-        },
-        @{
-            NodeName = "DSCSVR2"
         }
     )
     NonNodeData = @{
-        DataDir = "C:\SQL2016\SQLData\"
-        LogDir = 'C:\SQL2016\SQLLogs\'
+        DataDir = "C:\SQL2017\SQLData\"
     }
 }
 

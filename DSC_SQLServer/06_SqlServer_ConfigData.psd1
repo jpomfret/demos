@@ -7,6 +7,10 @@
         @{
             NodeName = "DSCSVR2"
             Environment = "Production"
+        },
+        @{
+            NodeName = '*'
+            PSDscAllowPlainTextPassword = $true
         }
     )
     NonNodeData = @{

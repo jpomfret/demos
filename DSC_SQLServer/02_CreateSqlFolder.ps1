@@ -16,6 +16,8 @@ Configuration CreateSqlFolder {
     }
 }
 
+Get-Command -CommandType Configuration
+
 CreateSqlFolder -Output .\Output\ 
 
 ## cleanup

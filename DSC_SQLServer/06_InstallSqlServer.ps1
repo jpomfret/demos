@@ -3,6 +3,8 @@ Configuration InstallSqlServer {
     Import-DscResource -ModuleName PSDesiredStateConfiguration
     Import-DscResource -ModuleName SqlServerDsc
     
+    $saCred = (Get-Credential -Credential sa)
+
     Node $AllNodes.NodeName {
         WindowsFeature InstallDotNet {
             Name                = 'NET-Framework-Features'
@@ -41,7 +43,7 @@ Configuration InstallSqlServer {
             InstallSharedDir    = $ConfigurationData.NonNodeData.InstallDir
             InstanceDir         = $ConfigurationData.NonNodeData.InstanceDir
             SecurityMode        = 'SQL'
-            SAPwd               = (Get-Credential -Credential sa)
+            SAPwd               = $saCred
 
         }
         

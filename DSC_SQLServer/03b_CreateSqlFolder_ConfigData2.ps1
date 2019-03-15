@@ -44,4 +44,4 @@ $configData = @{
 CreateSqlFolder -Output .\Output\  -ConfigurationData $configData
 
 ## Cleanup
-Remove-Item .\Output\*.Mof
+# Remove-Item .\Output\*.Mof

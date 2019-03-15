@@ -12,6 +12,6 @@
     NonNodeData = @{
         DataDir = "C:\SQL2016\SQLData\"
         LogDir = "C:\SQL2016\SQLLogs\"
-        TestDir = "C:\TestFolderForJess"
+        TestDir = "C:\TestForJess"
     }
 }
