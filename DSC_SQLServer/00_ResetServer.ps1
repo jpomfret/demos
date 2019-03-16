@@ -10,6 +10,24 @@ if(Get-Service *sql* -cn dscsvr2) {
 ## remove firewall rule - not working in SqlServerDsc module
 Get-NetFirewallRule -CimSession dscsvr2 -DisplayName *SQL* | Remove-NetFirewallRule
 
+[DSCLocalConfigurationManager()]
+configuration LCMConfig
+{
+    Node dscsvr2
+    {
+        Settings
+        {
+            ConfigurationModeFrequencyMins = 15
+        }
+    }
+}
+
+## Invoke meta configuration
+LCMConfig -Output .\output\
+
+## Apply configuration 
+Set-DscLocalConfigurationManager -Path .\output\ -ComputerName dscsvr2 -Verbose
+
 Configuration ResetServer {
     Import-DscResource -ModuleName PSDesiredStateConfiguration
  

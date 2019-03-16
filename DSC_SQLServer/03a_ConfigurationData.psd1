@@ -15,3 +15,6 @@
         TestDir = "C:\TestForJess"
     }
 }
+
+## 1) Add a node
+## 2) Change folders to SQL2016
