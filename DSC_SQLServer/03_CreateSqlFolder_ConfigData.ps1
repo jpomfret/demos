@@ -24,7 +24,7 @@ Configuration CreateSqlFolder {
     }
 }
 
-CreateSqlFolder -Output .\Output\  -ConfigurationData .\03d_ConfigurationData.psd1
+CreateSqlFolder -Output .\Output\  -ConfigurationData .\03a_ConfigurationData.psd1
 
 ## Cleanup
 # Remove-Item .\Output\*.Mof

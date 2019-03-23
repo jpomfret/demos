@@ -3,15 +3,11 @@
         @{
             NodeName = "DSCSVR1"
             Environment = "Test"
-        },
-        @{
-            NodeName = "DSCSVR2"
-            Environment = "Production"
         }
     )
     NonNodeData = @{
-        DataDir = "C:\SQL2016\SQLData\"
-        LogDir = "C:\SQL2016\SQLLogs\"
+        DataDir = "C:\SQL2017\SQLData\"
+        LogDir = "C:\SQL2017\SQLLogs\"
         TestDir = "C:\TestForJess"
     }
 }

@@ -2,7 +2,7 @@
 Get-DscConfiguration -CimSession dscsvr2
 
 ## Get configuration status for completed runs
-Get-DscConfigurationStatus -CimSession dscsvr2 | select *
+Get-DscConfigurationStatus -CimSession dscsvr2 | Select-Object *
 (Get-DscConfigurationStatus -CimSession dscsvr2).ResourcesInDesiredState
 
 ## Test the current configuration

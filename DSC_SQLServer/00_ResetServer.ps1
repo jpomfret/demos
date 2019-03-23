@@ -18,6 +18,7 @@ configuration LCMConfig
         Settings
         {
             ConfigurationModeFrequencyMins = 15
+            RebootNodeIfNeeded = $false
         }
     }
 }
@@ -34,11 +35,11 @@ Configuration ResetServer {
     Node DscSvr2 {
         WindowsFeature RemoveDotNet {
             Name = 'NET-Framework-Features'
-            Ensure = 'Present'
+            Ensure = 'Absent'
         }
         WindowsFeature RemoveADPosh {
             Name = 'RSAT-AD-PowerShell'
-            Ensure = 'Present'
+            Ensure = 'Absent'
         }
 
         File RemoveInstallDir {
@@ -61,6 +62,12 @@ Configuration ResetServer {
         }
         File RemoveSql2017Dir {
             DestinationPath = "C:\SQL2017\"
+            Ensure          = 'Absent'
+            Type            = 'Directory'
+            Force           = $true
+        }
+        File RemoveSql2016 {
+            DestinationPath = "C:\SQL2016\"
             Ensure          = 'Absent'
             Type            = 'Directory'
             Force           = $true
