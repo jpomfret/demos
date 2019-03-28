@@ -16,8 +16,10 @@ Configuration CreateSqlFolder {
     }
 }
 
+# Creates a configuration command 
 Get-Command -CommandType Configuration
 
+# Generates 2 MOF files, one for each node
 CreateSqlFolder -Output .\Output\ 
 
 ## cleanup

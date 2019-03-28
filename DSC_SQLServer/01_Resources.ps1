@@ -23,7 +23,7 @@ Get-DscResource -Name File -Syntax
 
 ## Look at what makes up a resource 
 Get-DscResource -Name Service -Module PSDesiredStateConfiguration | Select-Object *
-Code #OPEN
+Code C:\Windows\system32\WindowsPowershell\v1.0\Modules\PsDesiredStateConfiguration\DSCResources\MSFT_ServiceResource\MSFT_ServiceResource.psm1
 ## Open Path - look at Get, Test, Set
 
 ## Discover resources in the galley
