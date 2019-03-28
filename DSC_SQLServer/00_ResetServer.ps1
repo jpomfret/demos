@@ -77,7 +77,7 @@ Configuration ResetServer {
 
 ResetServer -Output .\output\
 
-Start-DscConfiguration -Path .\output\ -ComputerName DscSvr2 -Wait -Verbose
+Start-DscConfiguration -Path .\output\ -ComputerName DscSvr2 -Wait -Verbose -force
 
 ## Empty Output folder
 Remove-Item .\output\*
