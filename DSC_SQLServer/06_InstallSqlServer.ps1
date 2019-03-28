@@ -1,3 +1,5 @@
+Get-Service *sql* -Cn DSCSVR2
+
 Configuration InstallSqlServer {
  
     Import-DscResource -ModuleName PSDesiredStateConfiguration
