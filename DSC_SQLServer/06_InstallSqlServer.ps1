@@ -6,10 +6,10 @@ Configuration InstallSqlServer {
     $saCred = (Get-Credential -Credential sa)
 
     Node $AllNodes.NodeName {
-        WindowsFeature InstallDotNet {
-            Name                = 'NET-Framework-Features'
-            Ensure              = 'Present'
-        }
+        #WindowsFeature InstallDotNet {
+        #    Name                = 'NET-Framework-Features'
+        #    Ensure              = 'Present'
+        #}
         
         File CreateInstallDir {
             DestinationPath     = $ConfigurationData.NonNodeData.InstallDir
@@ -33,7 +33,6 @@ Configuration InstallSqlServer {
         }
 
         SqlSetup InstallSql {
-            DependsOn           = '[WindowsFeature]InstallDotNet'
             InstanceName        = 'MSSQLSERVER'
             SourcePath          = 'C:\Software\SQLServer2017\'
             Features            = 'SQLEngine'
