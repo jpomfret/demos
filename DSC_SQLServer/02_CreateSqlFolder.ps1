@@ -23,4 +23,4 @@ Get-Command -CommandType Configuration
 CreateSqlFolder -Output .\Output\ 
 
 ## cleanup
-Remove-Item .\output\*.mof
+#  Remove-Item .\output\*.mof
