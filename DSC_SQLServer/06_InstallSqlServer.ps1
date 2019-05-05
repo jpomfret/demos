@@ -1,4 +1,8 @@
-Get-Service *sql* -Cn DSCSVR2
+#Get-Service *sql* -Cn DSCSVR2
+
+## 1) Look at MOF File
+## 2) Config file 
+## 3) Walk through Configuration
 
 Configuration InstallSqlServer {
  
