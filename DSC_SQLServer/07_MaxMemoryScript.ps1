@@ -87,7 +87,7 @@ Configuration InstallSqlServer {
 
         Script SqlMaxMemory {
             GetScript = {
-                (Get-DbaMaxMemory -SqlInstance $env:COMPUTERNAME).MaxValue
+                return @{ 'Result' = (Get-DbaMaxMemory -SqlInstance $env:COMPUTERNAME).MaxValue }
             }
             TestScript = {
                 $memory = Test-DbaMaxMemory -SqlInstance $env:COMPUTERNAME
