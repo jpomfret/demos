@@ -5,7 +5,7 @@ Get-DscConfiguration -CimSession DscSvr2
 Remove-DbaDatabase -SqlInstance DscSvr2 -Database DBA -Confirm:$false
 
 # Now shows 'absent' - doesn't tell us we're not in the desired state
-Get-DscConfiguration -CimSession DscSvr2 | Where ResourceId -eq '[SqlDatabase]CreateDbaDatabase'
+Get-DscConfiguration -CimSession DscSvr2 | Where-Object ResourceId -eq '[SqlDatabase]CreateDbaDatabase'
 
 # detailed information about completed configuration runs on the system
 Get-DscConfigurationStatus -CimSession DscSvr2
