@@ -92,6 +92,6 @@ Configuration InstallSqlServer {
 ## 3) sa password
 ## 4) make a change - rerun
 
-InstallSqlServer -Output .\Output\ -ConfigurationData .\06_SqlServer_ConfigData.psd1
+InstallSqlServer -Output .\Output\ -ConfigurationData .\05_SqlServer_ConfigData.psd1
 
 Start-DscConfiguration -Path .\Output\ -ComputerName DscSvr2 -Wait -Verbose -Force
