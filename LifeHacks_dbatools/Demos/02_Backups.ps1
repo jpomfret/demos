@@ -4,11 +4,12 @@
 #                             #
 ###############################
 
-$dontDoThis = ('Password1234!' | ConvertTo-SecureString -asPlainText -Force)
-$credential = New-Object System.Management.Automation.PSCredential('sa', $dontDoThis)
-
 ## Get the backup history for tne mssql1 server
-Get-DbaDbBackupHistory -SqlInstance 'mssql1' -SqlCredential $credential
+$instanceSplat = @{
+    SqlInstance   = 'mssql1'
+    SqlCredential = $credential
+}
+Get-DbaDbBackupHistory @instanceSplat
 
 ## Backup the DatabaseAdmin database
 $backupParams = @{
@@ -22,6 +23,7 @@ Backup-DbaDatabase @backupParams
 $testParams = @{
     SqlInstance = 'mssql1'
     SqlCredential = $credential
+    Database = "AdventureWorks2017","DatabaseAdmin"
     Destination = 'mssql2'
     DestinationCredential = $credential
     Verbose = $true
@@ -30,13 +32,6 @@ $testParams = @{
 Test-DbaLastBackup @testParams
 
 ## Record your backup tests into a SQL Server table
-$writeParams = @{
-    SqlInstance = 'mssql1'
-    SqlCredential = $credential
-    Database = 'DatabaseAdmin'
-    Table = 'TestRestore'
-    AutoCreateTable = $true
-}
 $results | Write-DbaDataTable @writeParams
 
 ## Using Piping
