@@ -12,11 +12,11 @@ $credential = New-Object System.Management.Automation.PSCredential('sa', $secure
 Remove-Item .\masking\mssql1.AdventureWorks2017.DataMaskingConfig.json -ErrorAction SilentlyContinue
 Remove-Item .\Export\* -Recurse -ErrorAction SilentlyContinue -Confirm:$false
 
+Start-Sleep -Seconds (2*60)
+Set-DbaSpConfigure -SqlInstance mssql1 -SqlCredential $credential -Name clr_enabled -Value 1
+
 ## todo
-# use splatting throughout
-# line up =
 # 02
-    # test backups - not picking up adventureworks?
     # dbcc slow on test backups
 # 04
     # masking with composite
@@ -26,9 +26,9 @@ Remove-Item .\Export\* -Recurse -ErrorAction SilentlyContinue -Confirm:$false
 # 06
     # Test-DbaBuild
 # 07
-    # add a change to sp_configure so can compare
     # bug exporting the second instance, nests it?
     #     Directory: C:\github\demos\LifeHacks_dbatools\Export\mssql1-09222019163407\mssql2-09222019163504
+    # https://github.com/sqlcollaborative/dbatools/pull/6058 <-- PR
 
 
 <#

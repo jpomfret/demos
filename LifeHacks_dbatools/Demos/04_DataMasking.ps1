@@ -11,7 +11,7 @@ $piiSplat = @{
     Database        = "AdventureWorks2017"
     Table           = "Employee"
 }
-Invoke-DbaDbPiiScan @piiSplat | ogv
+Invoke-DbaDbPiiScan @piiSplat | Out-GridView
 
 # Find masking types to use
 Get-DbaRandomizedType | Select-Object Type -ExpandProperty type -Unique
@@ -42,14 +42,14 @@ New-DbaDbMaskingConfig @maskConfig
 ## Modify the file manually
 
 ## check your file - returns nothing if good - errors if errors
-Test-DbaDbDataMaskingConfig  -FilePath .\masking\masking.json
+Test-DbaDbDataMaskingConfig  -FilePath .\masking\masking_composite.json
 
 # Mask the data
 $maskData = @{
-    SqlInstance = "mssql1"
+    SqlInstance   = "mssql1"
     SqlCredential = $credential
-    Database = "AdventureWorks2017"
-    FilePath = '.\masking\masking.json'
-    Confirm = $false
+    Database      = "AdventureWorks2017"
+    FilePath      = '.\masking\masking_composite.json'
+    Confirm       = $false
 }
 Invoke-DbaDbDataMasking @maskData -Verbose
