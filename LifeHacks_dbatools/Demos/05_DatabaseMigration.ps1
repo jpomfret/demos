@@ -49,7 +49,7 @@ $migrateDbSplat = @{
     Database                 = $dbs.name
     BackupRestore            = $true
     SharedPath               = '/sharedpath'
-    #SetSourceOffline         = $true
+    #SetSourceOffline        = $true
     Verbose                  = $true
 }
 Copy-DbaDatabase @migrateDbSplat
@@ -76,7 +76,7 @@ Set-DbaDbState @offlineSplat
 
 ## upgrade compat level & check all is ok
 $compatSplat = @{
-    SqlInstance = "mssql2"
+    SqlInstance   = "mssql2"
     SqlCredential = $credential
 }
 Get-DbaDbCompatibility @compatSplat |

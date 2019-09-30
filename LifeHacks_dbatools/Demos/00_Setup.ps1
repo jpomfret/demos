@@ -1,3 +1,5 @@
+cd C:\github\demos\LifeHacks_dbatools
+
 docker stop mssql1, mssql2
 docker rm mssql1, mssql2
 
@@ -13,16 +15,15 @@ Remove-Item .\masking\mssql1.AdventureWorks2017.DataMaskingConfig.json -ErrorAct
 Remove-Item .\Export\* -Recurse -ErrorAction SilentlyContinue -Confirm:$false
 
 Start-Sleep -Seconds (2*60)
-Set-DbaSpConfigure -SqlInstance mssql1 -SqlCredential $credential -Name clr_enabled -Value 1
+Set-DbaSpConfigure -SqlInstance mssql1 -SqlCredential $credential -Name "clr enabled" -Value 1
 
 ## todo
 # 02
     # dbcc slow on test backups
+# 03
+    # read in users from csv?
 # 04
     # masking with composite
-# 05
-    # [16:05:32][Set-DbaDbCompatibility] Failed to change Compatibility Level
-    # Invoke-DbaDbUpgrade mostly fails
 # 06
     # Test-DbaBuild
 # 07

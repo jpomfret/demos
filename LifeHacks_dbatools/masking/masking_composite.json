@@ -1,0 +1,74 @@
+{
+    "Name":  "AdventureWorks2017",
+    "Type":  "DataMaskingConfiguration",
+    "Tables":  [
+                   {
+                       "Name":  "Employee",
+                       "Schema":  "HumanResources",
+                       "Columns":  [
+                                       {
+                                           "Name":  "NationalIDNumber",
+                                           "ColumnType":  "nvarchar",
+                                           "CharacterString":  null,
+                                           "MinValue":  100000,
+                                           "MaxValue":  999999,
+                                           "MaskingType":  "Random",
+                                           "SubType":  "Int",
+                                           "Format":  null,
+                                           "Deterministic":  false,
+                                           "Nullable":  false,
+                                           "Composite":  null
+                                       },
+                                       {
+                                            "Name":  "LoginID",
+                                            "ColumnType":  "nvarchar",
+                                            "CharacterString":  null,
+                                            "MinValue":  null,
+                                            "MaxValue":  null,
+                                            "MaskingType":  "Name",
+                                            "SubType":  "LastName",
+                                            "Format":  null,
+                                            "Deterministic":  false,
+                                            "Nullable":  false,
+                                            "Composite": [
+                                                {
+                                                    "Type": "Static",
+                                                    "Value": "test:"
+                                                },
+                                                {
+                                                    "Type": "Name",
+                                                    "SubType": "FirstName"
+                                                }
+
+                                            ]
+                                        },{
+                                            "Name":  "BirthDate",
+                                            "ColumnType":  "nvarchar",
+                                            "CharacterString":  null,
+                                            "MinValue":  "1950/1/1",
+                                            "MaxValue":  "2000/1/1",
+                                            "MaskingType":  "Date",
+                                            "SubType":  "Past",
+                                            "Format":  null,
+                                            "Deterministic":  false,
+                                            "Nullable":  false,
+                                            "Composite":  null
+                                    },
+                                    {
+                                            "Name":  "JobTitle",
+                                            "ColumnType":  "nvarchar",
+                                            "CharacterString":  null,
+                                            "MinValue":  null,
+                                            "MaxValue":  15,
+                                            "MaskingType":  "Name",
+                                            "SubType":  "JobTitle",
+                                            "Format":  null,
+                                            "Deterministic":  false,
+                                            "Nullable":  false,
+                                            "Composite":  null
+                                    }
+                                   ],
+                       "HasUniqueIndex":  true
+                   }
+               ]
+}

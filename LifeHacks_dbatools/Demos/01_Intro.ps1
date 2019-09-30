@@ -1,3 +1,8 @@
+##################################
+#                                #
+#  Getting Started with dbatools #
+#                                #
+##################################
 ## 1. Get the module
 
 # Install a module from the PowerShell Gallery
@@ -35,6 +40,12 @@ Get-Help Test-DbaDbCompression
 Get-Help Test-DbaDbCompression -ShowWindow
 
 ## 8. Intro to Splatting
+Get-DbaDbCompression -SqlInstance "mssql1" -SqlCredential $Credential -Database "AdventureWorks2017"  | Select-Object -first 5
+
+# Splatting is a method of passing a collection of parameter values to a command as unit.
+# PowerShell associates each value in the collection with a command parameter.
+# Splatting makes your commands shorter and easier to read.
+# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-6
 $splatGet = @{
     SqlInstance     = "mssql1"
     SqlCredential   = $Credential
