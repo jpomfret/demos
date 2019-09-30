@@ -4,6 +4,12 @@
 #                            #
 ##############################
 
+# Add a Login to Server
+# Add a User to Database
+# Assign Permissions - Add to role
+# Change Password
+# Read in users from CSV ??
+
 ## Add Login (AD user/group)
 $loginSplat = @{
     SqlInstance     = "mssql1"
@@ -33,7 +39,7 @@ $roleSplat = @{
 }
 Add-DbaDbRoleMember @roleSplat
 
-##Add-DbaServerRoleMember
+##Add-DbaServerRoleMember (bulkadmin, dbcreator, sysadmin)
 
 ##	Change password for SQL account
 $pwdSplat = @{

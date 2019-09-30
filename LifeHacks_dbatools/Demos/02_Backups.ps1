@@ -1,8 +1,14 @@
-###############################
-#                             #
-#  Testing SQL Server Backups #
-#                             #
-###############################
+#######################
+#                     #
+#  Test Your Backups  #
+#                     #
+#######################
+
+# Review backup history
+# Backup your databases
+# Test those backups
+    # Your backups are useless if they can't be restored
+# Save restore testing results to a table
 
 ## Get the backup history for tne mssql1 server
 $instanceSplat = @{

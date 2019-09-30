@@ -1,11 +1,20 @@
-########################
-#                      #
-#  Database Migration  #
-#                      #
-########################
+############################
+#                          #
+#  Migrate.... Everything  #
+#                          #
+############################
+
+# Explore available copy commands
+# Get Databases & Logins
+# Migrate Databases
+# Migrate Logins
+# Upgrade databases
 
 # migrating application databases with dbatools
 # https://dbatools.io/migrating-application-dbs/
+
+# Copy commands available in dbatools
+Get-Command Copy* -Module dbatools
 
 ## Get databases
 $datatbaseSplat = @{

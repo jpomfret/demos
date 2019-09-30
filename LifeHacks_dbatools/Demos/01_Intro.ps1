@@ -3,6 +3,12 @@
 #  Getting Started with dbatools #
 #                                #
 ##################################
+
+# Getting the module installed/downloaded and ready to go
+# Exploring commands available
+# Using Command Based Help
+# Splatting
+
 ## 1. Get the module
 
 # Install a module from the PowerShell Gallery

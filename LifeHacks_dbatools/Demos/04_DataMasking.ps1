@@ -1,8 +1,13 @@
-##################
-#                #
-#  Data Masking  #
-#                #
-##################
+#########################
+#                       #
+#  Mask Sensitive Data  #
+#                       #
+#########################
+
+# Find potentially sensitive data
+# Explore randomizer
+# Generate a masking config
+# Mask that data
 
 ## Find sensitive data in your database
 $piiSplat = @{

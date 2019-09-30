@@ -1,8 +1,12 @@
-###############################
-#                             #
-#  Script out my SQL Servers  #
-#                             #
-###############################
+################################
+#                              #
+#  Documentation for Everyone  #
+#                              #
+################################
+
+# Export documentation quickly
+# Use for DR scenarios
+# Use to monitor environment for changes
 
 $instanceSplat = @{
     SqlInstance   = "mssql1", "mssql2"

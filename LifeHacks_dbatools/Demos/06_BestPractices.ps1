@@ -1,8 +1,14 @@
-################################
-#                              #
-#  Am I Meeting Best Practices #
-#                              #
-################################
+#########################
+#                       #
+#  Meet Best Practices  #
+#                       #
+#########################
+
+# Explore available test commands
+# Are we patched?
+# Check compatibility level
+# Check owner
+# Check ... everything?
 
 Get-Command Test-* -Module dbatools
 

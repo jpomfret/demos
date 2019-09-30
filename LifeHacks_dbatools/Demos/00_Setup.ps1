@@ -1,3 +1,5 @@
+start-process C:\Temporary\ZoomIt\ZoomIt.exe
+
 cd C:\github\demos\LifeHacks_dbatools
 
 docker stop mssql1, mssql2
