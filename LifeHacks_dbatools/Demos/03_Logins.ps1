@@ -42,11 +42,12 @@ Add-DbaDbRoleMember @roleSplat
 ##Add-DbaServerRoleMember (bulkadmin, dbcreator, sysadmin)
 
 ##	Change password for SQL account
+$newPassword = (Read-Host -Prompt "Enter the new password" -AsSecureString)
 $pwdSplat = @{
     SqlInstance     = "mssql1"
     SqlCredential   = $credential
     Login           = "JessP"
-    SecurePassword  = $securePassword
+    SecurePassword  = $newPassword
 }
 Set-DbaLogin @pwdSplat
 

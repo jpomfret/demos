@@ -20,14 +20,15 @@ Invoke-DbaDbPiiScan @piiSplat | Out-GridView
 
 # Find masking types to use
 Get-DbaRandomizedType | Select-Object Type -ExpandProperty type -Unique
-Get-DbaRandomizedType | Select-Object Subtype -ExpandProperty Subtype -Unique
+Get-DbaRandomizedType -RandomizedType Person | Select-Object Subtype -ExpandProperty Subtype -Unique
 
 # Get types based on pattern
 Get-DbaRandomizedType -Pattern "Credit"
+Get-DbaRandomizedType -Pattern "Name"
 
 ## Generate data
 Get-DbaRandomizedValue -DataType int -Min 10000
-Get-DbaRandomizedValue -RandomizerType Name -RandomizerSubType FirstName  # picking from address?
+Get-DbaRandomizedValue -RandomizerType Name -RandomizerSubType FirstName -Local 'US'
 
 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode -Format '#####'
@@ -48,6 +49,8 @@ New-DbaDbMaskingConfig @maskConfig
 
 ## check your file - returns nothing if good - errors if errors
 Test-DbaDbDataMaskingConfig  -FilePath .\masking\masking_composite.json
+
+# View data before!
 
 # Mask the data
 $maskData = @{

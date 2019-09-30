@@ -20,6 +20,8 @@ $instanceSplat = @{
 Test-DbaBuild @instanceSplat -Latest
 Test-DbaBuild @instanceSplat -MaxBehind 1SP
 
+Start-Process https://dbatools.io/build
+
 "mssql1","mssql2" | Test-DbaBuild -SqlCredential $credential -Latest
 
 ## Test the compatibility level

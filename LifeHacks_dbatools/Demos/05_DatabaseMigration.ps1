@@ -21,7 +21,7 @@ $datatbaseSplat = @{
     SqlInstance   = "mssql1"
     SqlCredential = $Credential
     ExcludeSystem = $true
-    OutVariable   = "dbs" # OutVariable to also capture this to use later
+    OutVariable   = "dbs"        # OutVariable to also capture this to use later
 }
 Get-DbaDatabase @datatbaseSplat |
 Select-Object Name, Status, RecoveryModel, Owner, Compatibility |
@@ -34,8 +34,6 @@ $loginSplat = @{
 }
 Get-DbaLogin @loginSplat |
 Select-Object SqlInstance, Name, LoginType
-
-$logins = Get-DbaLogin @loginSplat | Where-Object Name -eq 'JessP'
 
 # Get Processes
 $processSplat = @{
@@ -80,6 +78,7 @@ $offlineSplat = @{
     SqlCredential   = $Credential
     Database        = "AdventureWorks2017", "DatabaseAdmin"
     Offline         = $true
+    Force           = $true
 }
 Set-DbaDbState @offlineSplat
 
