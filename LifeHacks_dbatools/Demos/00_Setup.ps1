@@ -19,6 +19,8 @@ Remove-Item .\Export\* -Recurse -ErrorAction SilentlyContinue -Confirm:$false
 Start-Sleep -Seconds (2*60)
 Set-DbaSpConfigure -SqlInstance mssql1 -SqlCredential $credential -Name "clr enabled" -Value 1
 
+Invoke-Pester .\Tests\demo.tests.ps1
+
 ## todo
 # 03
     # read in users from csv?
