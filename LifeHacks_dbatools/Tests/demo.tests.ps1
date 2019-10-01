@@ -59,6 +59,15 @@ Describe "mssql1 databases are good" {
             $adventureWorks.Compatibility | Should Be 140
         }
     }
+    Context "Indexes are fixed on HumanResources.Employee (bug)" {
+        $empIndexes = (Get-DbaDbTable -SqlInstance mssql1 -SqlCredential $credential -Database AdventureWorks2017 -Table Employee).indexes | select name, IsUnique
+        It "There are now just two indexes" {
+            $empIndexes.Count | Should Be 2
+        }
+        It "There should be no unique indexes" {
+            $empIndexes.IsUnique | Should BeFalse
+        }
+    }
     Context "DatabaseAdmin is good" {
         $db = Get-DbaDatabase -SqlInstance mssql1 -SqlCredential $credential
         $DatabaseAdmin = $db | where name -eq 'DatabaseAdmin'
@@ -74,4 +83,22 @@ Describe "mssql1 databases are good" {
     }
 }
 
+Describe "Backups worked" {
+    Context "AdventureWorks was backed up" {
+        $instanceSplat = @{
+            SqlInstance   = 'mssql1'
+            SqlCredential = $credential
+        }
+        It "AdventureWorks has backup history" {
+            Get-DbaDbBackupHistory @instanceSplat | Should Not BeNullOrEmpty
+        }
+    }
+}
 
+Describe "Proc architecture is x64" {
+    Context "Proc arch is good" {
+        It "env:processor_architecture should be AMD64" {
+            $env:PROCESSOR_ARCHITECTURE | Should Be "AMD64"
+        }
+    }
+}

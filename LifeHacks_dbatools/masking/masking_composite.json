@@ -21,23 +21,23 @@
                                        },
                                        {
                                             "Name":  "LoginID",
-                                            "ColumnType":  "nvarchar",
+                                            "ColumnType":  "varchar",
                                             "CharacterString":  null,
                                             "MinValue":  null,
                                             "MaxValue":  null,
                                             "MaskingType":  "Name",
-                                            "SubType":  "LastName",
+                                            "SubType":  "FirstName",
                                             "Format":  null,
                                             "Deterministic":  false,
                                             "Nullable":  false,
                                             "Composite": [
                                                 {
                                                     "Type": "Static",
-                                                    "Value": "test:"
+                                                    "Value": "AdventureWorks\\"
                                                 },
                                                 {
-                                                    "Type": "Name",
-                                                    "SubType": "FirstName"
+                                                    "Type": "Column",
+                                                    "Value": "LoginID"
                                                 }
 
                                             ]
