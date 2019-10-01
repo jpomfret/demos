@@ -10,6 +10,8 @@
 # Migrate Logins
 # Upgrade databases
 
+# go to ISE
+
 # migrating application databases with dbatools
 # https://dbatools.io/migrating-application-dbs/
 

@@ -18,7 +18,7 @@ $instanceSplat = @{
     SqlCredential = $credential
 }
 Test-DbaBuild @instanceSplat -Latest
-Test-DbaBuild @instanceSplat -MaxBehind 1SP
+Test-DbaBuild @instanceSplat -MaxBehind 5CU
 
 Start-Process https://dbatools.io/build
 
