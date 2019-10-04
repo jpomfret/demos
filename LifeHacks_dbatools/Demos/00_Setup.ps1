@@ -20,29 +20,3 @@ Start-Sleep -Seconds (2*60)
 Set-DbaSpConfigure -SqlInstance mssql1 -SqlCredential $credential -Name "clr enabled" -Value 1
 
 Invoke-Pester .\Tests\demo.tests.ps1
-
-## todo
-# 03
-    # read in users from csv?
-# 04
-    # masking with composite
-# 07
-    # bug exporting the second instance, nests it?
-    #     Directory: C:\github\demos\LifeHacks_dbatools\Export\mssql1-09222019163407\mssql2-09222019163504
-    # https://github.com/sqlcollaborative/dbatools/pull/6058 <-- PR
-
-
-<#
-Test-DbaTempDb
-Should detect version & then not test if it's > 2016
-
-ComputerName   : mssql2
-InstanceName   : MSSQLSERVER
-SqlInstance    : mssql2
-Rule           : TF 1118 Enabled
-Recommended    : True
-CurrentSetting : False
-IsBestPractice : False
-Notes          : KB328551 describes how TF 1118 can benefit performance. SQL Server 2016 has this functionality enabled by default.
-
-#>

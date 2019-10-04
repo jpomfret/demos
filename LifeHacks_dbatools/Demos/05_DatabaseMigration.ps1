@@ -16,7 +16,7 @@
 # https://dbatools.io/migrating-application-dbs/
 
 # Copy commands available in dbatools
-Get-Command Copy* -Module dbatools
+Get-Command -Module dbatools -Verb Copy
 
 ## Get databases
 $datatbaseSplat = @{

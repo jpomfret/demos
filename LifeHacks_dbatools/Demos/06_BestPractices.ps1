@@ -10,7 +10,7 @@
 # Check owner
 # Check ... everything?
 
-Get-Command Test-* -Module dbatools
+Get-Command -Module dbatools -Verb Test
 
 ## Am I at the latest version? Or within 1SP of the latest version
 $instanceSplat = @{
