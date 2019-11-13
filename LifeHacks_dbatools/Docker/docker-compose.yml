@@ -14,7 +14,7 @@ services:
       container_name: mssql1
       hostname: mssql1
     mssql2:
-      image: "mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu"
+      image: "mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04"
       volumes:
         - mydata:/var/opt/backups
         - sharedpath:/sharedpath
