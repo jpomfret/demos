@@ -1,0 +1,4 @@
+﻿User,Password,Server,Database,Role
+Bob,password1234,mssql1,AdventureWorks2017,db_datareader
+Jill,password5678,mssql1,DatabaseAdmin,"db_datareader,db_datawriter"
+Jane,password9876,mssql1,DatabaseAdmin,db_owner
