@@ -17,8 +17,8 @@ $instanceSplat = @{
     SqlInstance   = "mssql1", "mssql2"
     SqlCredential = $credential
 }
-Test-DbaBuild @instanceSplat -Latest
-Test-DbaBuild @instanceSplat -MaxBehind 1CU
+Test-DbaBuild @instanceSplat -Latest | Format-Table Build, BuildLevel, BuildTarget, Compliant
+Test-DbaBuild @instanceSplat -MaxBehind 1CU | Format-Table Build, BuildLevel, BuildTarget, Compliant
 
 Start-Process https://dbatools.io/build
 
