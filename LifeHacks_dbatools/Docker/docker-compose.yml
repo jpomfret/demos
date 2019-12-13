@@ -9,6 +9,7 @@ services:
           SA_PASSWORD: "Password1234!"
           ACCEPT_EULA: "Y"
           MSSQL_BACKUP_DIR: /var/opt/backups
+          TZ: America/New_York
       ports:
         - "2500:1433"
       container_name: mssql1
@@ -23,6 +24,7 @@ services:
           ACCEPT_EULA: "Y"
           MSSQL_BACKUP_DIR: /var/opt/backups
           MSSQL_AGENT_ENABLED: "True"
+          TZ: America/New_York
       ports:
           - "2600:1433"
       container_name: mssql2

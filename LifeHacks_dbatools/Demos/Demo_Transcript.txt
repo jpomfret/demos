@@ -1,0 +1,3073 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20191004145009
+Username: POMFPC\jpomf
+RunAs User: POMFPC\jpomf
+Configuration Name:
+Machine: POMFPC (Microsoft Windows NT 10.0.17763.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command & 'c:\Users\jpomf\.vscode\extensions\ms-vscode.powershell-2019.9.0\modules\PowerShellEditorServices\Start-EditorServices.ps1' -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2019.9.0' -AdditionalModules @('PowerShellEditorServices.VSCode') -BundledModulesPath 'c:\Users\jpomf\.vscode\extensions\ms-vscode.powershell-2019.9.0\modules' -EnableConsoleRepl -LogLevel 'Normal' -LogPath 'c:\Users\jpomf\.vscode\extensions\ms-vscode.powershell-2019.9.0\logs\1570214855-0efbd80f-567c-42da-bb38-5a1ede6c88401570214280316\EditorServices.log' -SessionDetailsPath 'c:\Users\jpomf\.vscode\extensions\ms-vscode.powershell-2019.9.0\sessions\PSES-VSCode-14436-422111' -FeatureFlags @()
+Process ID: 4660
+PSVersion: 5.1.17763.592
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.17763.592
+BuildVersion: 10.0.17763.592
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\Demos\demo.txt
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## 3. Import a module
+Import-Module dbatools
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## 4. List modules currently imported into your session
+Get-Module dbatools
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     1.0.50     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Add-DbaAgDatabase, Add-DbaAgListener...}
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## 5. List module versions that are available
+Get-Module dbatools -ListAvailable
+
+
+    Directory: C:\Users\jpomf\OneDrive\Documents\WindowsPowerShell\Modules
+
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     1.0.50     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.49     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.47     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.46     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.42     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.23     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.0      dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+
+
+    Directory: C:\Program Files\WindowsPowerShell\Modules
+
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     1.0.50     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.47     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     1.0.42     dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     0.9.730    dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+Script     0.9.719    dbatools                            {Select-DbaObject, Set-DbatoolsConfig, Start-DbaMigration, Copy-DbaDatabase...}
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## 6. Find available commands
+# All commands available within dbatools
+Get-Command -Module dbatools
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Attach-DbaDatabase                                 1.0.50     dbatools
+Alias           Detach-DbaDatabase                                 1.0.50     dbatools
+Alias           Get-DbaDbModule                                    1.0.50     dbatools
+Alias           Get-DbaRegisteredServer                            1.0.50     dbatools
+Alias           Start-SqlMigration                                 1.0.50     dbatools
+Alias           Write-DbaDataTable                                 1.0.50     dbatools
+Function        Add-DbaAgDatabase                                  1.0.50     dbatools
+Function        Add-DbaAgListener                                  1.0.50     dbatools
+Function        Add-DbaAgReplica                                   1.0.50     dbatools
+Function        Add-DbaComputerCertificate                         1.0.50     dbatools
+Function        Add-DbaDbMirrorMonitor                             1.0.50     dbatools
+Function        Add-DbaDbRoleMember                                1.0.50     dbatools
+Function        Add-DbaPfDataCollectorCounter                      1.0.50     dbatools
+Function        Add-DbaRegServer                                   1.0.50     dbatools
+Function        Add-DbaRegServerGroup                              1.0.50     dbatools
+Function        Add-DbaServerRoleMember                            1.0.50     dbatools
+Function        Backup-DbaDatabase                                 1.0.50     dbatools
+Function        Backup-DbaDbCertificate                            1.0.50     dbatools
+Function        Backup-DbaDbMasterKey                              1.0.50     dbatools
+Function        Backup-DbaServiceMasterKey                         1.0.50     dbatools
+Function        Clear-DbaConnectionPool                            1.0.50     dbatools
+Function        Clear-DbaLatchStatistics                           1.0.50     dbatools
+Function        Clear-DbaPlanCache                                 1.0.50     dbatools
+Function        Clear-DbaWaitStatistics                            1.0.50     dbatools
+Function        Connect-DbaInstance                                1.0.50     dbatools
+Function        ConvertTo-DbaDataTable                             1.0.50     dbatools
+Function        ConvertTo-DbaTimeline                              1.0.50     dbatools
+Function        ConvertTo-DbaXESession                             1.0.50     dbatools
+Function        Copy-DbaAgentAlert                                 1.0.50     dbatools
+Function        Copy-DbaAgentJob                                   1.0.50     dbatools
+Function        Copy-DbaAgentJobCategory                           1.0.50     dbatools
+Function        Copy-DbaAgentOperator                              1.0.50     dbatools
+Function        Copy-DbaAgentProxy                                 1.0.50     dbatools
+Function        Copy-DbaAgentSchedule                              1.0.50     dbatools
+Function        Copy-DbaAgentServer                                1.0.50     dbatools
+Function        Copy-DbaBackupDevice                               1.0.50     dbatools
+Function        Copy-DbaCredential                                 1.0.50     dbatools
+Function        Copy-DbaCustomError                                1.0.50     dbatools
+Function        Copy-DbaDatabase                                   1.0.50     dbatools
+Function        Copy-DbaDataCollector                              1.0.50     dbatools
+Function        Copy-DbaDbAssembly                                 1.0.50     dbatools
+Function        Copy-DbaDbMail                                     1.0.50     dbatools
+Function        Copy-DbaDbQueryStoreOption                         1.0.50     dbatools
+Function        Copy-DbaDbTableData                                1.0.50     dbatools
+Function        Copy-DbaEndpoint                                   1.0.50     dbatools
+Function        Copy-DbaInstanceAudit                              1.0.50     dbatools
+Function        Copy-DbaInstanceAuditSpecification                 1.0.50     dbatools
+Function        Copy-DbaInstanceTrigger                            1.0.50     dbatools
+Function        Copy-DbaLinkedServer                               1.0.50     dbatools
+Function        Copy-DbaLogin                                      1.0.50     dbatools
+Function        Copy-DbaPolicyManagement                           1.0.50     dbatools
+Function        Copy-DbaRegServer                                  1.0.50     dbatools
+Function        Copy-DbaResourceGovernor                           1.0.50     dbatools
+Function        Copy-DbaSpConfigure                                1.0.50     dbatools
+Function        Copy-DbaSsisCatalog                                1.0.50     dbatools
+Function        Copy-DbaStartupProcedure                           1.0.50     dbatools
+Function        Copy-DbaSysDbUserObject                            1.0.50     dbatools
+Function        Copy-DbaXESession                                  1.0.50     dbatools
+Function        Copy-DbaXESessionTemplate                          1.0.50     dbatools
+Function        Disable-DbaAgHadr                                  1.0.50     dbatools
+Function        Disable-DbaFilestream                              1.0.50     dbatools
+Function        Disable-DbaForceNetworkEncryption                  1.0.50     dbatools
+Function        Disable-DbaStartupProcedure                        1.0.50     dbatools
+Function        Disable-DbaTraceFlag                               1.0.50     dbatools
+Function        Dismount-DbaDatabase                               1.0.50     dbatools
+Function        Enable-DbaAgHadr                                   1.0.50     dbatools
+Function        Enable-DbaFilestream                               1.0.50     dbatools
+Function        Enable-DbaForceNetworkEncryption                   1.0.50     dbatools
+Function        Enable-DbaStartupProcedure                         1.0.50     dbatools
+Function        Enable-DbaTraceFlag                                1.0.50     dbatools
+Function        Expand-DbaDbLogFile                                1.0.50     dbatools
+Function        Export-DbaCredential                               1.0.50     dbatools
+Function        Export-DbaDacPackage                               1.0.50     dbatools
+Function        Export-DbaDbRole                                   1.0.50     dbatools
+Function        Export-DbaDbTableData                              1.0.50     dbatools
+Function        Export-DbaDiagnosticQuery                          1.0.50     dbatools
+Function        Export-DbaExecutionPlan                            1.0.50     dbatools
+Function        Export-DbaInstance                                 1.0.50     dbatools
+Function        Export-DbaLinkedServer                             1.0.50     dbatools
+Function        Export-DbaLogin                                    1.0.50     dbatools
+Function        Export-DbaPfDataCollectorSetTemplate               1.0.50     dbatools
+Function        Export-DbaRegServer                                1.0.50     dbatools
+Function        Export-DbaRepServerSetting                         1.0.50     dbatools
+Function        Export-DbaScript                                   1.0.50     dbatools
+Function        Export-DbaServerRole                               1.0.50     dbatools
+Function        Export-DbaSpConfigure                              1.0.50     dbatools
+Function        Export-DbatoolsConfig                              1.0.50     dbatools
+Function        Export-DbaUser                                     1.0.50     dbatools
+Function        Export-DbaXECsv                                    1.0.50     dbatools
+Function        Export-DbaXESession                                1.0.50     dbatools
+Function        Export-DbaXESessionTemplate                        1.0.50     dbatools
+Function        Find-DbaAgentJob                                   1.0.50     dbatools
+Function        Find-DbaBackup                                     1.0.50     dbatools
+Function        Find-DbaCommand                                    1.0.50     dbatools
+Function        Find-DbaDatabase                                   1.0.50     dbatools
+Function        Find-DbaDbDisabledIndex                            1.0.50     dbatools
+Function        Find-DbaDbDuplicateIndex                           1.0.50     dbatools
+Function        Find-DbaDbGrowthEvent                              1.0.50     dbatools
+Function        Find-DbaDbUnusedIndex                              1.0.50     dbatools
+Function        Find-DbaInstance                                   1.0.50     dbatools
+Function        Find-DbaLoginInGroup                               1.0.50     dbatools
+Function        Find-DbaOrphanedFile                               1.0.50     dbatools
+Function        Find-DbaSimilarTable                               1.0.50     dbatools
+Function        Find-DbaStoredProcedure                            1.0.50     dbatools
+Function        Find-DbaTrigger                                    1.0.50     dbatools
+Function        Find-DbaUserObject                                 1.0.50     dbatools
+Function        Find-DbaView                                       1.0.50     dbatools
+Function        Format-DbaBackupInformation                        1.0.50     dbatools
+Function        Get-DbaAgDatabase                                  1.0.50     dbatools
+Function        Get-DbaAgentAlert                                  1.0.50     dbatools
+Function        Get-DbaAgentAlertCategory                          1.0.50     dbatools
+Function        Get-DbaAgentJob                                    1.0.50     dbatools
+Function        Get-DbaAgentJobCategory                            1.0.50     dbatools
+Function        Get-DbaAgentJobHistory                             1.0.50     dbatools
+Function        Get-DbaAgentJobOutputFile                          1.0.50     dbatools
+Function        Get-DbaAgentJobStep                                1.0.50     dbatools
+Function        Get-DbaAgentLog                                    1.0.50     dbatools
+Function        Get-DbaAgentOperator                               1.0.50     dbatools
+Function        Get-DbaAgentProxy                                  1.0.50     dbatools
+Function        Get-DbaAgentSchedule                               1.0.50     dbatools
+Function        Get-DbaAgentServer                                 1.0.50     dbatools
+Function        Get-DbaAgHadr                                      1.0.50     dbatools
+Function        Get-DbaAgListener                                  1.0.50     dbatools
+Function        Get-DbaAgReplica                                   1.0.50     dbatools
+Function        Get-DbaAvailabilityGroup                           1.0.50     dbatools
+Function        Get-DbaAvailableCollation                          1.0.50     dbatools
+Function        Get-DbaBackupDevice                                1.0.50     dbatools
+Function        Get-DbaBackupInformation                           1.0.50     dbatools
+Function        Get-DbaBuildReference                              1.0.50     dbatools
+Function        Get-DbaClientAlias                                 1.0.50     dbatools
+Function        Get-DbaClientProtocol                              1.0.50     dbatools
+Function        Get-DbaCmConnection                                1.0.50     dbatools
+Function        Get-DbaCmObject                                    1.0.50     dbatools
+Function        Get-DbaComputerCertificate                         1.0.50     dbatools
+Function        Get-DbaComputerSystem                              1.0.50     dbatools
+Function        Get-DbaConnection                                  1.0.50     dbatools
+Function        Get-DbaCpuRingBuffer                               1.0.50     dbatools
+Function        Get-DbaCpuUsage                                    1.0.50     dbatools
+Function        Get-DbaCredential                                  1.0.50     dbatools
+Function        Get-DbaCustomError                                 1.0.50     dbatools
+Function        Get-DbaDatabase                                    1.0.50     dbatools
+Function        Get-DbaDbAssembly                                  1.0.50     dbatools
+Function        Get-DbaDbBackupHistory                             1.0.50     dbatools
+Function        Get-DbaDbccHelp                                    1.0.50     dbatools
+Function        Get-DbaDbccMemoryStatus                            1.0.50     dbatools
+Function        Get-DbaDbccProcCache                               1.0.50     dbatools
+Function        Get-DbaDbccSessionBuffer                           1.0.50     dbatools
+Function        Get-DbaDbccStatistic                               1.0.50     dbatools
+Function        Get-DbaDbccUserOption                              1.0.50     dbatools
+Function        Get-DbaDbCertificate                               1.0.50     dbatools
+Function        Get-DbaDbCheckConstraint                           1.0.50     dbatools
+Function        Get-DbaDbCompatibility                             1.0.50     dbatools
+Function        Get-DbaDbCompression                               1.0.50     dbatools
+Function        Get-DbaDbDbccOpenTran                              1.0.50     dbatools
+Function        Get-DbaDbDetachedFileInfo                          1.0.50     dbatools
+Function        Get-DbaDbEncryption                                1.0.50     dbatools
+Function        Get-DbaDbExtentDiff                                1.0.50     dbatools
+Function        Get-DbaDbFeatureUsage                              1.0.50     dbatools
+Function        Get-DbaDbFile                                      1.0.50     dbatools
+Function        Get-DbaDbFileGroup                                 1.0.50     dbatools
+Function        Get-DbaDbForeignKey                                1.0.50     dbatools
+Function        Get-DbaDbIdentity                                  1.0.50     dbatools
+Function        Get-DbaDbLogShipError                              1.0.50     dbatools
+Function        Get-DbaDbLogSpace                                  1.0.50     dbatools
+Function        Get-DbaDbMail                                      1.0.50     dbatools
+Function        Get-DbaDbMailAccount                               1.0.50     dbatools
+Function        Get-DbaDbMailConfig                                1.0.50     dbatools
+Function        Get-DbaDbMailHistory                               1.0.50     dbatools
+Function        Get-DbaDbMailLog                                   1.0.50     dbatools
+Function        Get-DbaDbMailProfile                               1.0.50     dbatools
+Function        Get-DbaDbMailServer                                1.0.50     dbatools
+Function        Get-DbaDbMasterKey                                 1.0.50     dbatools
+Function        Get-DbaDbMemoryUsage                               1.0.50     dbatools
+Function        Get-DbaDbMirror                                    1.0.50     dbatools
+Function        Get-DbaDbMirrorMonitor                             1.0.50     dbatools
+Function        Get-DbaDbObjectTrigger                             1.0.50     dbatools
+Function        Get-DbaDbOrphanUser                                1.0.50     dbatools
+Function        Get-DbaDbPageInfo                                  1.0.50     dbatools
+Function        Get-DbaDbPartitionFunction                         1.0.50     dbatools
+Function        Get-DbaDbPartitionScheme                           1.0.50     dbatools
+Function        Get-DbaDbQueryStoreOption                          1.0.50     dbatools
+Function        Get-DbaDbRecoveryModel                             1.0.50     dbatools
+Function        Get-DbaDbRestoreHistory                            1.0.50     dbatools
+Function        Get-DbaDbRole                                      1.0.50     dbatools
+Function        Get-DbaDbRoleMember                                1.0.50     dbatools
+Function        Get-DbaDbSharePoint                                1.0.50     dbatools
+Function        Get-DbaDbSnapshot                                  1.0.50     dbatools
+Function        Get-DbaDbSpace                                     1.0.50     dbatools
+Function        Get-DbaDbState                                     1.0.50     dbatools
+Function        Get-DbaDbStoredProcedure                           1.0.50     dbatools
+Function        Get-DbaDbTable                                     1.0.50     dbatools
+Function        Get-DbaDbTrigger                                   1.0.50     dbatools
+Function        Get-DbaDbUdf                                       1.0.50     dbatools
+Function        Get-DbaDbUser                                      1.0.50     dbatools
+Function        Get-DbaDbView                                      1.0.50     dbatools
+Function        Get-DbaDbVirtualLogFile                            1.0.50     dbatools
+Function        Get-DbaDefaultPath                                 1.0.50     dbatools
+Function        Get-DbaDependency                                  1.0.50     dbatools
+Function        Get-DbaDeprecatedFeature                           1.0.50     dbatools
+Function        Get-DbaDiskSpace                                   1.0.50     dbatools
+Function        Get-DbaDump                                        1.0.50     dbatools
+Function        Get-DbaEndpoint                                    1.0.50     dbatools
+Function        Get-DbaErrorLog                                    1.0.50     dbatools
+Function        Get-DbaErrorLogConfig                              1.0.50     dbatools
+Function        Get-DbaEstimatedCompletionTime                     1.0.50     dbatools
+Function        Get-DbaExecutionPlan                               1.0.50     dbatools
+Function        Get-DbaFeature                                     1.0.50     dbatools
+Function        Get-DbaFile                                        1.0.50     dbatools
+Function        Get-DbaFilestream                                  1.0.50     dbatools
+Function        Get-DbaForceNetworkEncryption                      1.0.50     dbatools
+Function        Get-DbaHelpIndex                                   1.0.50     dbatools
+Function        Get-DbaInstanceAudit                               1.0.50     dbatools
+Function        Get-DbaInstanceAuditSpecification                  1.0.50     dbatools
+Function        Get-DbaInstanceInstallDate                         1.0.50     dbatools
+Function        Get-DbaInstanceProperty                            1.0.50     dbatools
+Function        Get-DbaInstanceProtocol                            1.0.50     dbatools
+Function        Get-DbaInstanceTrigger                             1.0.50     dbatools
+Function        Get-DbaInstanceUserOption                          1.0.50     dbatools
+Function        Get-DbaIoLatency                                   1.0.50     dbatools
+Function        Get-DbaKbUpdate                                    1.0.50     dbatools
+Function        Get-DbaLastBackup                                  1.0.50     dbatools
+Function        Get-DbaLastGoodCheckDb                             1.0.50     dbatools
+Function        Get-DbaLatchStatistic                              1.0.50     dbatools
+Function        Get-DbaLinkedServer                                1.0.50     dbatools
+Function        Get-DbaLocaleSetting                               1.0.50     dbatools
+Function        Get-DbaLogin                                       1.0.50     dbatools
+Function        Get-DbaMaintenanceSolutionLog                      1.0.50     dbatools
+Function        Get-DbaManagementObject                            1.0.50     dbatools
+Function        Get-DbaMaxMemory                                   1.0.50     dbatools
+Function        Get-DbaMemoryCondition                             1.0.50     dbatools
+Function        Get-DbaMemoryUsage                                 1.0.50     dbatools
+Function        Get-DbaModule                                      1.0.50     dbatools
+Function        Get-DbaMsdtc                                       1.0.50     dbatools
+Function        Get-DbaNetworkActivity                             1.0.50     dbatools
+Function        Get-DbaNetworkCertificate                          1.0.50     dbatools
+Function        Get-DbaOpenTransaction                             1.0.50     dbatools
+Function        Get-DbaOperatingSystem                             1.0.50     dbatools
+Function        Get-DbaPageFileSetting                             1.0.50     dbatools
+Function        Get-DbaPbmCategory                                 1.0.50     dbatools
+Function        Get-DbaPbmCategorySubscription                     1.0.50     dbatools
+Function        Get-DbaPbmCondition                                1.0.50     dbatools
+Function        Get-DbaPbmObjectSet                                1.0.50     dbatools
+Function        Get-DbaPbmPolicy                                   1.0.50     dbatools
+Function        Get-DbaPbmStore                                    1.0.50     dbatools
+Function        Get-DbaPermission                                  1.0.50     dbatools
+Function        Get-DbaPfAvailableCounter                          1.0.50     dbatools
+Function        Get-DbaPfDataCollector                             1.0.50     dbatools
+Function        Get-DbaPfDataCollectorCounter                      1.0.50     dbatools
+Function        Get-DbaPfDataCollectorCounterSample                1.0.50     dbatools
+Function        Get-DbaPfDataCollectorSet                          1.0.50     dbatools
+Function        Get-DbaPfDataCollectorSetTemplate                  1.0.50     dbatools
+Function        Get-DbaPlanCache                                   1.0.50     dbatools
+Function        Get-DbaPowerPlan                                   1.0.50     dbatools
+Function        Get-DbaPrivilege                                   1.0.50     dbatools
+Function        Get-DbaProcess                                     1.0.50     dbatools
+Function        Get-DbaProductKey                                  1.0.50     dbatools
+Function        Get-DbaQueryExecutionTime                          1.0.50     dbatools
+Function        Get-DbaRandomizedDataset                           1.0.50     dbatools
+Function        Get-DbaRandomizedDatasetTemplate                   1.0.50     dbatools
+Function        Get-DbaRandomizedType                              1.0.50     dbatools
+Function        Get-DbaRandomizedValue                             1.0.50     dbatools
+Function        Get-DbaRegistryRoot                                1.0.50     dbatools
+Function        Get-DbaRegServer                                   1.0.50     dbatools
+Function        Get-DbaRegServerGroup                              1.0.50     dbatools
+Function        Get-DbaRegServerStore                              1.0.50     dbatools
+Function        Get-DbaRepDistributor                              1.0.50     dbatools
+Function        Get-DbaRepPublication                              1.0.50     dbatools
+Function        Get-DbaRepServer                                   1.0.50     dbatools
+Function        Get-DbaResourceGovernor                            1.0.50     dbatools
+Function        Get-DbaRgClassifierFunction                        1.0.50     dbatools
+Function        Get-DbaRgResourcePool                              1.0.50     dbatools
+Function        Get-DbaRgWorkloadGroup                             1.0.50     dbatools
+Function        Get-DbaRunningJob                                  1.0.50     dbatools
+Function        Get-DbaSchemaChangeHistory                         1.0.50     dbatools
+Function        Get-DbaServerRole                                  1.0.50     dbatools
+Function        Get-DbaServerRoleMember                            1.0.50     dbatools
+Function        Get-DbaService                                     1.0.50     dbatools
+Function        Get-DbaSpConfigure                                 1.0.50     dbatools
+Function        Get-DbaSpinLockStatistic                           1.0.50     dbatools
+Function        Get-DbaSpn                                         1.0.50     dbatools
+Function        Get-DbaSsisEnvironmentVariable                     1.0.50     dbatools
+Function        Get-DbaSsisExecutionHistory                        1.0.50     dbatools
+Function        Get-DbaStartupParameter                            1.0.50     dbatools
+Function        Get-DbaStartupProcedure                            1.0.50     dbatools
+Function        Get-DbaSuspectPage                                 1.0.50     dbatools
+Function        Get-DbaTcpPort                                     1.0.50     dbatools
+Function        Get-DbaTempdbUsage                                 1.0.50     dbatools
+Function        Get-DbatoolsChangeLog                              1.0.50     dbatools
+Function        Get-DbatoolsConfig                                 1.0.50     dbatools
+Function        Get-DbatoolsConfigValue                            1.0.50     dbatools
+Function        Get-DbatoolsLog                                    1.0.50     dbatools
+Function        Get-DbaTopResourceUsage                            1.0.50     dbatools
+Function        Get-DbaTrace                                       1.0.50     dbatools
+Function        Get-DbaTraceFlag                                   1.0.50     dbatools
+Function        Get-DbaUptime                                      1.0.50     dbatools
+Function        Get-DbaUserPermission                              1.0.50     dbatools
+Function        Get-DbaWaitingTask                                 1.0.50     dbatools
+Function        Get-DbaWaitResource                                1.0.50     dbatools
+Function        Get-DbaWaitStatistic                               1.0.50     dbatools
+Function        Get-DbaWindowsLog                                  1.0.50     dbatools
+Function        Get-DbaWsfcAvailableDisk                           1.0.50     dbatools
+Function        Get-DbaWsfcCluster                                 1.0.50     dbatools
+Function        Get-DbaWsfcDisk                                    1.0.50     dbatools
+Function        Get-DbaWsfcNetwork                                 1.0.50     dbatools
+Function        Get-DbaWsfcNetworkInterface                        1.0.50     dbatools
+Function        Get-DbaWsfcNode                                    1.0.50     dbatools
+Function        Get-DbaWsfcResource                                1.0.50     dbatools
+Function        Get-DbaWsfcResourceType                            1.0.50     dbatools
+Function        Get-DbaWsfcRole                                    1.0.50     dbatools
+Function        Get-DbaWsfcSharedVolume                            1.0.50     dbatools
+Function        Get-DbaXEObject                                    1.0.50     dbatools
+Function        Get-DbaXESession                                   1.0.50     dbatools
+Function        Get-DbaXESessionTarget                             1.0.50     dbatools
+Function        Get-DbaXESessionTargetFile                         1.0.50     dbatools
+Function        Get-DbaXESessionTemplate                           1.0.50     dbatools
+Function        Get-DbaXESmartTarget                               1.0.50     dbatools
+Function        Get-DbaXEStore                                     1.0.50     dbatools
+Function        Grant-DbaAgPermission                              1.0.50     dbatools
+Function        Import-DbaCsv                                      1.0.50     dbatools
+Function        Import-DbaPfDataCollectorSetTemplate               1.0.50     dbatools
+Function        Import-DbaRegServer                                1.0.50     dbatools
+Function        Import-DbaSpConfigure                              1.0.50     dbatools
+Function        Import-DbatoolsConfig                              1.0.50     dbatools
+Function        Import-DbaXESessionTemplate                        1.0.50     dbatools
+Function        Install-DbaFirstResponderKit                       1.0.50     dbatools
+Function        Install-DbaInstance                                1.0.50     dbatools
+Function        Install-DbaMaintenanceSolution                     1.0.50     dbatools
+Function        Install-DbaSqlWatch                                1.0.50     dbatools
+Function        Install-DbatoolsWatchUpdate                        1.0.50     dbatools
+Function        Install-DbaWhoIsActive                             1.0.50     dbatools
+Function        Invoke-DbaAdvancedInstall                          1.0.50     dbatools
+Function        Invoke-DbaAdvancedRestore                          1.0.50     dbatools
+Function        Invoke-DbaAdvancedUpdate                           1.0.50     dbatools
+Function        Invoke-DbaAgFailover                               1.0.50     dbatools
+Function        Invoke-DbaBalanceDataFiles                         1.0.50     dbatools
+Function        Invoke-DbaCycleErrorLog                            1.0.50     dbatools
+Function        Invoke-DbaDbccDropCleanBuffer                      1.0.50     dbatools
+Function        Invoke-DbaDbccFreeCache                            1.0.50     dbatools
+Function        Invoke-DbaDbClone                                  1.0.50     dbatools
+Function        Invoke-DbaDbDataGenerator                          1.0.50     dbatools
+Function        Invoke-DbaDbDataMasking                            1.0.50     dbatools
+Function        Invoke-DbaDbDbccCheckConstraint                    1.0.50     dbatools
+Function        Invoke-DbaDbDbccCleanTable                         1.0.50     dbatools
+Function        Invoke-DbaDbDbccUpdateUsage                        1.0.50     dbatools
+Function        Invoke-DbaDbDecryptObject                          1.0.50     dbatools
+Function        Invoke-DbaDbLogShipping                            1.0.50     dbatools
+Function        Invoke-DbaDbLogShipRecovery                        1.0.50     dbatools
+Function        Invoke-DbaDbMirrorFailover                         1.0.50     dbatools
+Function        Invoke-DbaDbMirroring                              1.0.50     dbatools
+Function        Invoke-DbaDbPiiScan                                1.0.50     dbatools
+Function        Invoke-DbaDbShrink                                 1.0.50     dbatools
+Function        Invoke-DbaDbUpgrade                                1.0.50     dbatools
+Function        Invoke-DbaDiagnosticQuery                          1.0.50     dbatools
+Function        Invoke-DbaPfRelog                                  1.0.50     dbatools
+Function        Invoke-DbaQuery                                    1.0.50     dbatools
+Function        Invoke-DbatoolsFormatter                           1.0.50     dbatools
+Function        Invoke-DbatoolsRenameHelper                        1.0.50     dbatools
+Function        Invoke-DbaWhoIsActive                              1.0.50     dbatools
+Function        Invoke-DbaXEReplay                                 1.0.50     dbatools
+Function        Join-DbaAvailabilityGroup                          1.0.50     dbatools
+Function        Join-DbaPath                                       1.0.50     dbatools
+Function        Measure-DbaBackupThroughput                        1.0.50     dbatools
+Function        Measure-DbaDbVirtualLogFile                        1.0.50     dbatools
+Function        Measure-DbaDiskSpaceRequirement                    1.0.50     dbatools
+Function        Measure-DbatoolsImport                             1.0.50     dbatools
+Function        Mount-DbaDatabase                                  1.0.50     dbatools
+Function        Move-DbaRegServer                                  1.0.50     dbatools
+Function        Move-DbaRegServerGroup                             1.0.50     dbatools
+Function        New-DbaAgentAlertCategory                          1.0.50     dbatools
+Function        New-DbaAgentJob                                    1.0.50     dbatools
+Function        New-DbaAgentJobCategory                            1.0.50     dbatools
+Function        New-DbaAgentJobStep                                1.0.50     dbatools
+Function        New-DbaAgentProxy                                  1.0.50     dbatools
+Function        New-DbaAgentSchedule                               1.0.50     dbatools
+Function        New-DbaAvailabilityGroup                           1.0.50     dbatools
+Function        New-DbaAzAccessToken                               1.0.50     dbatools
+Function        New-DbaClientAlias                                 1.0.50     dbatools
+Function        New-DbaCmConnection                                1.0.50     dbatools
+Function        New-DbaComputerCertificate                         1.0.50     dbatools
+Function        New-DbaConnectionString                            1.0.50     dbatools
+Function        New-DbaConnectionStringBuilder                     1.0.50     dbatools
+Function        New-DbaCredential                                  1.0.50     dbatools
+Function        New-DbaDacOption                                   1.0.50     dbatools
+Function        New-DbaDacProfile                                  1.0.50     dbatools
+Function        New-DbaDatabase                                    1.0.50     dbatools
+Function        New-DbaDbCertificate                               1.0.50     dbatools
+Function        New-DbaDbDataGeneratorConfig                       1.0.50     dbatools
+Function        New-DbaDbMailAccount                               1.0.50     dbatools
+Function        New-DbaDbMailProfile                               1.0.50     dbatools
+Function        New-DbaDbMaskingConfig                             1.0.50     dbatools
+Function        New-DbaDbMasterKey                                 1.0.50     dbatools
+Function        New-DbaDbRole                                      1.0.50     dbatools
+Function        New-DbaDbSnapshot                                  1.0.50     dbatools
+Function        New-DbaDbTable                                     1.0.50     dbatools
+Function        New-DbaDbUser                                      1.0.50     dbatools
+Function        New-DbaDiagnosticAdsNotebook                       1.0.50     dbatools
+Function        New-DbaDirectory                                   1.0.50     dbatools
+Function        New-DbaEndpoint                                    1.0.50     dbatools
+Function        New-DbaLogin                                       1.0.50     dbatools
+Function        New-DbaScriptingOption                             1.0.50     dbatools
+Function        New-DbaServerRole                                  1.0.50     dbatools
+Function        New-DbaServiceMasterKey                            1.0.50     dbatools
+Function        New-DbaSsisCatalog                                 1.0.50     dbatools
+Function        New-DbatoolsSupportPackage                         1.0.50     dbatools
+Function        New-DbaXESession                                   1.0.50     dbatools
+Function        New-DbaXESmartCsvWriter                            1.0.50     dbatools
+Function        New-DbaXESmartEmail                                1.0.50     dbatools
+Function        New-DbaXESmartQueryExec                            1.0.50     dbatools
+Function        New-DbaXESmartReplay                               1.0.50     dbatools
+Function        New-DbaXESmartTableWriter                          1.0.50     dbatools
+Function        Publish-DbaDacPackage                              1.0.50     dbatools
+Function        Read-DbaAuditFile                                  1.0.50     dbatools
+Function        Read-DbaBackupHeader                               1.0.50     dbatools
+Function        Read-DbaTraceFile                                  1.0.50     dbatools
+Function        Read-DbaTransactionLog                             1.0.50     dbatools
+Function        Read-DbaXEFile                                     1.0.50     dbatools
+Function        Register-DbatoolsConfig                            1.0.50     dbatools
+Function        Remove-DbaAgDatabase                               1.0.50     dbatools
+Function        Remove-DbaAgentAlertCategory                       1.0.50     dbatools
+Function        Remove-DbaAgentJob                                 1.0.50     dbatools
+Function        Remove-DbaAgentJobCategory                         1.0.50     dbatools
+Function        Remove-DbaAgentJobStep                             1.0.50     dbatools
+Function        Remove-DbaAgentSchedule                            1.0.50     dbatools
+Function        Remove-DbaAgListener                               1.0.50     dbatools
+Function        Remove-DbaAgReplica                                1.0.50     dbatools
+Function        Remove-DbaAvailabilityGroup                        1.0.50     dbatools
+Function        Remove-DbaBackup                                   1.0.50     dbatools
+Function        Remove-DbaClientAlias                              1.0.50     dbatools
+Function        Remove-DbaCmConnection                             1.0.50     dbatools
+Function        Remove-DbaComputerCertificate                      1.0.50     dbatools
+Function        Remove-DbaDatabase                                 1.0.50     dbatools
+Function        Remove-DbaDatabaseSafely                           1.0.50     dbatools
+Function        Remove-DbaDbBackupRestoreHistory                   1.0.50     dbatools
+Function        Remove-DbaDbCertificate                            1.0.50     dbatools
+Function        Remove-DbaDbMasterKey                              1.0.50     dbatools
+Function        Remove-DbaDbMirror                                 1.0.50     dbatools
+Function        Remove-DbaDbMirrorMonitor                          1.0.50     dbatools
+Function        Remove-DbaDbOrphanUser                             1.0.50     dbatools
+Function        Remove-DbaDbRole                                   1.0.50     dbatools
+Function        Remove-DbaDbRoleMember                             1.0.50     dbatools
+Function        Remove-DbaDbSnapshot                               1.0.50     dbatools
+Function        Remove-DbaDbUser                                   1.0.50     dbatools
+Function        Remove-DbaEndpoint                                 1.0.50     dbatools
+Function        Remove-DbaLogin                                    1.0.50     dbatools
+Function        Remove-DbaNetworkCertificate                       1.0.50     dbatools
+Function        Remove-DbaPfDataCollectorCounter                   1.0.50     dbatools
+Function        Remove-DbaPfDataCollectorSet                       1.0.50     dbatools
+Function        Remove-DbaRegServer                                1.0.50     dbatools
+Function        Remove-DbaRegServerGroup                           1.0.50     dbatools
+Function        Remove-DbaServerRole                               1.0.50     dbatools
+Function        Remove-DbaSpn                                      1.0.50     dbatools
+Function        Remove-DbaTrace                                    1.0.50     dbatools
+Function        Remove-DbaXESession                                1.0.50     dbatools
+Function        Remove-DbaXESmartTarget                            1.0.50     dbatools
+Function        Rename-DbaDatabase                                 1.0.50     dbatools
+Function        Rename-DbaLogin                                    1.0.50     dbatools
+Function        Repair-DbaDbMirror                                 1.0.50     dbatools
+Function        Repair-DbaDbOrphanUser                             1.0.50     dbatools
+Function        Repair-DbaInstanceName                             1.0.50     dbatools
+Function        Reset-DbaAdmin                                     1.0.50     dbatools
+Function        Reset-DbatoolsConfig                               1.0.50     dbatools
+Function        Resolve-DbaNetworkName                             1.0.50     dbatools
+Function        Resolve-DbaPath                                    1.0.50     dbatools
+Function        Restart-DbaService                                 1.0.50     dbatools
+Function        Restore-DbaDatabase                                1.0.50     dbatools
+Function        Restore-DbaDbCertificate                           1.0.50     dbatools
+Function        Restore-DbaDbSnapshot                              1.0.50     dbatools
+Function        Resume-DbaAgDbDataMovement                         1.0.50     dbatools
+Function        Revoke-DbaAgPermission                             1.0.50     dbatools
+Function        Save-DbaDiagnosticQueryScript                      1.0.50     dbatools
+Function        Save-DbaKbUpdate                                   1.0.50     dbatools
+Function        Select-DbaBackupInformation                        1.0.50     dbatools
+Function        Set-DbaAgentAlert                                  1.0.50     dbatools
+Function        Set-DbaAgentJob                                    1.0.50     dbatools
+Function        Set-DbaAgentJobCategory                            1.0.50     dbatools
+Function        Set-DbaAgentJobOutputFile                          1.0.50     dbatools
+Function        Set-DbaAgentJobOwner                               1.0.50     dbatools
+Function        Set-DbaAgentJobStep                                1.0.50     dbatools
+Function        Set-DbaAgentSchedule                               1.0.50     dbatools
+Function        Set-DbaAgentServer                                 1.0.50     dbatools
+Function        Set-DbaAgListener                                  1.0.50     dbatools
+Function        Set-DbaAgReplica                                   1.0.50     dbatools
+Function        Set-DbaAvailabilityGroup                           1.0.50     dbatools
+Function        Set-DbaCmConnection                                1.0.50     dbatools
+Function        Set-DbaDbCompatibility                             1.0.50     dbatools
+Function        Set-DbaDbCompression                               1.0.50     dbatools
+Function        Set-DbaDbIdentity                                  1.0.50     dbatools
+Function        Set-DbaDbMirror                                    1.0.50     dbatools
+Function        Set-DbaDbOwner                                     1.0.50     dbatools
+Function        Set-DbaDbQueryStoreOption                          1.0.50     dbatools
+Function        Set-DbaDbRecoveryModel                             1.0.50     dbatools
+Function        Set-DbaDbState                                     1.0.50     dbatools
+Function        Set-DbaEndpoint                                    1.0.50     dbatools
+Function        Set-DbaErrorLogConfig                              1.0.50     dbatools
+Function        Set-DbaLogin                                       1.0.50     dbatools
+Function        Set-DbaMaxDop                                      1.0.50     dbatools
+Function        Set-DbaMaxMemory                                   1.0.50     dbatools
+Function        Set-DbaNetworkCertificate                          1.0.50     dbatools
+Function        Set-DbaPowerPlan                                   1.0.50     dbatools
+Function        Set-DbaPrivilege                                   1.0.50     dbatools
+Function        Set-DbaSpConfigure                                 1.0.50     dbatools
+Function        Set-DbaSpn                                         1.0.50     dbatools
+Function        Set-DbaStartupParameter                            1.0.50     dbatools
+Function        Set-DbaTcpPort                                     1.0.50     dbatools
+Function        Set-DbaTempDbConfig                                1.0.50     dbatools
+Function        Show-DbaDbList                                     1.0.50     dbatools
+Function        Show-DbaInstanceFileSystem                         1.0.50     dbatools
+Function        Start-DbaAgentJob                                  1.0.50     dbatools
+Function        Start-DbaEndpoint                                  1.0.50     dbatools
+Function        Start-DbaMigration                                 1.0.50     dbatools
+Function        Start-DbaPfDataCollectorSet                        1.0.50     dbatools
+Function        Start-DbaService                                   1.0.50     dbatools
+Function        Start-DbaTrace                                     1.0.50     dbatools
+Function        Start-DbaXESession                                 1.0.50     dbatools
+Function        Start-DbaXESmartTarget                             1.0.50     dbatools
+Function        Stop-DbaAgentJob                                   1.0.50     dbatools
+Function        Stop-DbaEndpoint                                   1.0.50     dbatools
+Function        Stop-DbaPfDataCollectorSet                         1.0.50     dbatools
+Function        Stop-DbaProcess                                    1.0.50     dbatools
+Function        Stop-DbaService                                    1.0.50     dbatools
+Function        Stop-DbaTrace                                      1.0.50     dbatools
+Function        Stop-DbaXESession                                  1.0.50     dbatools
+Function        Stop-DbaXESmartTarget                              1.0.50     dbatools
+Function        Suspend-DbaAgDbDataMovement                        1.0.50     dbatools
+Function        Sync-DbaAvailabilityGroup                          1.0.50     dbatools
+Function        Sync-DbaLoginPermission                            1.0.50     dbatools
+Function        Test-DbaAgentJobOwner                              1.0.50     dbatools
+Function        Test-DbaBackupInformation                          1.0.50     dbatools
+Function        Test-DbaBuild                                      1.0.50     dbatools
+Function        Test-DbaCmConnection                               1.0.50     dbatools
+Function        Test-DbaConnection                                 1.0.50     dbatools
+Function        Test-DbaConnectionAuthScheme                       1.0.50     dbatools
+Function        Test-DbaDbCollation                                1.0.50     dbatools
+Function        Test-DbaDbCompatibility                            1.0.50     dbatools
+Function        Test-DbaDbCompression                              1.0.50     dbatools
+Function        Test-DbaDbDataGeneratorConfig                      1.0.50     dbatools
+Function        Test-DbaDbDataMaskingConfig                        1.0.50     dbatools
+Function        Test-DbaDbLogShipStatus                            1.0.50     dbatools
+Function        Test-DbaDbOwner                                    1.0.50     dbatools
+Function        Test-DbaDbRecoveryModel                            1.0.50     dbatools
+Function        Test-DbaDeprecatedFeature                          1.0.50     dbatools
+Function        Test-DbaDiskAlignment                              1.0.50     dbatools
+Function        Test-DbaDiskAllocation                             1.0.50     dbatools
+Function        Test-DbaDiskSpeed                                  1.0.50     dbatools
+Function        Test-DbaEndpoint                                   1.0.50     dbatools
+Function        Test-DbaIdentityUsage                              1.0.50     dbatools
+Function        Test-DbaInstanceName                               1.0.50     dbatools
+Function        Test-DbaLastBackup                                 1.0.50     dbatools
+Function        Test-DbaLinkedServerConnection                     1.0.50     dbatools
+Function        Test-DbaLoginPassword                              1.0.50     dbatools
+Function        Test-DbaManagementObject                           1.0.50     dbatools
+Function        Test-DbaMaxDop                                     1.0.50     dbatools
+Function        Test-DbaMaxMemory                                  1.0.50     dbatools
+Function        Test-DbaMigrationConstraint                        1.0.50     dbatools
+Function        Test-DbaNetworkLatency                             1.0.50     dbatools
+Function        Test-DbaOptimizeForAdHoc                           1.0.50     dbatools
+Function        Test-DbaPath                                       1.0.50     dbatools
+Function        Test-DbaPowerPlan                                  1.0.50     dbatools
+Function        Test-DbaRepLatency                                 1.0.50     dbatools
+Function        Test-DbaSpn                                        1.0.50     dbatools
+Function        Test-DbaTempDbConfig                               1.0.50     dbatools
+Function        Test-DbaWindowsLogin                               1.0.50     dbatools
+Function        Uninstall-DbaSqlWatch                              1.0.50     dbatools
+Function        Uninstall-DbatoolsWatchUpdate                      1.0.50     dbatools
+Function        Unregister-DbatoolsConfig                          1.0.50     dbatools
+Function        Update-DbaInstance                                 1.0.50     dbatools
+Function        Update-DbaServiceAccount                           1.0.50     dbatools
+Function        Update-Dbatools                                    1.0.50     dbatools
+Function        Watch-DbaDbLogin                                   1.0.50     dbatools
+Function        Watch-DbatoolsUpdate                               1.0.50     dbatools
+Function        Watch-DbaXESession                                 1.0.50     dbatools
+Function        Write-DbaDbTableData                               1.0.50     dbatools
+Cmdlet          Select-DbaObject                                   1.0.50     dbatools
+Cmdlet          Set-DbatoolsConfig                                 1.0.50     dbatools
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> # All commands that have compression in the name
+Get-Command *Compression* -Module dbatools
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Get-DbaDbCompression                               1.0.50     dbatools
+Function        Set-DbaDbCompression                               1.0.50     dbatools
+Function        Test-DbaDbCompression                              1.0.50     dbatools
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Find-DbaCommand *compression*
+
+CommandName              Synopsis
+-----------              --------
+Backup-DbaDatabase       Backup one or more SQL Sever databases from a single SQL Server SqlInstance.
+Copy-DbaSpConfigure      Copy-DbaSpConfigure migrates configuration values from one SQL Server to another.
+Find-DbaDbDuplicateIndex Find duplicate and overlapping indexes.
+Get-DbaDbCompression     Gets tables and indexes size and current compression settings.
+Get-DbaHelpIndex         Returns size, row and configuration information for indexes in databases.
+Remove-DbaDatabaseSafely Safely removes a SQL Database and creates an Agent Job to restore it.
+Set-DbaDbCompression     Sets tables and indexes with preferred compression setting.
+Test-DbaDbCompression    Returns tables and indexes with preferred compression setting.
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Find-DbaCommand -Author Pomfret
+
+CommandName              Synopsis
+-----------              --------
+Backup-DbaDbCertificate  Exports database certificates from SQL Server using SMO.
+Get-DbaDbCompression     Gets tables and indexes size and current compression settings.
+Get-DbaDbLogSpace        Gets information on the database transaction log usage for each instance(s) of SQL Server.
+Restore-DbaDbCertificate Imports certificates from .cer files using SMO.
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## 7. Get help on how to use a command
+Get-Help Test-DbaDbCompression
+
+NAME
+    Test-DbaDbCompression
+
+SYNOPSIS
+    Returns tables and indexes with preferred compression setting.
+
+
+SYNTAX
+    Test-DbaDbCompression [-SqlInstance] <Sqlcollaborative.Dbatools.Parameter.DbaInstanceParameter[]> [[-SqlCredential] <Pscredential>] [[-Database] <System.Object[]>] [[-ExcludeDatabase]
+    <System.Object[]>] [[-Schema] <System.String[]>] [[-Table] <System.String[]>] [[-ResultSize] <Int>] [[-Rank] <String>] [[-FilterBy] <String>] [-EnableException <Switch>]
+    [<CommonParameters>]
+
+
+DESCRIPTION
+    This function returns the results of a full table/index compression analysis and the estimated, best option to date for either NONE, Page, or Row Compression.
+
+    Remember Uptime is critical, the longer uptime, the more accurate the analysis is, and it would be best if you utilized Get-DbaUptime first, before running this command.
+
+    Test-DbaDbCompression script derived from GitHub and the Tiger Team's repository: (https://github.com/Microsoft/tigertoolbox/tree/master/Evaluate-Compression-Gains)
+
+    In the output, you will find the following information:
+
+    - Column Percent_Update shows the percentage of update operations on a specific table, index, or partition, relative to total operations on that object. The lower the percentage of
+    Updates (that is, the table, index, or partition is infrequently updated), the better candidate it is for page compression.
+
+    - Column Percent_Scan shows the percentage of scan operations on a table, index, or partition, relative to total operations on that object. The higher the value of Scan (that is, the
+    table, index, or partition is mostly scanned), the better candidate it is for page compression.
+
+    - Column Compression_Type_Recommendation can have four possible outputs indicating where there is most gain, if any: 'PAGE', 'ROW', 'NO_GAIN' or '?'. When the output is '?' this approach
+    could not give a recommendation, so as a rule of thumb I would lean to ROW if the object suffers mainly UPDATES, or PAGE if mainly INSERTS, but this is where knowing your workload is
+    essential. When the output is 'NO_GAIN' well, that means that according to sp_estimate_data_compression_savings no space gains will be attained when compressing, as in the above output
+    example, where compressing would grow the affected object.
+
+    This script will execute on the context of the current database.
+
+    Also be aware that this may take a while to execute on large objects, because if the IS locks taken by the
+
+    sp_estimate_data_compression_savings cannot be honored, the SP will be blocked.
+
+    It only considers Row or Page Compression (not column compression)
+
+    It only evaluates User Tables
+
+
+RELATED LINKS
+    https://dbatools.io/Test-DbaDbCompression
+
+REMARKS
+    To see the examples, type: "get-help Test-DbaDbCompression -examples".
+    For more information, type: "get-help Test-DbaDbCompression -detailed".
+    For technical information, type: "get-help Test-DbaDbCompression -full".
+    For online help, type: "get-help Test-DbaDbCompression -online"
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-Help Test-DbaDbCompression -ShowWindow
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## 8. Intro to Splatting
+Get-DbaDbCompression -SqlInstance "mssql1" -SqlCredential $Credential -Database "AdventureWorks2017"  | Select-Object -first 5
+
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : AWBuildVersion
+IndexName       : PK_AWBuildVersion_SystemInformationID
+Partition       : 1
+IndexID         : 1
+IndexType       : ClusteredIndex
+DataCompression : None
+SizeCurrent     : 8.00 KB
+RowCount        : 1
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : DatabaseLog
+IndexName       :
+Partition       : 1
+IndexID         : 0
+IndexType       : Heap
+DataCompression : None
+SizeCurrent     : 6.39 MB
+RowCount        : 1596
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : DatabaseLog
+IndexName       : PK_DatabaseLog_DatabaseLogID
+Partition       : 1
+IndexID         : 2
+IndexType       : NonClusteredIndex
+DataCompression : None
+SizeCurrent     : 48.00 KB
+RowCount        : 1596
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : ErrorLog
+IndexName       : PK_ErrorLog_ErrorLogID
+Partition       : 1
+IndexID         : 1
+IndexType       : ClusteredIndex
+DataCompression : None
+SizeCurrent     : 0 B
+RowCount        : 0
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : HumanResources
+TableName       : Department
+IndexName       : AK_Department_Name
+Partition       : 1
+IndexID         : 2
+IndexType       : NonClusteredIndex
+DataCompression : None
+SizeCurrent     : 16.00 KB
+RowCount        : 16
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> $splatGet = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $Credential
+    Database        = "AdventureWorks2017"
+}
+Get-DbaDbCompression @splatGet | Select-Object -first 5
+
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : AWBuildVersion
+IndexName       : PK_AWBuildVersion_SystemInformationID
+Partition       : 1
+IndexID         : 1
+IndexType       : ClusteredIndex
+DataCompression : None
+SizeCurrent     : 8.00 KB
+RowCount        : 1
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : DatabaseLog
+IndexName       :
+Partition       : 1
+IndexID         : 0
+IndexType       : Heap
+DataCompression : None
+SizeCurrent     : 6.39 MB
+RowCount        : 1596
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : DatabaseLog
+IndexName       : PK_DatabaseLog_DatabaseLogID
+Partition       : 1
+IndexID         : 2
+IndexType       : NonClusteredIndex
+DataCompression : None
+SizeCurrent     : 48.00 KB
+RowCount        : 1596
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : dbo
+TableName       : ErrorLog
+IndexName       : PK_ErrorLog_ErrorLogID
+Partition       : 1
+IndexID         : 1
+IndexType       : ClusteredIndex
+DataCompression : None
+SizeCurrent     : 0 B
+RowCount        : 0
+
+ComputerName    : mssql1
+InstanceName    : MSSQLSERVER
+SqlInstance     : mssql1
+Database        : AdventureWorks2017
+Schema          : HumanResources
+TableName       : Department
+IndexName       : AK_Department_Name
+Partition       : 1
+IndexID         : 2
+IndexType       : NonClusteredIndex
+DataCompression : None
+SizeCurrent     : 16.00 KB
+RowCount        : 16
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> #######################
+#                     #
+#  Test Your Backups  #
+#                     #
+#######################
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Get the backup history for tne mssql1 server
+$instanceSplat = @{
+    SqlInstance   = 'mssql1'
+    SqlCredential = $credential
+}
+Get-DbaDbBackupHistory @instanceSplat
+
+SqlInstance Database           Type TotalSize DeviceType Start                   Duration End
+----------- --------           ---- --------- ---------- -----                   -------- ---
+mssql1      AdventureWorks2017 Full 205.08 MB Disk       2019-10-04 18:45:35.000 00:00:01 2019-10-04 18:45:36.000
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Backup the DatabaseAdmin database
+$backupParams = @{
+    SqlInstance   = 'mssql1'
+    SqlCredential = $credential
+    Database      = 'DatabaseAdmin'
+}
+Backup-DbaDatabase @backupParams
+
+SqlInstance Database      Type TotalSize DeviceType Start                   Duration End
+----------- --------      ---- --------- ---------- -----                   -------- ---
+mssql1      DatabaseAdmin Full 2.77 MB   Disk       2019-10-04 18:51:48.000 00:00:01 2019-10-04 18:51:49.000
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Command): name="Name"; value="Backup-DbaDatabase"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Backup-DbaDatabase                                 1.0.50     dbatools
+
+
+PS C:\github\demos\LifeHacks_dbatools> CommandInvocation(Get-Help): "Get-Help"
+>> ParameterBinding(Get-Help): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Help): name="Name"; value="Backup-DbaDatabase"
+
+NAME
+    Backup-DbaDatabase
+
+SYNOPSIS
+    Backup one or more SQL Sever databases from a single SQL Server SqlInstance.
+
+
+SYNTAX
+    Backup-DbaDatabase [-SqlCredential <Pscredential>] [-Database <System.Object[]>] [-ExcludeDatabase <System.Object[]>] [-Path <System.String[]>] [-FilePath <String>] [-ReplaceInName
+    <Switch>] [-CopyOnly <Switch>] [-Type <String>] [-CreateFolder <Switch>] [-FileCount <Int>] [-CompressBackup <Switch>] [-Checksum <Switch>] [-Verify <Switch>] [-MaxTransferSize <Int>]
+    [-BlockSize <Int>] [-BufferCount <Int>] [-AzureBaseUrl <System.String[]>] [-AzureCredential <String>] [-NoRecovery <Switch>] [-BuildPath <Switch>] [-WithFormat <Switch>] [-Initialize
+    <Switch>] [-SkipTapeHeader <Switch>] [-TimeStampFormat <String>] [-IgnoreFileChecks <Switch>] [-OutputScriptOnly <Switch>] [-EnableException <Switch>] [<CommonParameters>]
+
+    Backup-DbaDatabase -SqlInstance <DbaInstanceParameter> [-SqlCredential <Pscredential>] [-Database <System.Object[]>] [-ExcludeDatabase <System.Object[]>] [-Path <System.String[]>]
+    [-FilePath <String>] [-ReplaceInName <Switch>] [-CopyOnly <Switch>] [-Type <String>] [-CreateFolder <Switch>] [-FileCount <Int>] [-CompressBackup <Switch>] [-Checksum <Switch>] [-Verify
+    <Switch>] [-MaxTransferSize <Int>] [-BlockSize <Int>] [-BufferCount <Int>] [-AzureBaseUrl <System.String[]>] [-AzureCredential <String>] [-NoRecovery <Switch>] [-BuildPath <Switch>]
+    [-WithFormat <Switch>] [-Initialize <Switch>] [-SkipTapeHeader <Switch>] [-TimeStampFormat <String>] [-IgnoreFileChecks <Switch>] [-OutputScriptOnly <Switch>] [-EnableException <Switch>]
+    [<CommonParameters>]
+
+    Backup-DbaDatabase [-SqlCredential <Pscredential>] [-Database <System.Object[]>] [-ExcludeDatabase <System.Object[]>] [-Path <System.String[]>] [-FilePath <String>] [-ReplaceInName
+    <Switch>] [-CopyOnly <Switch>] [-Type <String>] -InputObject <System.Object[]> [-CreateFolder <Switch>] [-FileCount <Int>] [-CompressBackup <Switch>] [-Checksum <Switch>] [-Verify
+    <Switch>] [-MaxTransferSize <Int>] [-BlockSize <Int>] [-BufferCount <Int>] [-AzureBaseUrl <System.String[]>] [-AzureCredential <String>] [-NoRecovery <Switch>] [-BuildPath <Switch>]
+    [-WithFormat <Switch>] [-Initialize <Switch>] [-SkipTapeHeader <Switch>] [-TimeStampFormat <String>] [-IgnoreFileChecks <Switch>] [-OutputScriptOnly <Switch>] [-EnableException <Switch>]
+    [<CommonParameters>]
+
+
+DESCRIPTION
+    Performs a backup of a specified type of 1 or more databases on a single SQL Server Instance. These backups may be Full, Differential or Transaction log backups.
+
+
+RELATED LINKS
+
+REMARKS
+    To see the examples, type: "get-help Backup-DbaDatabase -examples".
+    For more information, type: "get-help Backup-DbaDatabase -detailed".
+    For technical information, type: "get-help Backup-DbaDatabase -full".
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Offload testing your backups to a second server
+$testParams = @{
+    SqlInstance           = 'mssql1'
+    SqlCredential         = $credential
+    Database              = "AdventureWorks2017","DatabaseAdmin"
+    Destination           = 'mssql2'
+    DestinationCredential = $credential
+    Verbose               = $true
+    OutVariable           = 'results'
+}
+Test-DbaLastBackup @testParams
+VERBOSE: [14:51:57][Test-DbaLastBackup] Getting recent backup history for AdventureWorks2017 on mssql1.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Processing AdventureWorks2017
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Processing AdventureWorks2017
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] 0 result-groups found.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] No Diff found
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:51:57][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:51:57][Test-DbaLastBackup] Path not UNC and source does not match destination. Use -CopyFile to move the backup file.
+VERBOSE: [14:51:57][Test-DbaLastBackup] Looking good.
+VERBOSE: [14:51:57][Read-DbaBackupHeader] Checking: /var/opt/backups/AdventureWorks2017.bak
+VERBOSE: [14:51:57][Read-DbaBackupHeader] 1 unique files to scan.
+VERBOSE: [14:51:57][Read-DbaBackupHeader] Checking accessibility for all the files.
+VERBOSE: [14:51:58][Read-DbaBackupHeader] Scanning file /var/opt/backups/AdventureWorks2017.bak.
+VERBOSE: Performing the operation "Restoring AdventureWorks2017 as dbatools-testrestore-AdventureWorks2017." on target "mssql2".
+VERBOSE: [14:52:03][Test-DbaLastBackup] Performing restore.
+VERBOSE: [14:52:03][Restore-DbaDatabase] Changing statement timeout to infinity
+VERBOSE: [14:52:03][Restore-DbaDatabase] ParameterSet  = Restore
+VERBOSE: [14:52:03][Restore-DbaDatabase] Trust Database Backup History Set
+VERBOSE: [14:52:03][Restore-DbaDatabase] adding BackupPath - /var/opt/backups/AdventureWorks2017.bak
+VERBOSE: [14:52:03][Restore-DbaDatabase] Processing DatabaseName -
+VERBOSE: [14:52:04][Format-DbaBackupInformation] Starting
+VERBOSE: [14:52:04][Format-DbaBackupInformation] String passed in for DB rename
+VERBOSE: [14:52:04][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/sqlserver/AdventureWorks2017.mdf
+VERBOSE: [14:52:04][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-AdventureWorks2017.mdf
+VERBOSE: [14:52:04][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/sqlserver/AdventureWorks2017_log.ldf
+VERBOSE: [14:52:04][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-AdventureWorks2017_log.ldf
+VERBOSE: [14:52:04][Select-DbaBackupInformation] processing diffs
+VERBOSE: [14:52:04][Select-DbaBackupInformation] Found LogBaseLsn: 39000002225600001 and FirstRecoveryForkID:
+VERBOSE: [14:52:04][Restore-DbaDatabase] VerifyOnly = False
+VERBOSE: [14:52:04][Test-DbaBackupInformation] Testing restore for dbatools-testrestore-AdventureWorks2017
+VERBOSE: [14:52:04][Test-DbaBackupInformation] VerifyOnly = False
+VERBOSE: [14:52:04][Test-DbaLsnChain] Testing LSN Chain
+VERBOSE: [14:52:04][Test-DbaLsnChain] Testing LSN Chain - Type Type
+VERBOSE: [14:52:05][Test-DbaLsnChain] Passed LSN Chain checks
+VERBOSE: [14:52:05][Test-DbaBackupInformation] Marking dbatools-testrestore-AdventureWorks2017 as verified
+VERBOSE: [14:52:05][Restore-DbaDatabase] dbatools-testrestore-AdventureWorks2017 passed testing
+VERBOSE: [14:52:05][Restore-DbaDatabase] Passing in to restore
+VERBOSE: [14:52:06][Invoke-DbaAdvancedRestore] Performing restore action
+VERBOSE: [14:52:14][Invoke-DbaAdvancedRestore] Succeeded, Closing Server connection
+VERBOSE: [14:52:14][Test-DbaLastBackup]  Restore-DbaDatabase -SqlInstance [mssql2] -RestoredDatabaseNamePrefix dbatools-testrestore- -DestinationFilePrefix dbatools-testrestore- -DestinationDataDirectory /var/opt/mssql/data/ -DestinationLogDirectory /var/opt/mssql/data/ -IgnoreLogBackup:False -AzureCredential  -TrustDbBackupHistory
+VERBOSE: [14:52:14][Test-DbaLastBackup] Starting DBCC.
+VERBOSE: Dbcc CHECKDB finished successfully for dbatools-testrestore-AdventureWorks2017 on mssql2
+VERBOSE: Performing the operation "Dropping Database dbatools-testrestore-AdventureWorks2017 on mssql2" on target "dbatools-testrestore-AdventureWorks2017".
+VERBOSE: [14:52:24][Test-DbaLastBackup] Dropping database.
+VERBOSE: [14:52:25][Test-DbaLastBackup] Dropped dbatools-testrestore-AdventureWorks2017 Database on mssql2.
+VERBOSE: Performing the operation "Showing results" on target "console".
+
+
+SourceServer   : mssql1
+TestServer     : mssql2
+Database       : AdventureWorks2017
+FileExists     : True
+Size           : 205.08 MB
+RestoreResult  : Success
+DbccResult     : Success
+RestoreStart   : 2019-10-04 14:52:03.698
+RestoreEnd     : 2019-10-04 14:52:14.173
+RestoreElapsed : 00:00:10
+DbccStart      : 2019-10-04 14:52:14.590
+DbccEnd        : 2019-10-04 14:52:24.827
+DbccElapsed    : 00:00:10
+BackupDates    : {10/04/2019 18:45:35}
+BackupFiles    : {/var/opt/backups/AdventureWorks2017.bak}
+
+VERBOSE: [14:52:25][Test-DbaLastBackup] Getting recent backup history for DatabaseAdmin on mssql1.
+VERBOSE: [14:52:25][Get-DbaDbBackupHistory] Processing DatabaseAdmin
+VERBOSE: [14:52:25][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:52:25][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:52:25][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:52:25][Get-DbaDbBackupHistory] Processing DatabaseAdmin
+VERBOSE: [14:52:26][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:52:26][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:52:26][Get-DbaDbBackupHistory] 0 result-groups found.
+VERBOSE: [14:52:26][Get-DbaDbBackupHistory] No Diff found
+VERBOSE: [14:52:26][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:52:26][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:52:26][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:52:26][Test-DbaLastBackup] Path not UNC and source does not match destination. Use -CopyFile to move the backup file.
+VERBOSE: [14:52:26][Test-DbaLastBackup] Looking good.
+VERBOSE: [14:52:26][Read-DbaBackupHeader] Checking: C:\var\opt\backups\DatabaseAdmin_201910041451.bak
+VERBOSE: [14:52:26][Read-DbaBackupHeader] 1 unique files to scan.
+VERBOSE: [14:52:26][Read-DbaBackupHeader] Checking accessibility for all the files.
+VERBOSE: [14:52:26][Read-DbaBackupHeader] Scanning file C:\var\opt\backups\DatabaseAdmin_201910041451.bak.
+VERBOSE: Performing the operation "Restoring DatabaseAdmin as dbatools-testrestore-DatabaseAdmin." on target "mssql2".
+VERBOSE: [14:52:27][Test-DbaLastBackup] Performing restore.
+VERBOSE: [14:52:27][Restore-DbaDatabase] Changing statement timeout to infinity
+VERBOSE: [14:52:27][Restore-DbaDatabase] ParameterSet  = Restore
+VERBOSE: [14:52:27][Restore-DbaDatabase] Trust Database Backup History Set
+VERBOSE: [14:52:27][Restore-DbaDatabase] adding BackupPath - C:\var\opt\backups\DatabaseAdmin_201910041451.bak
+VERBOSE: [14:52:27][Restore-DbaDatabase] Processing DatabaseName -
+VERBOSE: [14:52:27][Format-DbaBackupInformation] Starting
+VERBOSE: [14:52:27][Format-DbaBackupInformation] String passed in for DB rename
+VERBOSE: [14:52:27][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/mssql/data/DatabaseAdmin.mdf
+VERBOSE: [14:52:27][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-DatabaseAdmin.mdf
+VERBOSE: [14:52:27][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/mssql/data/DatabaseAdmin_log.ldf
+VERBOSE: [14:52:27][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-DatabaseAdmin_log.ldf
+VERBOSE: [14:52:27][Select-DbaBackupInformation] processing diffs
+VERBOSE: [14:52:27][Select-DbaBackupInformation] Found LogBaseLsn: 36000000076800001 and FirstRecoveryForkID:
+VERBOSE: [14:52:27][Restore-DbaDatabase] VerifyOnly = False
+VERBOSE: [14:52:27][Test-DbaBackupInformation] Testing restore for dbatools-testrestore-DatabaseAdmin
+VERBOSE: [14:52:27][Test-DbaBackupInformation] VerifyOnly = False
+VERBOSE: [14:52:27][Test-DbaLsnChain] Testing LSN Chain
+VERBOSE: [14:52:27][Test-DbaLsnChain] Testing LSN Chain - Type Type
+VERBOSE: [14:52:27][Test-DbaLsnChain] Passed LSN Chain checks
+VERBOSE: [14:52:27][Test-DbaBackupInformation] Marking dbatools-testrestore-DatabaseAdmin as verified
+VERBOSE: [14:52:27][Restore-DbaDatabase] dbatools-testrestore-DatabaseAdmin passed testing
+VERBOSE: [14:52:27][Restore-DbaDatabase] Passing in to restore
+VERBOSE: [14:52:27][Invoke-DbaAdvancedRestore] Performing restore action
+VERBOSE: [14:52:32][Invoke-DbaAdvancedRestore] Succeeded, Closing Server connection
+VERBOSE: [14:52:32][Test-DbaLastBackup]  Restore-DbaDatabase -SqlInstance [mssql2] -RestoredDatabaseNamePrefix dbatools-testrestore- -DestinationFilePrefix dbatools-testrestore- -DestinationDataDirectory /var/opt/mssql/data/ -DestinationLogDirectory /var/opt/mssql/data/ -IgnoreLogBackup:False -AzureCredential  -TrustDbBackupHistory
+VERBOSE: [14:52:33][Test-DbaLastBackup] Starting DBCC.
+VERBOSE: Dbcc CHECKDB finished successfully for dbatools-testrestore-DatabaseAdmin on mssql2
+VERBOSE: Performing the operation "Dropping Database dbatools-testrestore-DatabaseAdmin on mssql2" on target "dbatools-testrestore-DatabaseAdmin".
+VERBOSE: [14:52:35][Test-DbaLastBackup] Dropping database.
+VERBOSE: [14:52:35][Test-DbaLastBackup] Dropped dbatools-testrestore-DatabaseAdmin Database on mssql2.
+VERBOSE: Performing the operation "Showing results" on target "console".
+SourceServer   : mssql1
+TestServer     : mssql2
+Database       : DatabaseAdmin
+FileExists     : True
+Size           : 2.77 MB
+RestoreResult  : Success
+DbccResult     : Success
+RestoreStart   : 2019-10-04 14:52:27.402
+RestoreEnd     : 2019-10-04 14:52:32.956
+RestoreElapsed : 00:00:05
+DbccStart      : 2019-10-04 14:52:33.478
+DbccEnd        : 2019-10-04 14:52:35.197
+DbccElapsed    : 00:00:01
+BackupDates    : {10/04/2019 18:51:48}
+BackupFiles    : {C:\var\opt\backups\DatabaseAdmin_201910041451.bak}
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Record your backup tests into a SQL Server table
+$writeParams = @{
+    SqlInstance = 'mssql1'
+    SqlCredential = $credential
+    Database = 'DatabaseAdmin'
+    Table = 'TestRestore'
+    AutoCreateTable = $true
+}
+$results | Write-DbaDataTable @writeParams
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Using Piping
+Test-DbaLastBackup @testParams | Write-DbaDataTable @writeParams
+VERBOSE: [14:52:43][Test-DbaLastBackup] Getting recent backup history for AdventureWorks2017 on mssql1.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Processing AdventureWorks2017
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Processing AdventureWorks2017
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] 0 result-groups found.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] No Diff found
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:52:43][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:52:43][Test-DbaLastBackup] Path not UNC and source does not match destination. Use -CopyFile to move the backup file.
+VERBOSE: [14:52:43][Test-DbaLastBackup] Looking good.
+VERBOSE: [14:52:43][Read-DbaBackupHeader] Checking: /var/opt/backups/AdventureWorks2017.bak
+VERBOSE: [14:52:43][Read-DbaBackupHeader] 1 unique files to scan.
+VERBOSE: [14:52:43][Read-DbaBackupHeader] Checking accessibility for all the files.
+VERBOSE: [14:52:44][Read-DbaBackupHeader] Scanning file /var/opt/backups/AdventureWorks2017.bak.
+VERBOSE: Performing the operation "Restoring AdventureWorks2017 as dbatools-testrestore-AdventureWorks2017." on target "mssql2".
+VERBOSE: [14:52:50][Test-DbaLastBackup] Performing restore.
+VERBOSE: [14:52:50][Restore-DbaDatabase] Changing statement timeout to infinity
+VERBOSE: [14:52:50][Restore-DbaDatabase] ParameterSet  = Restore
+VERBOSE: [14:52:50][Restore-DbaDatabase] Trust Database Backup History Set
+VERBOSE: [14:52:51][Restore-DbaDatabase] adding BackupPath - /var/opt/backups/AdventureWorks2017.bak
+VERBOSE: [14:52:51][Restore-DbaDatabase] Processing DatabaseName -
+VERBOSE: [14:52:51][Format-DbaBackupInformation] Starting
+VERBOSE: [14:52:51][Format-DbaBackupInformation] String passed in for DB rename
+VERBOSE: [14:52:51][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/sqlserver/AdventureWorks2017.mdf
+VERBOSE: [14:52:51][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-AdventureWorks2017.mdf
+VERBOSE: [14:52:51][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/sqlserver/AdventureWorks2017_log.ldf
+VERBOSE: [14:52:51][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-AdventureWorks2017_log.ldf
+VERBOSE: [14:52:51][Select-DbaBackupInformation] processing diffs
+VERBOSE: [14:52:51][Select-DbaBackupInformation] Found LogBaseLsn: 39000002225600001 and FirstRecoveryForkID:
+VERBOSE: [14:52:51][Restore-DbaDatabase] VerifyOnly = False
+VERBOSE: [14:52:51][Test-DbaBackupInformation] Testing restore for dbatools-testrestore-AdventureWorks2017
+VERBOSE: [14:52:51][Test-DbaBackupInformation] VerifyOnly = False
+VERBOSE: [14:52:51][Test-DbaLsnChain] Testing LSN Chain
+VERBOSE: [14:52:51][Test-DbaLsnChain] Testing LSN Chain - Type Type
+VERBOSE: [14:52:51][Test-DbaLsnChain] Passed LSN Chain checks
+VERBOSE: [14:52:51][Test-DbaBackupInformation] Marking dbatools-testrestore-AdventureWorks2017 as verified
+VERBOSE: [14:52:51][Restore-DbaDatabase] dbatools-testrestore-AdventureWorks2017 passed testing
+VERBOSE: [14:52:51][Restore-DbaDatabase] Passing in to restore
+VERBOSE: [14:52:51][Invoke-DbaAdvancedRestore] Performing restore action
+VERBOSE: [14:52:58][Invoke-DbaAdvancedRestore] Succeeded, Closing Server connection
+VERBOSE: [14:52:58][Test-DbaLastBackup]  Restore-DbaDatabase -SqlInstance [mssql2] -RestoredDatabaseNamePrefix dbatools-testrestore- -DestinationFilePrefix dbatools-testrestore- -DestinationDataDirectory /var/opt/mssql/data/ -DestinationLogDirectory /var/opt/mssql/data/ -IgnoreLogBackup:False -AzureCredential  -TrustDbBackupHistory
+VERBOSE: [14:52:58][Test-DbaLastBackup] Starting DBCC.
+VERBOSE: Dbcc CHECKDB finished successfully for dbatools-testrestore-AdventureWorks2017 on mssql2
+VERBOSE: Performing the operation "Dropping Database dbatools-testrestore-AdventureWorks2017 on mssql2" on target "dbatools-testrestore-AdventureWorks2017".
+VERBOSE: [14:53:07][Test-DbaLastBackup] Dropping database.
+VERBOSE: [14:53:07][Test-DbaLastBackup] Dropped dbatools-testrestore-AdventureWorks2017 Database on mssql2.
+VERBOSE: Performing the operation "Showing results" on target "console".
+VERBOSE: [14:53:08][Test-DbaLastBackup] Getting recent backup history for DatabaseAdmin on mssql1.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Processing DatabaseAdmin
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Processing DatabaseAdmin
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] 0 result-groups found.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] No Diff found
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:53:08][Get-DbaDbBackupHistory] 1 result-groups found.
+VERBOSE: [14:53:08][Test-DbaLastBackup] Path not UNC and source does not match destination. Use -CopyFile to move the backup file.
+VERBOSE: [14:53:08][Test-DbaLastBackup] Looking good.
+VERBOSE: [14:53:08][Read-DbaBackupHeader] Checking: C:\var\opt\backups\DatabaseAdmin_201910041451.bak
+VERBOSE: [14:53:08][Read-DbaBackupHeader] 1 unique files to scan.
+VERBOSE: [14:53:08][Read-DbaBackupHeader] Checking accessibility for all the files.
+VERBOSE: [14:53:08][Read-DbaBackupHeader] Scanning file C:\var\opt\backups\DatabaseAdmin_201910041451.bak.
+VERBOSE: Performing the operation "Restoring DatabaseAdmin as dbatools-testrestore-DatabaseAdmin." on target "mssql2".
+VERBOSE: [14:53:09][Test-DbaLastBackup] Performing restore.
+VERBOSE: [14:53:09][Restore-DbaDatabase] Changing statement timeout to infinity
+VERBOSE: [14:53:09][Restore-DbaDatabase] ParameterSet  = Restore
+VERBOSE: [14:53:09][Restore-DbaDatabase] Trust Database Backup History Set
+VERBOSE: [14:53:09][Restore-DbaDatabase] adding BackupPath - C:\var\opt\backups\DatabaseAdmin_201910041451.bak
+VERBOSE: [14:53:09][Restore-DbaDatabase] Processing DatabaseName -
+VERBOSE: [14:53:09][Format-DbaBackupInformation] Starting
+VERBOSE: [14:53:09][Format-DbaBackupInformation] String passed in for DB rename
+VERBOSE: [14:53:09][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/mssql/data/DatabaseAdmin.mdf
+VERBOSE: [14:53:09][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-DatabaseAdmin.mdf
+VERBOSE: [14:53:09][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/mssql/data/DatabaseAdmin_log.ldf
+VERBOSE: [14:53:09][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/dbatools-testrestore-DatabaseAdmin_log.ldf
+VERBOSE: [14:53:09][Select-DbaBackupInformation] processing diffs
+VERBOSE: [14:53:09][Select-DbaBackupInformation] Found LogBaseLsn: 36000000076800001 and FirstRecoveryForkID:
+VERBOSE: [14:53:09][Restore-DbaDatabase] VerifyOnly = False
+VERBOSE: [14:53:09][Test-DbaBackupInformation] Testing restore for dbatools-testrestore-DatabaseAdmin
+VERBOSE: [14:53:10][Test-DbaBackupInformation] VerifyOnly = False
+VERBOSE: [14:53:10][Test-DbaLsnChain] Testing LSN Chain
+VERBOSE: [14:53:10][Test-DbaLsnChain] Testing LSN Chain - Type Type
+VERBOSE: [14:53:10][Test-DbaLsnChain] Passed LSN Chain checks
+VERBOSE: [14:53:10][Test-DbaBackupInformation] Marking dbatools-testrestore-DatabaseAdmin as verified
+VERBOSE: [14:53:10][Restore-DbaDatabase] dbatools-testrestore-DatabaseAdmin passed testing
+VERBOSE: [14:53:10][Restore-DbaDatabase] Passing in to restore
+VERBOSE: [14:53:10][Invoke-DbaAdvancedRestore] Performing restore action
+VERBOSE: [14:53:16][Invoke-DbaAdvancedRestore] Succeeded, Closing Server connection
+VERBOSE: [14:53:16][Test-DbaLastBackup]  Restore-DbaDatabase -SqlInstance [mssql2] -RestoredDatabaseNamePrefix dbatools-testrestore- -DestinationFilePrefix dbatools-testrestore- -DestinationDataDirectory /var/opt/mssql/data/ -DestinationLogDirectory /var/opt/mssql/data/ -IgnoreLogBackup:False -AzureCredential  -TrustDbBackupHistory
+VERBOSE: [14:53:16][Test-DbaLastBackup] Starting DBCC.
+VERBOSE: Dbcc CHECKDB finished successfully for dbatools-testrestore-DatabaseAdmin on mssql2
+VERBOSE: Performing the operation "Dropping Database dbatools-testrestore-DatabaseAdmin on mssql2" on target "dbatools-testrestore-DatabaseAdmin".
+VERBOSE: [14:53:18][Test-DbaLastBackup] Dropping database.
+VERBOSE: [14:53:19][Test-DbaLastBackup] Dropped dbatools-testrestore-DatabaseAdmin Database on mssql2.
+VERBOSE: Performing the operation "Showing results" on target "console".
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ##############################
+#                            #
+#  Managing Logins & Access  #
+#                            #
+##############################
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Add Login (AD user/group)
+$loginSplat = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $credential
+    Login           = "JessP"
+    SecurePassword  = $securePassword
+}
+New-DbaLogin @loginSplat
+
+
+ComputerName : mssql1
+InstanceName : MSSQLSERVER
+SqlInstance  : mssql1
+Name         : JessP
+LoginType    : SqlLogin
+CreateDate   : 10/4/2019 6:53:34 PM
+LastLogin    :
+HasAccess    : True
+IsLocked     : False
+IsDisabled   : False
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ##	Add User
+$userSplat = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $credential
+    Login           = "JessP"
+    Database        = "DatabaseAdmin"
+}
+New-DbaDbUser @userSplat
+
+
+ComputerName       : mssql1
+InstanceName       : MSSQLSERVER
+SqlInstance        : mssql1
+Database           : DatabaseAdmin
+CreateDate         : 10/4/2019 6:53:42 PM
+DateLastModified   : 10/4/2019 6:53:42 PM
+Name               : JessP
+Login              : JessP
+LoginType          : SqlLogin
+AuthenticationType : Instance
+State              : Existing
+HasDbAccess        : True
+DefaultSchema      : dbo
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ##	Add to reader role
+$roleSplat = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $credential
+    User            = "JessP"
+    Database        = "DatabaseAdmin"
+    Role            = "db_datareader"
+    Confirm         = $false
+}
+Add-DbaDbRoleMember @roleSplat
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ##	Change password for SQL account
+$newPassword = (Read-Host -Prompt "Enter the new password" -AsSecureString)
+$pwdSplat = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $credential
+    Login           = "JessP"
+    SecurePassword  = $newPassword
+}
+Set-DbaLogin @pwdSplat
+
+
+ComputerName           : mssql1
+InstanceName           : MSSQLSERVER
+SqlInstance            : mssql1
+LoginName              : JessP
+DenyLogin              : False
+IsDisabled             : False
+IsLocked               : False
+PasswordPolicyEnforced : False
+MustChangePassword     : False
+PasswordChanged        : True
+ServerRole             :
+Notes                  :
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> #########################
+#                       #
+#  Mask Sensitive Data  #
+#                       #
+#########################
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Find sensitive data in your database
+$piiSplat = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $credential
+    Database        = "AdventureWorks2017"
+    Table           = "Employee"
+}
+Invoke-DbaDbPiiScan @piiSplat | Out-GridView
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "Exception calling "Fill" with "1" argument(s): "DataReader.GetFieldType(0) returned null.""
+>> TerminatingError(): "Exception calling "Fill" with "1" argument(s): "DataReader.GetFieldType(0) returned null.""
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "DataReader.GetFieldType(0) returned null."
+>> TerminatingError(): "DataReader.GetFieldType(0) returned null."
+WARNING: [14:54:30][Invoke-DbaDbPiiScan] Error executing query HumanResources.Employee: DataReader.GetFieldType(0) returned null.
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "System error."
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> # Find masking types to use
+Get-DbaRandomizedType | Select-Object Type -ExpandProperty type -Unique
+Address
+Commerce
+Company
+Database
+Date
+Finance
+Hacker
+Hashids
+Image
+Internet
+Lorem
+Name
+Person
+Phone
+Random
+Rant
+System
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedType -RandomizedType Person | Select-Object Subtype -ExpandProperty Subtype -Unique
+Address
+Avatar
+Company
+Context
+DateOfBirth
+Email
+FirstName
+FullName
+Gender
+LastName
+Phone
+UserName
+Website
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> # Get types based on pattern
+Get-DbaRandomizedType -Pattern "Credit"
+
+Type    SubType
+----    -------
+Finance CreditCardCvv
+Finance CreditCardNumber
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedType -Pattern "Name"
+
+Type     SubType
+----     -------
+Address  StreetName
+Commerce ProductName
+Company  CompanyName
+Finance  AccountName
+Internet DomainName
+Internet UserName
+Name     FindName
+Name     FirstName
+Name     FullName
+Name     HasFirstNameList
+Name     JobArea
+Name     JobDescriptor
+Name     JobTitle
+Name     JobType
+Name     LastName
+Name     Prefix
+Name     Suffix
+Name     SupportsGenderFirstNames
+Name     SupportsGenderLastNames
+Name     SupportsGenderPrefixes
+Person   FirstName
+Person   FullName
+Person   LastName
+Person   UserName
+System   CommonFileName
+System   FileName
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Generate data
+Get-DbaRandomizedValue -DataType int -Min 10000
+214179845
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType Name -RandomizerSubType FirstName -Local 'US'
+Johnathan
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+61527
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+54857
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+06074
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+36892
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+56790
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+33595
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> CommandInvocation(Get-History): "Get-History"
+
+  Id CommandLine
+  -- -----------
+   1 $securePassword = ('Password1234!' | ConvertTo-SecureString -asPlainText -Force)...
+   2 Import-Module dbatools
+   3 Start-Transcript .\Demos\demo.txt
+   4 Import-Module dbatools
+   5 Get-Module dbatools
+   6 Get-Module dbatools -ListAvailable
+   7 Get-Command -Module dbatools
+   8 Get-Command *Compression* -Module dbatools
+   9 Find-DbaCommand *compression*
+  10 Find-DbaCommand -Author Pomfret
+  11 Get-Help Test-DbaDbCompression
+  12 Get-Help Test-DbaDbCompression -ShowWindow
+  13 Stop-Transcript
+  14 rm .\Demos\demo.txt
+  15 Start-Transcript .\Demos\demo.txt
+  16 ## 3. Import a module...
+  17 ## 4. List modules currently imported into your session...
+  18 ## 5. List module versions that are available...
+  19 ## 6. Find available commands...
+  20 # All commands that have compression in the name...
+  21 Find-DbaCommand *compression*
+  22 Find-DbaCommand -Author Pomfret
+  23 ## 7. Get help on how to use a command...
+  24 Get-Help Test-DbaDbCompression -ShowWindow
+  25 ## 8. Intro to Splatting...
+  26 $splatGet = @{...
+  27 #######################...
+  28 $instanceSplat = @{...
+  29 ## Get the backup history for tne mssql1 server...
+  30 ## Backup the DatabaseAdmin database...
+  31 ## Offload testing your backups to a second server...
+  32 ## Record your backup tests into a SQL Server table...
+  33 ## Using Piping...
+  34 ##############################...
+  35 ## Add Login (AD user/group)...
+  36 ##	Add User...
+  37 ##	Add to reader role...
+  38 ##	Change password for SQL account...
+  39 #########################...
+  40 ## Find sensitive data in your database...
+  41 # Find masking types to use...
+  42 Get-DbaRandomizedType -RandomizedType Person | Select-Object Subtype -ExpandProperty Subtype -Unique
+  43 # Get types based on pattern...
+  44 Get-DbaRandomizedType -Pattern "Name"
+  45 ## Generate data...
+  46 Get-DbaRandomizedValue -RandomizerType Name -RandomizerSubType FirstName -Local 'US'
+  47 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+  48 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+  49 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+  50 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+  51 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+  52 Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode
+91685-2709
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode -Format '#####'
+80943
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> # Mask the data
+## generate a file
+$maskConfig = @{
+    SqlInstance   = "mssql1"
+    SqlCredential =  $credential
+    Database      = 'AdventureWorks2017'
+    Table         = "Employee"
+    Column        = "NationalIDNumber", "loginid", "birthdate", "jobtitle"
+    Path          = ".\masking\"
+}
+New-DbaDbMaskingConfig @maskConfig
+
+
+    Directory: C:\github\demos\LifeHacks_dbatools\masking
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----        10/4/2019   2:55 PM           3677 mssql1.AdventureWorks2017.DataMaskingConfig.json
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## check your file - returns nothing if good - errors if errors
+Test-DbaDbDataMaskingConfig  -FilePath .\masking\masking_composite.json
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> $maskData = @{
+    SqlInstance   = "mssql1"
+    SqlCredential = $credential
+    Database      = "AdventureWorks2017"
+    FilePath      = '.\masking\masking_composite.json'
+    Confirm       = $false
+}
+Invoke-DbaDbDataMasking @maskData -Verbose
+VERBOSE: [14:55:35][Invoke-DbaDbDataMasking] Generating unique values for Employee
+VERBOSE: Performing the operation "Masking NationalIDNumber, LoginID, BirthDate, JobTitle in 290 rows in AdventureWorks2017.HumanResources.Employee" on target "mssql1".
+
+
+ComputerName : mssql1
+InstanceName : MSSQLSERVER
+SqlInstance  : mssql1
+Database     : AdventureWorks2017
+Schema       : HumanResources
+Table        : Employee
+Columns      : {NationalIDNumber, LoginID, BirthDate, JobTitle}
+Rows         : 290
+Elapsed      : 7.79 s
+Status       : Masked
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ############################
+#                          #
+#  Migrate.... Everything  #
+#                          #
+############################
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> # Copy commands available in dbatools
+Get-Command -Module dbatools -Verb Copy
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Copy-DbaAgentAlert                                 1.0.50     dbatools
+Function        Copy-DbaAgentJob                                   1.0.50     dbatools
+Function        Copy-DbaAgentJobCategory                           1.0.50     dbatools
+Function        Copy-DbaAgentOperator                              1.0.50     dbatools
+Function        Copy-DbaAgentProxy                                 1.0.50     dbatools
+Function        Copy-DbaAgentSchedule                              1.0.50     dbatools
+Function        Copy-DbaAgentServer                                1.0.50     dbatools
+Function        Copy-DbaBackupDevice                               1.0.50     dbatools
+Function        Copy-DbaCredential                                 1.0.50     dbatools
+Function        Copy-DbaCustomError                                1.0.50     dbatools
+Function        Copy-DbaDatabase                                   1.0.50     dbatools
+Function        Copy-DbaDataCollector                              1.0.50     dbatools
+Function        Copy-DbaDbAssembly                                 1.0.50     dbatools
+Function        Copy-DbaDbMail                                     1.0.50     dbatools
+Function        Copy-DbaDbQueryStoreOption                         1.0.50     dbatools
+Function        Copy-DbaDbTableData                                1.0.50     dbatools
+Function        Copy-DbaEndpoint                                   1.0.50     dbatools
+Function        Copy-DbaInstanceAudit                              1.0.50     dbatools
+Function        Copy-DbaInstanceAuditSpecification                 1.0.50     dbatools
+Function        Copy-DbaInstanceTrigger                            1.0.50     dbatools
+Function        Copy-DbaLinkedServer                               1.0.50     dbatools
+Function        Copy-DbaLogin                                      1.0.50     dbatools
+Function        Copy-DbaPolicyManagement                           1.0.50     dbatools
+Function        Copy-DbaRegServer                                  1.0.50     dbatools
+Function        Copy-DbaResourceGovernor                           1.0.50     dbatools
+Function        Copy-DbaSpConfigure                                1.0.50     dbatools
+Function        Copy-DbaSsisCatalog                                1.0.50     dbatools
+Function        Copy-DbaStartupProcedure                           1.0.50     dbatools
+Function        Copy-DbaSysDbUserObject                            1.0.50     dbatools
+Function        Copy-DbaXESession                                  1.0.50     dbatools
+Function        Copy-DbaXESessionTemplate                          1.0.50     dbatools
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Get databases
+$datatbaseSplat = @{
+    SqlInstance   = "mssql1"
+    SqlCredential = $Credential
+    ExcludeSystem = $true
+    OutVariable   = "dbs"        # OutVariable to also capture this to use later
+}
+Get-DbaDatabase @datatbaseSplat |
+Select-Object Name, Status, RecoveryModel, Owner, Compatibility |
+Format-Table
+
+Name               Status RecoveryModel Owner Compatibility
+----               ------ ------------- ----- -------------
+AdventureWorks2017 Normal        Simple sa       Version140
+DatabaseAdmin      Normal          Full sa       Version140
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> # Get Logins
+$loginSplat = @{
+    SqlInstance   = "mssql1"
+    SqlCredential = $Credential
+}
+Get-DbaLogin @loginSplat |
+Select-Object SqlInstance, Name, LoginType
+
+SqlInstance Name                                 LoginType
+----------- ----                                 ---------
+mssql1      ##MS_PolicyEventProcessingLogin##     SqlLogin
+mssql1      ##MS_PolicyTsqlExecutionLogin##       SqlLogin
+mssql1      BUILTIN\Administrators            WindowsGroup
+mssql1      JessP                                 SqlLogin
+mssql1      NT AUTHORITY\NETWORK SERVICE       WindowsUser
+mssql1      NT AUTHORITY\SYSTEM                WindowsUser
+mssql1      sa                                    SqlLogin
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> # Get Processes
+$processSplat = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $Credential
+    Database        = "DatabaseAdmin"
+}
+Get-DbaProcess @processSplat |
+Select-Object Host, login, Program
+
+Host   Login Program
+----   ----- -------
+POMFPC sa    dbatools PowerShell module - dbatools.io
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Command): name="Name"; value="Get-DbaProcess"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Get-DbaProcess                                     1.0.50     dbatools
+
+
+PS C:\github\demos\LifeHacks_dbatools> CommandInvocation(Get-Help): "Get-Help"
+>> ParameterBinding(Get-Help): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Help): name="Name"; value="Get-DbaProcess"
+
+NAME
+    Get-DbaProcess
+
+SYNOPSIS
+    This command displays SQL Server processes.
+
+
+SYNTAX
+    Get-DbaProcess [-SqlInstance] <Sqlcollaborative.Dbatools.Parameter.DbaInstanceParameter[]> [[-SqlCredential] <Pscredential>] [[-Spid] <System.Int32[]>] [[-ExcludeSpid] <System.Int32[]>]
+    [[-Database] <System.String[]>] [[-Login] <System.String[]>] [[-Hostname] <System.String[]>] [[-Program] <System.String[]>] [-ExcludeSystemSpids <Switch>] [-EnableException <Switch>]
+    [<CommonParameters>]
+
+
+DESCRIPTION
+    This command displays processes associated with a spid, login, host, program or database.
+
+    Thanks to Michael J Swart at https://sqlperformance.com/2017/07/sql-performance/find-database-connection-leaks for the query to get the last executed SQL statement, minutesasleep and host
+    process ID.
+
+
+RELATED LINKS
+    https://dbatools.io/Get-DbaProcess
+
+REMARKS
+    To see the examples, type: "get-help Get-DbaProcess -examples".
+    For more information, type: "get-help Get-DbaProcess -detailed".
+    For technical information, type: "get-help Get-DbaProcess -full".
+    For online help, type: "get-help Get-DbaProcess -online"
+
+
+PS C:\github\demos\LifeHacks_dbatools> # Kill Processes
+Get-DbaProcess @processSplat | Stop-DbaProcess
+
+
+SqlInstance : mssql1
+Spid        : 54
+Login       : sa
+Host        : POMFPC
+Database    : DatabaseAdmin
+Program     : dbatools PowerShell module - dbatools.io
+Status      : Killed
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Migrate the databases
+$migrateDbSplat = @{
+    Source                   = "mssql1"
+    SourceSqlCredential      = $Credential
+    Destination              = 'mssql2'
+    DestinationSqlCredential = $Credential
+    Database                 = $dbs.name
+    BackupRestore            = $true
+    SharedPath               = '/sharedpath'
+    #SetSourceOffline        = $true
+    Verbose                  = $true
+}
+Copy-DbaDatabase @migrateDbSplat
+VERBOSE: [14:56:41][Copy-DbaDatabase] Ensuring user databases exist (counting databases).
+VERBOSE: [14:56:41][Copy-DbaDatabase] Performing SMO version check.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Checking to ensure the source isn't the same as the destination.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Checking to ensure server is not SQL Server 7 or below.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Checking to ensure detach/attach is not attempted on SQL Server 2000.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Checking to ensure SQL Server 2000 migration isn't directly attempted to SQL Server 2012.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Warning if migration from 2005 to 2012 and above and attach/detach is used.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Ensuring destination server version is equal to or greater than source.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Writing warning about filestream being enabled.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Building database list.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Performing count.
+VERBOSE: [14:56:41][Copy-DbaDatabase] Building file structure inventory for 2 databases.
+VERBOSE: [14:56:41][Get-SqlFileStructure] AdventureWorks2017
+VERBOSE: [14:56:42][Get-SqlFileStructure] DatabaseAdmin
+VERBOSE: [14:56:42][Copy-DbaDatabase]
+######### Database: AdventureWorks2017 #########
+VERBOSE: [14:56:42][Copy-DbaDatabase] Checking for accessibility.
+VERBOSE: [14:56:42][Copy-DbaDatabase] Checking Availability Group status.
+VERBOSE: [14:56:42][Copy-DbaDatabase] Started: 10/04/2019 14:56:42.
+VERBOSE: Performing the operation "Backup AdventureWorks2017 from mssql1 and restoring" on target "mssql2".
+VERBOSE: [14:56:42][Backup-DbaDatabase] Setting Default timestampformat
+VERBOSE: [14:56:42][Backup-DbaDatabase] 1 database to backup
+VERBOSE: [14:56:42][Backup-DbaDatabase] Backup database [AdventureWorks2017]
+VERBOSE: [14:56:42][Backup-DbaDatabase] Creating full backup
+VERBOSE: [14:56:42][Backup-DbaDatabase] Building file name
+VERBOSE: [14:56:42][Backup-DbaDatabase] Setting filename - 201910041456
+VERBOSE: [14:56:42][Backup-DbaDatabase] Building backup path
+VERBOSE: [14:56:42][Backup-DbaDatabase] Devices added
+VERBOSE: [14:56:44][Get-DbaDbBackupHistory] Processing AdventureWorks2017
+VERBOSE: [14:56:44][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:56:44][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:56:44][Get-DbaDbBackupHistory] 3 result-groups found.
+VERBOSE: [14:56:44][Copy-DbaDatabase] Reuse = False.
+VERBOSE: [14:56:44][Restore-DbaDatabase] Changing statement timeout to infinity
+VERBOSE: [14:56:44][Restore-DbaDatabase] ParameterSet  = Restore
+VERBOSE: [14:56:44][Restore-DbaDatabase] Trust Database Backup History Set
+VERBOSE: [14:56:44][Restore-DbaDatabase] Processing DatabaseName - AdventureWorks2017
+VERBOSE: [14:56:44][Format-DbaBackupInformation] Starting
+VERBOSE: [14:56:44][Format-DbaBackupInformation] String passed in for DB rename
+VERBOSE: [14:56:44][Format-DbaBackupInformation] New DbName (String) = AdventureWorks2017
+VERBOSE: [14:56:44][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/sqlserver/AdventureWorks2017.mdf
+VERBOSE: [14:56:44][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/AdventureWorks2017.mdf
+VERBOSE: [14:56:44][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/sqlserver/AdventureWorks2017_log.ldf
+VERBOSE: [14:56:44][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/AdventureWorks2017_log.ldf
+VERBOSE: [14:56:44][Select-DbaBackupInformation] Filtering by DatabaseName
+VERBOSE: [14:56:44][Select-DbaBackupInformation] processing diffs
+VERBOSE: [14:56:44][Select-DbaBackupInformation] Found LogBaseLsn: 39000002340800001 and FirstRecoveryForkID:
+VERBOSE: [14:56:44][Restore-DbaDatabase] VerifyOnly = False
+VERBOSE: [14:56:44][Test-DbaBackupInformation] Testing restore for AdventureWorks2017
+VERBOSE: [14:56:44][Test-DbaBackupInformation] VerifyOnly = False
+VERBOSE: [14:56:44][Test-DbaLsnChain] Testing LSN Chain
+VERBOSE: [14:56:44][Test-DbaLsnChain] Testing LSN Chain - Type Type
+VERBOSE: [14:56:44][Test-DbaLsnChain] Passed LSN Chain checks
+VERBOSE: [14:56:44][Test-DbaBackupInformation] Marking AdventureWorks2017 as verified
+VERBOSE: [14:56:44][Restore-DbaDatabase] AdventureWorks2017 passed testing
+VERBOSE: [14:56:44][Restore-DbaDatabase] Passing in to restore
+VERBOSE: [14:56:44][Invoke-DbaAdvancedRestore] Performing restore action
+VERBOSE: [14:56:53][Invoke-DbaAdvancedRestore] Succeeded, Closing Server connection
+VERBOSE: [14:56:53][Copy-DbaDatabase] Successfully restored AdventureWorks2017 to mssql2.
+
+VERBOSE: Performing the operation "Setting db owner to sa for AdventureWorks2017" on target "mssql2".
+VERBOSE: [14:56:54][Copy-DbaDatabase] Finished: 10/04/2019 14:56:53.
+VERBOSE: [14:56:54][Copy-DbaDatabase] Elapsed time: 00:00:11.
+VERBOSE: [14:56:54][Copy-DbaDatabase]
+######### Database: DatabaseAdmin #########
+VERBOSE: [14:56:54][Copy-DbaDatabase] Checking for accessibility.
+VERBOSE: [14:56:54][Copy-DbaDatabase] Checking Availability Group status.
+VERBOSE: [14:56:54][Copy-DbaDatabase] Started: 10/04/2019 14:56:54.
+VERBOSE: Performing the operation "Backup DatabaseAdmin from mssql1 and restoring" on target "mssql2".
+VERBOSE: [14:56:54][Backup-DbaDatabase] Setting Default timestampformat
+VERBOSE: [14:56:54][Backup-DbaDatabase] 1 database to backup
+VERBOSE: [14:56:54][Backup-DbaDatabase] Backup database [DatabaseAdmin]
+VERBOSE: [14:56:54][Backup-DbaDatabase] Creating full backup
+VERBOSE: [14:56:54][Backup-DbaDatabase] Building file name
+VERBOSE: [14:56:54][Backup-DbaDatabase] Setting filename - 201910041456
+VERBOSE: [14:56:54][Backup-DbaDatabase] Building backup path
+VERBOSE: [14:56:54][Backup-DbaDatabase] Devices added
+VERBOSE: [14:56:55][Get-DbaDbBackupHistory] Processing DatabaseAdmin
+VERBOSE: [14:56:55][Get-DbaDbBackupHistory] Executing sql query.
+VERBOSE: [14:56:55][Get-DbaDbBackupHistory] Processing as grouped output.
+VERBOSE: [14:56:55][Get-DbaDbBackupHistory] 3 result-groups found.
+VERBOSE: [14:56:55][Copy-DbaDatabase] Reuse = False.
+VERBOSE: [14:56:55][Restore-DbaDatabase] Changing statement timeout to infinity
+VERBOSE: [14:56:55][Restore-DbaDatabase] ParameterSet  = Restore
+VERBOSE: [14:56:55][Restore-DbaDatabase] Trust Database Backup History Set
+VERBOSE: [14:56:55][Restore-DbaDatabase] Processing DatabaseName - DatabaseAdmin
+VERBOSE: [14:56:55][Format-DbaBackupInformation] Starting
+VERBOSE: [14:56:55][Format-DbaBackupInformation] String passed in for DB rename
+VERBOSE: [14:56:55][Format-DbaBackupInformation] New DbName (String) = DatabaseAdmin
+VERBOSE: [14:56:55][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/mssql/data/DatabaseAdmin.mdf
+VERBOSE: [14:56:55][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/DatabaseAdmin.mdf
+VERBOSE: [14:56:55][Format-DbaBackupInformation]  1 PhysicalName = /var/opt/mssql/data/DatabaseAdmin_log.ldf
+VERBOSE: [14:56:55][Format-DbaBackupInformation] PhysicalName = /var/opt/mssql/data/DatabaseAdmin_log.ldf
+VERBOSE: [14:56:55][Select-DbaBackupInformation] Filtering by DatabaseName
+VERBOSE: [14:56:55][Select-DbaBackupInformation] processing diffs
+VERBOSE: [14:56:55][Select-DbaBackupInformation] Found LogBaseLsn: 36000000137600001 and FirstRecoveryForkID:
+VERBOSE: [14:56:55][Restore-DbaDatabase] VerifyOnly = False
+VERBOSE: [14:56:55][Test-DbaBackupInformation] Testing restore for DatabaseAdmin
+VERBOSE: [14:56:55][Test-DbaBackupInformation] VerifyOnly = False
+VERBOSE: [14:56:55][Test-DbaLsnChain] Testing LSN Chain
+VERBOSE: [14:56:55][Test-DbaLsnChain] Testing LSN Chain - Type Type
+VERBOSE: [14:56:55][Test-DbaLsnChain] Passed LSN Chain checks
+VERBOSE: [14:56:55][Test-DbaBackupInformation] Marking DatabaseAdmin as verified
+VERBOSE: [14:56:55][Restore-DbaDatabase] DatabaseAdmin passed testing
+VERBOSE: [14:56:55][Restore-DbaDatabase] Passing in to restore
+VERBOSE: [14:56:55][Invoke-DbaAdvancedRestore] Performing restore action
+VERBOSE: [14:56:59][Invoke-DbaAdvancedRestore] Succeeded, Closing Server connection
+VERBOSE: [14:56:59][Copy-DbaDatabase] Successfully restored DatabaseAdmin to mssql2.
+VERBOSE: Performing the operation "Setting db owner to sa for DatabaseAdmin" on target "mssql2".
+VERBOSE: Performing the operation "Updating BrokerEnabled on DatabaseAdmin" on target "mssql2".
+VERBOSE: [14:57:00][Copy-DbaDatabase] Successfully updated BrokerEnabled to True for DatabaseAdmin on mssql2.
+VERBOSE: [14:57:00][Copy-DbaDatabase] Finished: 10/04/2019 14:56:59.
+VERBOSE: [14:57:00][Copy-DbaDatabase] Elapsed time: 00:00:05.
+VERBOSE: [14:57:00][Copy-DbaDatabase]
+Database migration finished
+VERBOSE: [14:57:00][Copy-DbaDatabase] Migration started: 10/04/2019 14:56:42
+VERBOSE: [14:57:00][Copy-DbaDatabase] Migration completed: 10/04/2019 14:57:00
+VERBOSE: [14:57:00][Copy-DbaDatabase] Total Elapsed time: 00:00:18
+Type     Name               Status     Notes
+----     ----               ------     -----
+Database AdventureWorks2017 Successful
+Database DatabaseAdmin      Successful
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Migrate login
+$migrateLoginSplat = @{
+    Source                   = "mssql1"
+    SourceSqlCredential      = $Credential
+    Destination              = 'mssql2'
+    DestinationSqlCredential = $Credential
+    Login                    = "JessP"
+    Verbose                  = $true
+}
+Copy-DbaLogin @migrateLoginSplat
+VERBOSE: [14:57:08][Copy-DbaLogin] Attempting Login Migration.
+VERBOSE: Performing the operation "Adding SQL login JessP" on target "mssql2".
+VERBOSE: [14:57:08][Copy-Login] Attempting to add JessP to mssql2.
+VERBOSE: [14:57:08][Copy-Login] Setting JessP SID to source username SID.
+VERBOSE: [14:57:08][Copy-Login] Setting login language to us_english.
+VERBOSE: [14:57:08][Copy-Login] Set JessP defaultdb to master.
+VERBOSE: [14:57:08][Copy-Login] Successfully added JessP to mssql2.
+
+VERBOSE: Performing the operation "Updating SQL login JessP permissions" on target "mssql2".
+VERBOSE: [14:57:09][Update-SqlPermission] Grant CONNECT SQL to JessP on mssql2 successfully performed.
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "System error."
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "System error."
+VERBOSE: [14:57:13][Update-SqlPermission] Grant on CONNECT to JessP on DatabaseAdmin on mssql2 successfully performed.
+Type             Name  Status     Notes
+----             ----  ------     -----
+Login - SqlLogin JessP Successful
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Set source dbs offline
+$offlineSplat = @{
+    SqlInstance     = "mssql1"
+    SqlCredential   = $Credential
+    Database        = "AdventureWorks2017", "DatabaseAdmin"
+    Offline         = $true
+    Force           = $true
+}
+Set-DbaDbState @offlineSplat
+
+
+Access       : MULTI_USER
+ComputerName : mssql1
+DatabaseName : AdventureWorks2017
+InstanceName : MSSQLSERVER
+Notes        :
+RW           : READ_WRITE
+SqlInstance  : mssql1
+Status       : OFFLINE
+
+Access       : MULTI_USER
+ComputerName : mssql1
+DatabaseName : DatabaseAdmin
+InstanceName : MSSQLSERVER
+Notes        :
+RW           : READ_WRITE
+SqlInstance  : mssql1
+Status       : OFFLINE
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## upgrade compat level & check all is ok
+$compatSplat = @{
+    SqlInstance   = "mssql2"
+    SqlCredential = $credential
+}
+Get-DbaDbCompatibility @compatSplat |
+Select-Object SqlInstance, Database, Compatibility
+
+SqlInstance Database           Compatibility
+----------- --------           -------------
+mssql2      master                Version150
+mssql2      tempdb                Version150
+mssql2      model                 Version150
+mssql2      msdb                  Version150
+mssql2      AdventureWorks2017    Version140
+mssql2      DatabaseAdmin         Version140
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Command): name="Name"; value="Select-Object"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Select-Object                                      3.1.0.0    Microsoft.PowerShell.Utility
+
+
+PS C:\github\demos\LifeHacks_dbatools> CommandInvocation(Get-Help): "Get-Help"
+>> ParameterBinding(Get-Help): name="ErrorAction"; value="Ignore"
+>> ParameterBinding(Get-Help): name="Name"; value="Select-Object"
+
+NAME
+    Select-Object
+
+SYNOPSIS
+    Selects objects or object properties.
+
+
+SYNTAX
+    Select-Object [[-Property] <Object[]>] [-ExcludeProperty <String[]>] [-ExpandProperty <String>] [-First <Int32>] [-InputObject <PSObject>] [-Last <Int32>] [-Skip <Int32>] [-Unique]
+    [-Wait] [<CommonParameters>]
+
+    Select-Object [[-Property] <Object[]>] [-ExcludeProperty <String[]>] [-ExpandProperty <String>] [-InputObject <PSObject>] [-SkipLast <Int32>] [-Unique] [<CommonParameters>]
+
+    Select-Object [-Index <Int32[]>] [-InputObject <PSObject>] [-Unique] [-Wait] [<CommonParameters>]
+
+
+DESCRIPTION
+    The Select-Object cmdlet selects specified properties of an object or set of objects. It can also select unique objects, a specified number of objects, or objects in a specified position
+    in an array.
+
+    To select objects from a collection, use the First , Last , Unique , Skip , and Index parameters. To select object properties, use the Property parameter. When you select properties,
+    Select-Object returns new objects that have only the specified properties.
+
+    Beginning in Windows PowerShell 3.0, Select-Object includes an optimization feature that prevents commands from creating and processing objects that are not used. When you include a
+    Select-Object command with the First or Index parameter in a command pipeline, Windows PowerShell stops the command that generates the objects as soon as the selected number of objects is
+    generated, even when the command that generates the objects appears before the Select-Object command in the pipeline. To turn off this optimizing behavior, use the Wait parameter.
+
+
+RELATED LINKS
+    Online Version: http://go.microsoft.com/fwlink/?LinkId=821852
+    Group-Object
+    Sort-Object
+
+REMARKS
+    To see the examples, type: "get-help Select-Object -examples".
+    For more information, type: "get-help Select-Object -detailed".
+    For technical information, type: "get-help Select-Object -full".
+    For online help, type: "get-help Select-Object -online"
+
+
+PS C:\github\demos\LifeHacks_dbatools> $compatSplat.Add('Database','DatabaseAdmin')
+$compatSplat.Add('TargetCompatibility','15')
+
+Set-DbaDbCompatibility @compatSplat
+
+
+ComputerName  : mssql2
+InstanceName  : MSSQLSERVER
+SqlInstance   : mssql2
+Database      : DatabaseAdmin
+Compatibility : Version150
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Upgrade database - https://thomaslarock.com/2014/06/upgrading-to-sql-server-2014-a-dozen-things-to-check/
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> $upgradeSplat = @{
+    SqlInstance   = "mssql2"
+    SqlCredential = $Credential
+    Database      = "DatabaseAdmin"
+}
+Invoke-DbaDbUpgrade @upgradeSplat
+
+
+ComputerName          : mssql2
+InstanceName          : MSSQLSERVER
+SqlInstance           : mssql2
+Database              : DatabaseAdmin
+OriginalCompatibility : 150
+CurrentCompatibility  : 150
+Compatibility         : 150
+DataPurity            : Success
+UpdateUsage           : Success
+UpdateStats           : Success
+RefreshViews          : Success
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> #########################
+#                       #
+#  Meet Best Practices  #
+#                       #
+#########################
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Get-Command -Module dbatools -Verb Test
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Test-DbaAgentJobOwner                              1.0.50     dbatools
+Function        Test-DbaBackupInformation                          1.0.50     dbatools
+Function        Test-DbaBuild                                      1.0.50     dbatools
+Function        Test-DbaCmConnection                               1.0.50     dbatools
+Function        Test-DbaConnection                                 1.0.50     dbatools
+Function        Test-DbaConnectionAuthScheme                       1.0.50     dbatools
+Function        Test-DbaDbCollation                                1.0.50     dbatools
+Function        Test-DbaDbCompatibility                            1.0.50     dbatools
+Function        Test-DbaDbCompression                              1.0.50     dbatools
+Function        Test-DbaDbDataGeneratorConfig                      1.0.50     dbatools
+Function        Test-DbaDbDataMaskingConfig                        1.0.50     dbatools
+Function        Test-DbaDbLogShipStatus                            1.0.50     dbatools
+Function        Test-DbaDbOwner                                    1.0.50     dbatools
+Function        Test-DbaDbRecoveryModel                            1.0.50     dbatools
+Function        Test-DbaDeprecatedFeature                          1.0.50     dbatools
+Function        Test-DbaDiskAlignment                              1.0.50     dbatools
+Function        Test-DbaDiskAllocation                             1.0.50     dbatools
+Function        Test-DbaDiskSpeed                                  1.0.50     dbatools
+Function        Test-DbaEndpoint                                   1.0.50     dbatools
+Function        Test-DbaIdentityUsage                              1.0.50     dbatools
+Function        Test-DbaInstanceName                               1.0.50     dbatools
+Function        Test-DbaLastBackup                                 1.0.50     dbatools
+Function        Test-DbaLinkedServerConnection                     1.0.50     dbatools
+Function        Test-DbaLoginPassword                              1.0.50     dbatools
+Function        Test-DbaManagementObject                           1.0.50     dbatools
+Function        Test-DbaMaxDop                                     1.0.50     dbatools
+Function        Test-DbaMaxMemory                                  1.0.50     dbatools
+Function        Test-DbaMigrationConstraint                        1.0.50     dbatools
+Function        Test-DbaNetworkLatency                             1.0.50     dbatools
+Function        Test-DbaOptimizeForAdHoc                           1.0.50     dbatools
+Function        Test-DbaPath                                       1.0.50     dbatools
+Function        Test-DbaPowerPlan                                  1.0.50     dbatools
+Function        Test-DbaRepLatency                                 1.0.50     dbatools
+Function        Test-DbaSpn                                        1.0.50     dbatools
+Function        Test-DbaTempDbConfig                               1.0.50     dbatools
+Function        Test-DbaWindowsLogin                               1.0.50     dbatools
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Am I at the latest version? Or within 1SP of the latest version
+$instanceSplat = @{
+    SqlInstance   = "mssql1", "mssql2"
+    SqlCredential = $credential
+}
+Test-DbaBuild @instanceSplat -Latest
+
+
+Build          : 14.0.3038
+BuildLevel     : 14.0.3038
+BuildTarget    : 14.0.3223
+Compliant      : False
+CULevel        : CU11
+CUTarget       :
+KBLevel        : 4462262
+MatchType      : Exact
+MaxBehind      :
+NameLevel      : 2017
+SPLevel        : RTM
+SPTarget       :
+SqlInstance    : mssql1
+SupportedUntil : 10/12/2027 12:00:00 AM
+Warning        :
+
+WARNING: [14:58:17][Test-DbaBuild] 15.0.1800 is not recognized as a correct version
+Build          : 15.0.1800
+BuildLevel     : 15.0.1000
+BuildTarget    : 15.0.9999.0
+Compliant      : False
+CULevel        :
+CUTarget       :
+KBLevel        :
+MatchType      : Approximate
+MaxBehind      :
+NameLevel      : 2019
+SPLevel        :
+SPTarget       :
+SqlInstance    : mssql2
+SupportedUntil :
+Warning        : 15.0.1800 not found, closest build we have is 15.0.1000
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Test-DbaBuild @instanceSplat -MaxBehind 5CU
+
+
+Build          : 14.0.3038
+BuildLevel     : 14.0.3038
+BuildTarget    : 14.0.3038
+Compliant      : True
+CULevel        : CU11
+CUTarget       : CU11
+KBLevel        : 4462262
+MatchType      : Exact
+MaxBehind      : 5CU
+NameLevel      : 2017
+SPLevel        : RTM
+SPTarget       : RTM
+SqlInstance    : mssql1
+SupportedUntil : 10/12/2027 12:00:00 AM
+Warning        :
+
+WARNING: [14:58:20][Test-DbaBuild] 15.0.1800 is not recognized as a correct version
+Build          : 15.0.1800
+BuildLevel     : 15.0.1000
+BuildTarget    : 15.0.9999.0
+Compliant      : False
+CULevel        :
+CUTarget       :
+KBLevel        :
+MatchType      : Approximate
+MaxBehind      : 5CU
+NameLevel      : 2019
+SPLevel        :
+SPTarget       : RTM
+SqlInstance    : mssql2
+SupportedUntil :
+Warning        : 15.0.1800 not found, closest build we have is 15.0.1000
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> Start-Process https://dbatools.io/build
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> "mssql1","mssql2" | Test-DbaBuild -SqlCredential $credential -Latest
+
+
+Build          : 14.0.3038
+BuildLevel     : 14.0.3038
+BuildTarget    : 14.0.3223
+Compliant      : False
+CULevel        : CU11
+CUTarget       :
+KBLevel        : 4462262
+MatchType      : Exact
+MaxBehind      :
+NameLevel      : 2017
+SPLevel        : RTM
+SPTarget       :
+SqlInstance    : mssql1
+SupportedUntil : 10/12/2027 12:00:00 AM
+Warning        :
+
+WARNING: [14:58:30][Test-DbaBuild] 15.0.1800 is not recognized as a correct version
+Build          : 15.0.1800
+BuildLevel     : 15.0.1000
+BuildTarget    : 15.0.9999.0
+Compliant      : False
+CULevel        :
+CUTarget       :
+KBLevel        :
+MatchType      : Approximate
+MaxBehind      :
+NameLevel      : 2019
+SPLevel        :
+SPTarget       :
+SqlInstance    : mssql2
+SupportedUntil :
+Warning        : 15.0.1800 not found, closest build we have is 15.0.1000
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Test the compatibility level
+Test-DbaDbCompatibility @instanceSplat |
+Select-Object SqlInstance, ServerLevel, Database, DatabaseCompatibility, IsEqual |
+Format-Table
+
+SqlInstance ServerLevel Database           DatabaseCompatibility IsEqual
+----------- ----------- --------           --------------------- -------
+mssql1      Version140  master                        Version140    True
+mssql1      Version140  model                         Version140    True
+mssql1      Version140  msdb                          Version140    True
+mssql1      Version140  tempdb                        Version140    True
+mssql2      Version150  AdventureWorks2017            Version140   False
+mssql2      Version150  DatabaseAdmin                 Version150    True
+mssql2      Version150  master                        Version150    True
+mssql2      Version150  model                         Version150    True
+mssql2      Version150  msdb                          Version150    True
+mssql2      Version150  tempdb                        Version150    True
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Test the database owner
+Test-DbaDbOwner @instanceSplat |
+Select-Object SqlInstance, Database, DBState, CurrentOwner, TargetOwner, OwnerMatch |
+Format-Table
+
+SqlInstance Database                       DBState CurrentOwner TargetOwner OwnerMatch
+----------- --------                       ------- ------------ ----------- ----------
+mssql1      master                          Normal sa           sa                True
+mssql1      tempdb                          Normal sa           sa                True
+mssql1      model                           Normal sa           sa                True
+mssql1      msdb                            Normal sa           sa                True
+mssql1      AdventureWorks2017 Offline, AutoClosed sa           sa                True
+mssql1      DatabaseAdmin      Offline, AutoClosed sa           sa                True
+mssql2      master                          Normal sa           sa                True
+mssql2      tempdb                          Normal sa           sa                True
+mssql2      model                           Normal sa           sa                True
+mssql2      msdb                            Normal sa           sa                True
+mssql2      AdventureWorks2017              Normal sa           sa                True
+mssql2      DatabaseAdmin                   Normal sa           sa                True
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Test the recovery model  -- default is only full?
+Test-DbaDbRecoveryModel @instanceSplat |
+Select-Object SqlInstance, Database, ConfiguredRecoveryModel, ActualRecoveryModel |
+Format-Table
+
+SqlInstance Database      ConfiguredRecoveryModel ActualRecoveryModel
+----------- --------      ----------------------- -------------------
+mssql1      model         FULL                    SIMPLE
+mssql1      DatabaseAdmin FULL                    SIMPLE
+mssql2      model         FULL                    SIMPLE
+mssql2      DatabaseAdmin FULL                    FULL
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Is my tempdb setup to meet best practices?
+Test-DbaTempDbConfig @instanceSplat
+
+
+ComputerName   : mssql1
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql1
+Rule           : TF 1118 Enabled
+Recommended    : True
+CurrentSetting : False
+IsBestPractice : False
+Notes          : KB328551 describes how TF 1118 can benefit performance. SQL Server 2016 has this functionality enabled by default.
+
+ComputerName   : mssql1
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql1
+Rule           : File Count
+Recommended    : 3
+CurrentSetting : 1
+IsBestPractice : False
+Notes          : Microsoft recommends that the number of tempdb data files is equal to the number of logical cores up to 8.
+
+ComputerName   : mssql1
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql1
+Rule           : File Growth in Percent
+Recommended    : False
+CurrentSetting : False
+IsBestPractice : True
+Notes          : Set file growth to explicit values, not by percent.
+
+ComputerName   : mssql1
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql1
+Rule           : File Location
+Recommended    : False
+CurrentSetting : False
+IsBestPractice : True
+Notes          : Do not place your tempdb files on C:\.
+
+ComputerName   : mssql1
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql1
+Rule           : File MaxSize Set
+Recommended    : False
+CurrentSetting : False
+IsBestPractice : True
+Notes          : Consider setting your tempdb files to unlimited growth.
+
+ComputerName   : mssql1
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql1
+Rule           : Data File Size Equal
+Recommended    : True
+CurrentSetting : True
+IsBestPractice : True
+Notes          : Consider creating equally sized data files.
+
+ComputerName   : mssql2
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql2
+Rule           : TF 1118 Enabled
+Recommended    : True
+CurrentSetting : False
+IsBestPractice : False
+Notes          : KB328551 describes how TF 1118 can benefit performance. SQL Server 2016 has this functionality enabled by default.
+
+ComputerName   : mssql2
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql2
+Rule           : File Count
+Recommended    : 3
+CurrentSetting : 3
+IsBestPractice : True
+Notes          : Microsoft recommends that the number of tempdb data files is equal to the number of logical cores up to 8.
+
+ComputerName   : mssql2
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql2
+Rule           : File Growth in Percent
+Recommended    : False
+CurrentSetting : False
+IsBestPractice : True
+Notes          : Set file growth to explicit values, not by percent.
+
+ComputerName   : mssql2
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql2
+Rule           : File Location
+Recommended    : False
+CurrentSetting : False
+IsBestPractice : True
+Notes          : Do not place your tempdb files on C:\.
+
+ComputerName   : mssql2
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql2
+Rule           : File MaxSize Set
+Recommended    : False
+CurrentSetting : False
+IsBestPractice : True
+Notes          : Consider setting your tempdb files to unlimited growth.
+
+ComputerName   : mssql2
+InstanceName   : MSSQLSERVER
+SqlInstance    : mssql2
+Rule           : Data File Size Equal
+Recommended    : True
+CurrentSetting : True
+IsBestPractice : True
+Notes          : Consider creating equally sized data files.
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Is "max degree of parallelism" set to best practice?
+#Inspired by Sakthivel Chidambaram's post about SQL Server MAXDOP Calculator (https://blogs.msdn.microsoft.com/sqlsakthi/p/maxdop-calculator),
+Test-DbaMaxDop @instanceSplat
+
+
+ComputerName          : mssql1
+InstanceName          : MSSQLSERVER
+SqlInstance           : mssql1
+Database              : N/A
+DatabaseMaxDop        : N/A
+CurrentInstanceMaxDop : 0
+RecommendedMaxDop     : 3
+Notes                 : This is the default setting. Consider using the recommended value instead.
+
+ComputerName          : mssql2
+InstanceName          : MSSQLSERVER
+SqlInstance           : mssql2
+Database              : N/A
+DatabaseMaxDop        : N/A
+CurrentInstanceMaxDop : 0
+RecommendedMaxDop     : 3
+Notes                 : This is the default setting. Consider using the recommended value instead.
+
+ComputerName          : mssql2
+InstanceName          : MSSQLSERVER
+SqlInstance           : mssql2
+Database              : AdventureWorks2017
+DatabaseMaxDop        : 0
+CurrentInstanceMaxDop : 0
+RecommendedMaxDop     : 3
+Notes                 : Will use CurrentInstanceMaxDop value
+
+ComputerName          : mssql2
+InstanceName          : MSSQLSERVER
+SqlInstance           : mssql2
+Database              : DatabaseAdmin
+DatabaseMaxDop        : 0
+CurrentInstanceMaxDop : 0
+RecommendedMaxDop     : 3
+Notes                 : Will use CurrentInstanceMaxDop value
+
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ## Is Max Memory set to meet best practices?
+#Inspired by Jonathan Kehayias's post about SQL Server Max memory (http://bit.ly/sqlmemcalc)
+Test-DbaMaxMemory @instanceSplat |
+Select-Object SqlInstance, Total, MaxValue, RecommendedValue
+WARNING: [14:58:59][Resolve-DbaNetworkName] DNS name mssql1 not found | No such host is known
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "System error."
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "Failed to connect to mssql1"
+>> TerminatingError(): "Failed to connect to mssql1"
+WARNING: [14:59:00][Test-DbaMaxMemory] Couldn't get accurate SQL Server instance count on mssql1. Defaulting to 1. | Failed to connect to mssql1
+
+WARNING: [14:59:02][Resolve-DbaNetworkName] DNS name mssql2 not found | No such host is known
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "System error."
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "Failed to connect to mssql2"
+>> TerminatingError(): "Failed to connect to mssql2"
+WARNING: [14:59:02][Test-DbaMaxMemory] Couldn't get accurate SQL Server instance count on mssql2. Defaulting to 1. | Failed to connect to mssql2
+SqlInstance Total   MaxValue RecommendedValue
+----------- -----   -------- ----------------
+mssql1       3145 2147483647             1572
+mssql2       3145 2147483647             1572
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> ################################
+#                              #
+#  Documentation for Everyone  #
+#                              #
+################################
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> $instanceSplat = @{
+    SqlInstance   = "mssql1", "mssql2"
+    SqlCredential = $credential
+    Path          = '.\Export\'
+    Exclude       = 'ReplicationSettings'
+}
+Export-DbaInstance @instanceSplat
+
+
+    Directory: C:\github\demos\LifeHacks_dbatools\Export\mssql1-10042019145920
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----        10/4/2019   2:59 PM           3851 1-sp_configure.sql
+-a----        10/4/2019   2:59 PM            469 2-serverroles.sql
+-a----        10/4/2019   2:59 PM           1306 3-dbmail.sql
+-a----        10/4/2019   2:59 PM           1206 4-databases.sql
+-a----        10/4/2019   2:59 PM            562 5-logins.sql
+-a----        10/4/2019   2:59 PM            417 6-resourcegov.sql
+-a----        10/4/2019   2:59 PM          11951 7-extendedevents.sql
+-a----        10/4/2019   2:59 PM           3183 8-sqlagent.sql
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "System error."
+
+
+    Directory: C:\github\demos\LifeHacks_dbatools\Export\mssql2-10042019150015
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----        10/4/2019   3:00 PM           4065 1-sp_configure.sql
+-a----        10/4/2019   3:00 PM            469 2-serverroles.sql
+-a----        10/4/2019   3:00 PM           1306 3-dbmail.sql
+-a----        10/4/2019   3:00 PM           1374 4-databases.sql
+-a----        10/4/2019   3:00 PM            562 5-logins.sql
+-a----        10/4/2019   3:00 PM            417 6-resourcegov.sql
+-a----        10/4/2019   3:00 PM          12774 7-extendedevents.sql
+-a----        10/4/2019   3:00 PM           3183 8-sqlagent.sql
+PS C:\github\demos\LifeHacks_dbatools> TerminatingError(): "System error."
+
+
+PS C:\github\demos\LifeHacks_dbatools> @{ 'computerName' = if ([Environment]::MachineName) {[Environment]::MachineName}  else {'localhost'}; 'processId' = $PID; 'instanceId' = $host.InstanceId }
+
+Name                           Value
+----                           -----
+processId                      4660
+computerName                   POMFPC
+instanceId                     b2668a15-24f1-4a20-9cf6-15f241b25d52
+
+
+PS C:\github\demos\LifeHacks_dbatools> stop-transcript
+**********************
+Windows PowerShell transcript end
+End time: 20191004150120
+**********************
