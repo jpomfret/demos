@@ -17,6 +17,7 @@
                                            "Format":  null,
                                            "Deterministic":  false,
                                            "Nullable":  false,
+                                           "KeepNull":  true,
                                            "Composite":  null
                                        },
                                        {
@@ -30,6 +31,7 @@
                                             "Format":  null,
                                             "Deterministic":  false,
                                             "Nullable":  false,
+                                            "KeepNull":  true,
                                             "Composite": [
                                                 {
                                                     "Type": "Static",
@@ -52,6 +54,7 @@
                                             "Format":  null,
                                             "Deterministic":  false,
                                             "Nullable":  false,
+                                            "KeepNull":  true,
                                             "Composite":  null
                                     },
                                     {
@@ -65,6 +68,7 @@
                                             "Format":  null,
                                             "Deterministic":  false,
                                             "Nullable":  false,
+                                            "KeepNull":  true,
                                             "Composite":  null
                                     }
                                    ],

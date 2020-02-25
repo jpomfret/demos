@@ -50,6 +50,15 @@ New-DbaDbMaskingConfig @maskConfig
 ## check your file - returns nothing if good - errors if errors
 Test-DbaDbDataMaskingConfig  -FilePath .\masking\masking_composite.json
 
+<#
+Table    Column           Value    Error
+-----    ------           -----    -----
+Employee NationalIDNumber KeepNull The column does not contain all the required properties. Please check the column
+Employee LoginID          KeepNull The column does not contain all the required properties. Please check the column
+Employee BirthDate        KeepNull The column does not contain all the required properties. Please check the column
+Employee JobTitle         KeepNull The column does not contain all the required properties. Please check the column
+#>
+
 # View data before!
 
 # Mask the data
