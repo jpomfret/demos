@@ -7,11 +7,11 @@ Describe "Module is good to go" {
         It "Module was imported" {
             $module | Should Not BeNullOrEmpty
         }
-        It "Module version is 1.0.74" {
-            $module.Version | Should Be "1.0.74"
+        It "Module version is 1.0.97" {
+            $module.Version | Should Be "1.0.97"
         }
-        It "Module should import 585 commands" {
-            (get-command -module dbatools | Measure).Count | Should Be 585
+        It "Module should import 587 commands" {
+            (get-command -module dbatools | Measure).Count | Should Be 587
         }
     }
 }
