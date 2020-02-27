@@ -9,11 +9,11 @@
                                        {
                                            "Name":  "NationalIDNumber",
                                            "ColumnType":  "nvarchar",
-                                           "CharacterString":  null,
-                                           "MinValue":  100000,
-                                           "MaxValue":  999999,
+                                           "CharacterString":  "0123456789",
+                                           "MinValue":  9,
+                                           "MaxValue":  9,
                                            "MaskingType":  "Random",
-                                           "SubType":  "Int",
+                                           "SubType":  "String2",
                                            "Format":  null,
                                            "Deterministic":  false,
                                            "Nullable":  false,
@@ -35,7 +35,7 @@
                                             "Composite": [
                                                 {
                                                     "Type": "Static",
-                                                    "Value": "AdventureWorks\\"
+                                                    "Value": "adventure-works\\"
                                                 },
                                                 {
                                                     "Type": "Column",
