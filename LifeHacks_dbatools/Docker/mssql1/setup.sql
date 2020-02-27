@@ -24,4 +24,10 @@ Use Master
 CREATE DATABASE DatabaseAdmin
 GO
 
-BACKUP DATABASE [AdventureWorks2017] TO DISK = N'/var/opt/backups/AdventureWorks2017.bak' WITH NAME = N'AdventureWorks2017-Full Database Backup'
+ALTER DATABASE [AdventureWorks2017] SET RECOVERY FULL ;
+
+BACKUP DATABASE [AdventureWorks2017] TO DISK = N'C:\var\opt\backups\AdventureWorks2017.bak'
+WAITFOR DELAY '00:00:05';
+BACKUP DATABASE [AdventureWorks2017] TO DISK = N'C:\var\opt\backups\AdventureWorks2017.diff' WITH DIFFERENTIAL
+WAITFOR DELAY '00:00:05';
+BACKUP LOG [AdventureWorks2017] TO DISK = N'C:\var\opt\backups\AdventureWorks2017.log'
