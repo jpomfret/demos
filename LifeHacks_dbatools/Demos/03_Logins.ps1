@@ -13,7 +13,6 @@
 ## Add Login (AD user/group)
 $loginSplat = @{
     SqlInstance     = "mssql1"
-    SqlCredential   = $credential
     Login           = "JessP"
     SecurePassword  = $securePassword
 }
@@ -22,7 +21,6 @@ New-DbaLogin @loginSplat
 ##	Add User
 $userSplat = @{
     SqlInstance     = "mssql1"
-    SqlCredential   = $credential
     Login           = "JessP"
     Database        = "DatabaseAdmin"
 }
@@ -31,7 +29,6 @@ New-DbaDbUser @userSplat
 ##	Add to reader role
 $roleSplat = @{
     SqlInstance     = "mssql1"
-    SqlCredential   = $credential
     User            = "JessP"
     Database        = "DatabaseAdmin"
     Role            = "db_datareader"
@@ -45,7 +42,6 @@ Add-DbaDbRoleMember @roleSplat
 $newPassword = (Read-Host -Prompt "Enter the new password" -AsSecureString)
 $pwdSplat = @{
     SqlInstance     = "mssql1"
-    SqlCredential   = $credential
     Login           = "JessP"
     SecurePassword  = $newPassword
 }
@@ -54,7 +50,7 @@ Set-DbaLogin @pwdSplat
 # Read in logins from csv
 ## PS4 syntax!
 (Import-Csv .\users.csv).foreach{
-    $server = Connect-DbaInstance -SqlInstance $psitem.Server -SqlCredential $credential
+    $server = Connect-DbaInstance -SqlInstance $psitem.Server
     New-DbaLogin -SqlInstance $server -Login $psitem.User -Password ($psitem.Password | ConvertTo-SecureString -asPlainText -Force)
     New-DbaDbUser -SqlInstance $server -Login $psitem.User -Database $psitem.Database
     Add-DbaDbRoleMember -SqlInstance $server -User $psitem.User -Database $psitem.Database -Role $psitem.Role.split(',') -Confirm:$false
@@ -63,7 +59,7 @@ Set-DbaLogin @pwdSplat
 <#
 ## PS Version 3 & Lower
 foreach($user in $users) {
-    $server = Connect-DbaInstance -SqlInstance $user.Server -SqlCredential $credential
+    $server = Connect-DbaInstance -SqlInstance $user.Server
     New-DbaLogin -SqlInstance $server -Login $user.User -Password ($user.Password | ConvertTo-SecureString -asPlainText -Force)
     New-DbaDbUser -SqlInstance $server -Login $user.User -Database $user.Database
     Add-DbaDbRoleMember -SqlInstance $server -User $user.User -Database $user.Database -Role $user.Role.split(',') -Confirm:$false

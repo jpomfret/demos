@@ -20,7 +20,6 @@ Get-Command -Module dbatools -Verb Copy
 ## Get databases
 $datatbaseSplat = @{
     SqlInstance   = "mssql1"
-    SqlCredential = $Credential
     ExcludeSystem = $true
     OutVariable   = "dbs"        # OutVariable to also capture this to use later
 }
@@ -31,7 +30,6 @@ Format-Table
 # Get Logins
 $loginSplat = @{
     SqlInstance   = "mssql1"
-    SqlCredential = $Credential
 }
 Get-DbaLogin @loginSplat |
 Select-Object SqlInstance, Name, LoginType
@@ -39,7 +37,6 @@ Select-Object SqlInstance, Name, LoginType
 # Get Processes
 $processSplat = @{
     SqlInstance     = "mssql1"
-    SqlCredential   = $Credential
     Database        = "DatabaseAdmin"
 }
 Get-DbaProcess @processSplat |
@@ -51,9 +48,7 @@ Get-DbaProcess @processSplat | Stop-DbaProcess
 ## Migrate the databases
 $migrateDbSplat = @{
     Source                   = "mssql1"
-    SourceSqlCredential      = $Credential
     Destination              = 'mssql2'
-    DestinationSqlCredential = $Credential
     Database                 = $dbs.name
     BackupRestore            = $true
     SharedPath               = '/sharedpath'
@@ -65,9 +60,7 @@ Copy-DbaDatabase @migrateDbSplat
 ## Migrate login
 $migrateLoginSplat = @{
     Source                   = "mssql1"
-    SourceSqlCredential      = $Credential
     Destination              = 'mssql2'
-    DestinationSqlCredential = $Credential
     Login                    = "JessP"
     Verbose                  = $true
 }
@@ -76,7 +69,6 @@ Copy-DbaLogin @migrateLoginSplat
 ## Set source dbs offline
 $offlineSplat = @{
     SqlInstance     = "mssql1"
-    SqlCredential   = $Credential
     Database        = "AdventureWorks2017", "DatabaseAdmin"
     Offline         = $true
     Force           = $true
@@ -86,7 +78,6 @@ Set-DbaDbState @offlineSplat
 ## upgrade compat level & check all is ok
 $compatSplat = @{
     SqlInstance   = "mssql2"
-    SqlCredential = $credential
 }
 Get-DbaDbCompatibility @compatSplat |
 Select-Object SqlInstance, Database, Compatibility
@@ -104,7 +95,6 @@ Set-DbaDbCompatibility @compatSplat
     # sp_refreshview against all user views
 $upgradeSplat = @{
     SqlInstance   = "mssql2"
-    SqlCredential = $Credential
     Database      = "DatabaseAdmin"
 }
 Invoke-DbaDbUpgrade @upgradeSplat

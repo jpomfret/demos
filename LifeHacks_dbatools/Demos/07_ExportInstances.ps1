@@ -10,7 +10,6 @@
 
 $instanceSplat = @{
     SqlInstance   = "mssql1", "mssql2"
-    SqlCredential = $credential
     Path          = '.\Export\'
     Exclude       = 'ReplicationSettings'
 }

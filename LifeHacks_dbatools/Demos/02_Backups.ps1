@@ -13,14 +13,12 @@
 ## Get the backup history for the mssql1 server
 $instanceSplat = @{
     SqlInstance   = 'mssql1'
-    SqlCredential = $credential
 }
-Get-DbaDbBackupHistory @instanceSplat
+Get-DbaDbBackupHistory @instanceSplat | Sort-Object Start
 
 ## Backup the DatabaseAdmin database
 $backupParams = @{
     SqlInstance   = 'mssql1'
-    SqlCredential = $credential
     Database      = 'DatabaseAdmin'
 }
 Backup-DbaDatabase @backupParams
@@ -28,10 +26,8 @@ Backup-DbaDatabase @backupParams
 ## Offload testing your backups to a second server
 $testParams = @{
     SqlInstance           = 'mssql1'
-    SqlCredential         = $credential
     Database              = "AdventureWorks2017","DatabaseAdmin"
     Destination           = 'mssql2'
-    DestinationCredential = $credential
     Verbose               = $true
     OutVariable           = 'results'
 }
@@ -40,7 +36,6 @@ Test-DbaLastBackup @testParams
 ## Record your backup tests into a SQL Server table
 $writeParams = @{
     SqlInstance = 'mssql1'
-    SqlCredential = $credential
     Database = 'DatabaseAdmin'
     Table = 'TestRestore'
     AutoCreateTable = $true

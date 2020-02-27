@@ -13,6 +13,11 @@ $env:PSModulePath = "C:\Program Files\WindowsPowerShell\Modules"
 $securePassword = ('Password1234!' | ConvertTo-SecureString -asPlainText -Force)
 $credential = New-Object System.Management.Automation.PSCredential('sa', $securePassword)
 
+$PSDefaultParameterValues = @{"*:SqlCredential"=$credential
+                              "*:DestinationCredential"=$credential
+                              "*:DestinationSqlCredential"=$credential
+                              "*:SourceSqlCredential"=$credential}
+
 Remove-Item .\masking\mssql1.AdventureWorks2017.DataMaskingConfig.json -ErrorAction SilentlyContinue
 Remove-Item .\Export\* -Recurse -ErrorAction SilentlyContinue -Confirm:$false
 

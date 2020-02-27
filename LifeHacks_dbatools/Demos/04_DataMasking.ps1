@@ -12,7 +12,6 @@
 ## Find sensitive data in your database
 $piiSplat = @{
     SqlInstance     = "mssql1"
-    SqlCredential   = $credential
     Database        = "AdventureWorks2017"
     Table           = "Employee"
 }
@@ -37,7 +36,6 @@ Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode -Forma
 ## generate a file
 $maskConfig = @{
     SqlInstance   = "mssql1"
-    SqlCredential =  $credential
     Database      = 'AdventureWorks2017'
     Table         = "Employee"
     Column        = "NationalIDNumber", "loginid", "birthdate", "jobtitle"
@@ -64,7 +62,6 @@ Employee JobTitle         KeepNull The column does not contain all the required 
 # Mask the data
 $maskData = @{
     SqlInstance   = "mssql1"
-    SqlCredential = $credential
     Database      = "AdventureWorks2017"
     FilePath      = '.\masking\masking_composite.json'
     Confirm       = $false

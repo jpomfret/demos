@@ -15,14 +15,13 @@ Get-Command -Module dbatools -Verb Test
 ## Am I at the latest version? Or within 1SP of the latest version
 $instanceSplat = @{
     SqlInstance   = "mssql1", "mssql2"
-    SqlCredential = $credential
 }
 Test-DbaBuild @instanceSplat -Latest | Format-Table Build, BuildLevel, BuildTarget, Compliant
 Test-DbaBuild @instanceSplat -MaxBehind 1CU | Format-Table Build, BuildLevel, BuildTarget, Compliant
 
 Start-Process https://dbatools.io/build
 
-"mssql1","mssql2" | Test-DbaBuild -SqlCredential $credential -Latest
+"mssql1","mssql2" | Test-DbaBuild -Latest
 
 ## Test the compatibility level
 Test-DbaDbCompatibility @instanceSplat |
