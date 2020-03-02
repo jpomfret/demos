@@ -8,7 +8,7 @@
 # Add a User to Database
 # Assign Permissions - Add to role
 # Change Password
-# Read in users from CSV ??
+# Read in users from CSV
 
 ## Add Login (AD user/group)
 $loginSplat = @{
