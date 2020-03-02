@@ -1,6 +1,8 @@
 start-process C:\Temporary\ZoomIt\ZoomIt.exe
 
-cd C:\github\demos\LifeHacks_dbatools
+Get-Process teams, slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
+
+Set-Location C:\github\demos\LifeHacks_dbatools
 
 docker stop mssql1, mssql2
 docker rm mssql1, mssql2
