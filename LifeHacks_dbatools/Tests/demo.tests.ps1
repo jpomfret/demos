@@ -102,3 +102,18 @@ Describe "Proc architecture is x64" {
         }
     }
 }
+
+Describe "Check what's running" {
+    $processes = Get-Process zoomit*, teams, slack -ErrorAction SilentlyContinue
+    Context "ZoomIt is running" {
+        It "ZoomIt64 is running" {
+            ($processes | Where-Object ProcessName -eq 'Zoomit64') | Should Not BeNullOrEmpty
+        }
+        It "Slack is not running" {
+            ($processes | Where-Object ProcessName -eq 'Slack') | Should BeNullOrEmpty
+        }
+        It "Teams is not running" {
+            ($processes | Where-Object ProcessName -eq 'Teams') | Should BeNullOrEmpty
+        }
+    }
+}
