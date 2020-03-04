@@ -28,12 +28,21 @@ Describe "Credentials exist" {
             $credential.UserName | Should Be "sa"
         }
     }
+    Context "PSDefaultParameterValues are set" {
+        $params = $PSDefaultParameterValues
+        It "PSDefaultParameterValues contains expected values" {
+            $params.Keys -contains '*:SqlCredential' | Should Be True
+            $params.Keys -contains '*:SourceSqlCredential' | Should Be True
+            $params.Keys -contains '*:DestinationCredential' | Should Be True
+            $params.Keys -contains '*:DestinationSqlCredential' | Should Be True
+        }
+    }
 }
 # two instances
 Describe "Two instances are available" {
     Context "Two instances are up" {
-        $mssql1 = Connect-DbaInstance -SqlInstance mssql1 -SqlCredential $credential
-        $mssql2 = Connect-DbaInstance -SqlInstance mssql2 -SqlCredential $credential
+        $mssql1 = Connect-DbaInstance -SqlInstance mssql1
+        $mssql2 = Connect-DbaInstance -SqlInstance mssql2
         It "mssql1 is available" {
             $mssql1.Name | Should Not BeNullOrEmpty
             $mssql1.Name | Should Be 'mssql1'
@@ -47,7 +56,7 @@ Describe "Two instances are available" {
 # mssql1 has 2 databases
 Describe "mssql1 databases are good" {
     Context "AdventureWorks2017 is good" {
-        $db = Get-DbaDatabase -SqlInstance mssql1 -SqlCredential $credential
+        $db = Get-DbaDatabase -SqlInstance mssql1
         $adventureWorks = $db | where name -eq 'AdventureWorks2017'
         It "AdventureWorks2017 is available" {
             $adventureWorks | Should Not BeNullOrEmpty
@@ -60,7 +69,7 @@ Describe "mssql1 databases are good" {
         }
     }
     Context "Indexes are fixed on HumanResources.Employee (bug)" {
-        $empIndexes = (Get-DbaDbTable -SqlInstance mssql1 -SqlCredential $credential -Database AdventureWorks2017 -Table Employee).indexes | select name, IsUnique
+        $empIndexes = (Get-DbaDbTable -SqlInstance mssql1 -Database AdventureWorks2017 -Table Employee).indexes | select name, IsUnique
         It "There are now just two indexes" {
             $empIndexes.Count | Should Be 2
         }
@@ -69,7 +78,7 @@ Describe "mssql1 databases are good" {
         }
     }
     Context "DatabaseAdmin is good" {
-        $db = Get-DbaDatabase -SqlInstance mssql1 -SqlCredential $credential
+        $db = Get-DbaDatabase -SqlInstance mssql1
         $DatabaseAdmin = $db | where name -eq 'DatabaseAdmin'
         It "DatabaseAdmin is available" {
             $DatabaseAdmin | Should Not BeNullOrEmpty
@@ -87,7 +96,6 @@ Describe "Backups worked" {
     Context "AdventureWorks was backed up" {
         $instanceSplat = @{
             SqlInstance   = 'mssql1'
-            SqlCredential = $credential
         }
         It "AdventureWorks has backup history" {
             Get-DbaDbBackupHistory @instanceSplat | Should Not BeNullOrEmpty
