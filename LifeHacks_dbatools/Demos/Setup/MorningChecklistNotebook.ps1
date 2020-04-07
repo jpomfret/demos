@@ -26,6 +26,10 @@ New-DbaAgentJob -SqlInstance mssql1 -SqlCredential $credential -Job ImportantETL
 New-DbaAgentJobStep -SqlInstance mssql1 -SqlCredential $credential -Job ImportantETLJob -StepName Step1 -Subsystem TransactSql -Command 'Select Missing Table'
 Start-DbaAgentJob -SqlInstance mssql1 -SqlCredential $credential -Job ImportantETLJob
 
+$securePassword = ('Password1234!' | ConvertTo-SecureString -asPlainText -Force)
+$badCredential = New-Object System.Management.Automation.PSCredential('WrongUser', $securePassword)
+Connect-DbaInstance -SqlInstance mssql1 -SqlCredential $badCredential
+
 Import-Module dbatools
 
 $servers = Get-DbaRegisteredServer -Group Sqlserver
