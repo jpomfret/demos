@@ -89,7 +89,7 @@ Set-DbaDbCompatibility @compatSplat
 
 ## Upgrade database - https://thomaslarock.com/2014/06/upgrading-to-sql-server-2014-a-dozen-things-to-check/
 # Updates compatibility level
-# runs CHECKDB with data_purity
+# runs CHECKDB with data_purity - make sure column values are in range, e.g. datetime
 # DBCC updateusage
 # sp_updatestats
 # sp_refreshview against all user views

@@ -1,5 +1,6 @@
 start-process C:\Temporary\ZoomIt\ZoomIt.exe
 
+Get-Process slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
 Get-Process teams, slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
 
 Set-Location C:\github\demos\LifeHacks_dbatools
