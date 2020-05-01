@@ -49,7 +49,7 @@ Get-DbaProcess @processSplat | Stop-DbaProcess
 $migrateDbSplat = @{
     Source        = "mssql1"
     Destination   = 'mssql2'
-    Database      = 'DatabaseAdmin' #$dbs.name
+    Database      = $dbs.name
     BackupRestore = $true
     SharedPath    = '/sharedpath'
     #SetSourceOffline        = $true
