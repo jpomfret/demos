@@ -7,11 +7,11 @@ Describe "Module is good to go" {
         It "Module was imported" {
             $module | Should Not BeNullOrEmpty
         }
-        It "Module version is 1.0.107" {
-            $module.Version | Should Be "1.0.107"
+        It "Module version is 1.0.108" {
+            $module.Version | Should Be "1.0.108"
         }
-        It "Module should import 589 commands" {
-            (get-command -module dbatools | Measure).Count | Should Be 589
+        It "Module should import 581 commands" {
+            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 581
         }
     }
 }
@@ -120,8 +120,8 @@ Describe "Check what's running" {
         It "Slack is not running" {
             ($processes | Where-Object ProcessName -eq 'Slack') | Should BeNullOrEmpty
         }
-        It "Teams is running" {
-            ($processes | Where-Object ProcessName -eq 'Teams') | Should Not BeNullOrEmpty
+        It "Teams is not running" {
+            ($processes | Where-Object ProcessName -eq 'Teams') | Should BeNullOrEmpty
         }
     }
 }

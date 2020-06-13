@@ -5,11 +5,13 @@ services:
       volumes:
         - mydata:/var/opt/backups
         - sharedpath:/sharedpath
+        - logship1:/var/opt/logship
       environment:
           SA_PASSWORD: "Password1234!"
           ACCEPT_EULA: "Y"
           MSSQL_BACKUP_DIR: /var/opt/backups
           TZ: America/New_York
+          MSSQL_AGENT_ENABLED: "True"
       ports:
         - "2500:1433"
       container_name: mssql1
@@ -19,6 +21,7 @@ services:
       volumes:
         - mydata:/var/opt/backups
         - sharedpath:/sharedpath
+        - logship2:/var/opt/logship
       environment:
           SA_PASSWORD: "Password1234!"
           ACCEPT_EULA: "Y"
@@ -33,3 +36,5 @@ services:
 volumes:
   mydata:
   sharedpath:
+  logship1:
+  logship2:
