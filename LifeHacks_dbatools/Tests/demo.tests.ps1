@@ -7,11 +7,21 @@ Describe "Module is good to go" {
         It "Module was imported" {
             $module | Should Not BeNullOrEmpty
         }
-        It "Module version is 1.0.108" {
-            $module.Version | Should Be "1.0.108"
+        It "Module version is 1.0.114" {
+            $module.Version | Should Be "1.0.114"
         }
-        It "Module should import 581 commands" {
-            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 581
+        It "Module should import 584 commands" {
+            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 584
+        }
+    }
+    Context "dbachecks imports" {
+        $null = Import-Module dbachecks
+        $module = Get-Module dbachecks
+        It "Module was imported" {
+            $module | Should Not BeNullOrEmpty
+        }
+        It "Module version is 2.0.3" {
+            $module.Version | Should Be "2.0.3"
         }
     }
 }
@@ -95,7 +105,7 @@ Describe "mssql1 databases are good" {
 Describe "Backups worked" {
     Context "AdventureWorks was backed up" {
         $instanceSplat = @{
-            SqlInstance   = 'mssql1'
+            SqlInstance = 'mssql1'
         }
         It "AdventureWorks has backup history" {
             Get-DbaDbBackupHistory @instanceSplat | Should Not BeNullOrEmpty
@@ -112,16 +122,13 @@ Describe "Proc architecture is x64" {
 }
 
 Describe "Check what's running" {
-    $processes = Get-Process zoomit*, teams, slack -ErrorAction SilentlyContinue
+    $processes = Get-Process zoomit*, slack -ErrorAction SilentlyContinue
     Context "ZoomIt is running" {
         It "ZoomIt64 is running" {
             ($processes | Where-Object ProcessName -eq 'Zoomit64') | Should Not BeNullOrEmpty
         }
         It "Slack is not running" {
             ($processes | Where-Object ProcessName -eq 'Slack') | Should BeNullOrEmpty
-        }
-        It "Teams is not running" {
-            ($processes | Where-Object ProcessName -eq 'Teams') | Should BeNullOrEmpty
         }
     }
 }

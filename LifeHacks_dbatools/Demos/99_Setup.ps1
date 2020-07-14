@@ -1,7 +1,7 @@
 start-process C:\Temporary\ZoomIt\ZoomIt.exe
 
 #Get-Process slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
-Get-Process teams, slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
+Get-Process slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
 
 Set-Location C:\github\demos\LifeHacks_dbatools
 
@@ -25,6 +25,34 @@ Remove-Item .\masking\mssql1.AdventureWorks2017.DataMaskingConfig.json -ErrorAct
 Remove-Item .\Export\* -Recurse -ErrorAction SilentlyContinue -Confirm:$false
 
 Start-Sleep -Seconds (2*60)
+
+Import-Module dbatools, dbachecks
+
 Set-DbaSpConfigure -SqlInstance mssql1 -SqlCredential $credential -Name "clr enabled" -Value 1
+
+$loginSplat = @{
+    SqlInstance    = "mssql1"
+    Login          = "JessP"
+    SecurePassword = $securePassword
+}
+New-DbaLogin @loginSplat
+
+##	Add User
+$userSplat = @{
+    SqlInstance = "mssql1"
+    Login       = "JessP"
+    Database    = "DatabaseAdmin"
+}
+New-DbaDbUser @userSplat
+
+##	Add to reader role
+$roleSplat = @{
+    SqlInstance = "mssql1"
+    User        = "JessP"
+    Database    = "DatabaseAdmin"
+    Role        = "db_datareader"
+    Confirm     = $false
+}
+Add-DbaDbRoleMember @roleSplat
 
 Invoke-Pester .\Tests\demo.tests.ps1

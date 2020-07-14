@@ -25,7 +25,7 @@ Import-Module dbatools
 
 ## 4. List modules currently imported into your session
 Get-Module dbatools
-## 1.0.108
+## 1.0.114
 
 ## 5. List module versions that are available
 Get-Module dbatools -ListAvailable
@@ -53,8 +53,8 @@ Get-DbaDbCompression -SqlInstance "mssql1" -SqlCredential $Credential -Database 
 # Splatting makes your commands shorter and easier to read.
 # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-6
 $splatGet = @{
-    SqlInstance     = "mssql1"
-    SqlCredential   = $Credential
-    Database        = "AdventureWorks2017"
+    SqlInstance   = "mssql1"
+    SqlCredential = $Credential
+    Database      = "AdventureWorks2017"
 }
 Get-DbaDbCompression @splatGet | Select-Object -first 5

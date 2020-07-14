@@ -9,9 +9,9 @@
 # Use to monitor environment for changes
 
 $instanceSplat = @{
-    SqlInstance   = "mssql1", "mssql2"
-    Path          = '.\Export\'
-    Exclude       = 'ReplicationSettings'
+    SqlInstance = "mssql1", "mssql2"
+    Path        = '.\Export\'
+    Exclude     = 'ReplicationSettings'
 }
 Export-DbaInstance @instanceSplat
 
