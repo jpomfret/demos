@@ -1,9 +1,9 @@
 
 ## is SQL installed
-if(Get-Service *sql* -cn dscsvr2) {   
+if(Get-Service *sql* -cn dscsvr2) {
     ## Uninstall SQL Server
-    invoke-command -ComputerName dscsvr2 -ScriptBlock { 
-        C:\Software\SQLServer2017\Setup.exe /ACTION=Uninstall /FEATURES=SQLENGINE /INSTANCENAME=MSSQLSERVER /Q
+    invoke-command -ComputerName dscsvr2 -ScriptBlock {
+        \\DC\Share\Software\SQLServer\2019\Setup.exe /ACTION=Uninstall /FEATURES=SQLENGINE /INSTANCENAME=MSSQLSERVER /Q
     }
 }
 
@@ -26,12 +26,12 @@ configuration LCMConfig
 ## Invoke meta configuration
 LCMConfig -Output .\output\
 
-## Apply configuration 
+## Apply configuration
 Set-DscLocalConfigurationManager -Path .\output\ -ComputerName dscsvr2 -Verbose
 
 Configuration ResetServer {
     Import-DscResource -ModuleName PSDesiredStateConfiguration
- 
+
     Node DscSvr2 {
         WindowsFeature RemoveDotNet {
             Name = 'NET-Framework-Features'
@@ -43,25 +43,25 @@ Configuration ResetServer {
         }
 
         File RemoveInstallDir {
-            DestinationPath = "C:\SQL2017\Install\"
+            DestinationPath = "C:\SQL2019\Install\"
             Ensure          = 'Absent'
             Type            = 'Directory'
             Force           = $true
         }
         File RemoveDataDir {
-            DestinationPath = "C:\SQL2017\SQLData\"
+            DestinationPath = "C:\SQL2019\SQLData\"
             Ensure          = 'Absent'
             Type            = 'Directory'
             Force           = $true
         }
         File RemoveLogsDir {
-            DestinationPath = "C:\SQL2017\SQLLogs\"
+            DestinationPath = "C:\SQL2019\SQLLogs\"
             Ensure          = 'Absent'
             Type            = 'Directory'
             Force           = $true
         }
-        File RemoveSql2017Dir {
-            DestinationPath = "C:\SQL2017\"
+        File RemoveSql2019Dir {
+            DestinationPath = "C:\SQL2019\"
             Ensure          = 'Absent'
             Type            = 'Directory'
             Force           = $true

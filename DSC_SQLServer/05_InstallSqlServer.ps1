@@ -1,14 +1,14 @@
 #Get-Service *sql* -Cn DSCSVR2
 
 ## 1) Look at MOF File
-## 2) Config file 
+## 2) Config file
 ## 3) Walk through Configuration
 
 Configuration InstallSqlServer {
- 
+
     Import-DscResource -ModuleName PSDesiredStateConfiguration
     Import-DscResource -ModuleName SqlServerDsc
-    
+
     $saCred = (Get-Credential -Credential sa)
 
     Node $AllNodes.NodeName {
@@ -16,7 +16,7 @@ Configuration InstallSqlServer {
         #    Name                = 'NET-Framework-Features'
         #    Ensure              = 'Present'
         #}
-        
+
         File CreateInstallDir {
             DestinationPath     = $ConfigurationData.NonNodeData.InstallDir
             Ensure              = 'Present'
@@ -40,7 +40,7 @@ Configuration InstallSqlServer {
 
         SqlSetup InstallSql {
             InstanceName        = 'MSSQLSERVER'
-            SourcePath          = 'C:\Software\SQLServer2017\'
+            SourcePath          = '\\DC\Share\Software\SQLServer\2019\'
             Features            = 'SQLEngine'
             SQLSysAdminAccounts = 'domain\jpomfret'
             SQLUserDBDir        = $ConfigurationData.NonNodeData.DataDir
@@ -51,7 +51,7 @@ Configuration InstallSqlServer {
             SAPwd               = $saCred
 
         }
-        
+
         SqlServerNetwork EnableTcpIp {
             DependsOn           = '[SqlSetup]InstallSql'
             InstanceName        = 'MSSQLSERVER'
@@ -60,16 +60,16 @@ Configuration InstallSqlServer {
             TCPPort             = 1433
             RestartService      = $true
         }
-        
+
         SqlWindowsFirewall AllowFirewall {
             DependsOn           = '[SqlSetup]InstallSql'
             InstanceName        = 'MSSQLSERVER'
             Features            = 'SQLEngine'
-            SourcePath          = 'C:\Software\SQLServer2017\'
+            SourcePath          = '\\DC\Share\Software\SQLServer\2019\'
         }
-        
+
         $ConfigurationData.NonNodeData.ConfigOptions.foreach{
-            SqlServerConfiguration ("SetConfigOption{0}" -f $_.name) {
+            SqlConfiguration ("SetConfigOption{0}" -f $_.name) {
                 DependsOn       = '[SqlSetup]InstallSql'
                 ServerName      = $Node.NodeName
                 InstanceName    = 'MSSQLSERVER'
@@ -77,7 +77,7 @@ Configuration InstallSqlServer {
                 OptionValue     = $_.Setting
             }
         }
-        
+
         SqlDatabase CreateDbaDatabase {
             DependsOn           = '[SqlSetup]InstallSql'
             ServerName          = $Node.NodeName
@@ -87,7 +87,7 @@ Configuration InstallSqlServer {
     }
 }
 
-## 1) DependsOn 
+## 1) DependsOn
 ## 2) PsDscRunAsCredential
 ## 3) sa password
 ## 4) make a change - rerun

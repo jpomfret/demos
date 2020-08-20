@@ -11,7 +11,7 @@ Get-DscConfiguration -CimSession DscSvr2 | Where-Object ResourceId -eq '[SqlData
 Get-DscConfigurationStatus -CimSession DscSvr2
 
 # Shows resources in desired state vs not in desired state - not acurately?
-Get-DscConfigurationStatus -CimSession DscSvr2 | 
+Get-DscConfigurationStatus -CimSession DscSvr2 |
 Select-Object Status, StartDate, NumberOfResources, ResourcesInDesiredState, ResourcesNotInDesiredState
 
 # Use Test to see if we're in the desired state and to get the resources that are not

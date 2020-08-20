@@ -1,7 +1,7 @@
 ## Get Current settings
 Get-DscLocalConfigurationManager -CimSession dscsvr2
 
-Get-DscLocalConfigurationManager -CimSession dscsvr2  | 
+Get-DscLocalConfigurationManager -CimSession dscsvr2  |
 Select-Object ActionAfterReboot, RefreshMode, ConfigurationModeFrequencyMins
 
 ## Write the meta configuration
@@ -12,9 +12,16 @@ configuration LCMConfig
     {
         Settings
         {
+            ConfigurationID = $(New-Guid).Guid
             ActionAfterReboot = 'ContinueConfiguration'
             RefreshMode = 'Push'
             ConfigurationModeFrequencyMins = 20
+
+        }
+
+        ResourceRepositoryShare FileShare
+        {
+            SourcePath = '\\dc\share\DSCResources\LCM'
         }
     }
 }
@@ -22,10 +29,10 @@ configuration LCMConfig
 ## Invoke meta configuration
 LCMConfig -Output .\output\
 
-## Apply configuration 
+## Apply configuration
 Set-DscLocalConfigurationManager -Path .\output\ -ComputerName dscsvr2 -Verbose
 
 ## Get New settings
-Get-DscLocalConfigurationManager -CimSession dscsvr2  | 
+Get-DscLocalConfigurationManager -CimSession dscsvr2  |
 Select-Object ActionAfterReboot, RefreshMode, ConfigurationModeFrequencyMins
 

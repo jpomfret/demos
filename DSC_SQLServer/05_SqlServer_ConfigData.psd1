@@ -14,10 +14,10 @@
         }
     )
     NonNodeData = @{
-        DataDir = "C:\SQL2017\SQLData\"
-        LogDir = "C:\SQL2017\SQLLogs\"
-        InstallDir = "C:\SQL2017\Install\"
-        InstanceDir =  "C:\SQL2017\Instance\"
+        DataDir = "C:\SQL2019\SQLData\"
+        LogDir = "C:\SQL2019\SQLLogs\"
+        InstallDir = "C:\SQL2019\Install\"
+        InstanceDir =  "C:\SQL2019\Instance\"
         ConfigOptions = @(
             @{
                 Name    = "backup compression default"

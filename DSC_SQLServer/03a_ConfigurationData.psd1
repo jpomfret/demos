@@ -6,8 +6,8 @@
         }
     )
     NonNodeData = @{
-        DataDir = "C:\SQL2017\SQLData\"
-        LogDir = "C:\SQL2017\SQLLogs\"
+        DataDir = "C:\SQL2019\SQLData\"
+        LogDir = "C:\SQL2019\SQLLogs\"
         TestDir = "C:\TestForJess"
     }
 }
