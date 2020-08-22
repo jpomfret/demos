@@ -3,7 +3,9 @@
 if(Get-Service *sql* -cn dscsvr2) {
     ## Uninstall SQL Server
     invoke-command -ComputerName dscsvr2 -ScriptBlock {
-        \\DC\Share\Software\SQLServer\2019\Setup.exe /ACTION=Uninstall /FEATURES=SQLENGINE /INSTANCENAME=MSSQLSERVER /Q
+        C:\temp\2019\Setup.exe /ACTION=Uninstall /FEATURES=SQLENGINE /INSTANCENAME=MSSQLSERVER /Q
+        #double hop issue
+        #\\DC\Share\Software\SQLServer\2019\Setup.exe /ACTION=Uninstall /FEATURES=SQLENGINE /INSTANCENAME=MSSQLSERVER /Q
     }
 }
 
@@ -27,7 +29,7 @@ configuration LCMConfig
 LCMConfig -Output .\output\
 
 ## Apply configuration
-Set-DscLocalConfigurationManager -Path .\output\ -ComputerName dscsvr2 -Verbose
+Set-DscLocalConfigurationManager -Path .\output\ -ComputerName dscsvr2 -Verbose -Force
 
 Configuration ResetServer {
     Import-DscResource -ModuleName PSDesiredStateConfiguration
@@ -79,7 +81,12 @@ ResetServer -Output .\output\
 
 Start-DscConfiguration -Path .\output\ -ComputerName DscSvr2 -Wait -Verbose -force
 
-Restart-Computer dscsvr2
+Restart-Computer dscsvr2 -Force
 
 ## Empty Output folder
 Remove-Item .\output\*
+
+
+## Test it
+Import-Module Pester -RequiredVersion 4.9.0
+Invoke-Pester .\tests\*
