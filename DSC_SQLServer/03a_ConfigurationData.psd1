@@ -13,4 +13,4 @@
 }
 
 ## 1) Add a node
-## 2) Change folders to SQL2016
+## 2) Change folders to SQL2017

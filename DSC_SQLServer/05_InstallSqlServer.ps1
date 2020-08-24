@@ -42,7 +42,7 @@ Configuration InstallSqlServer {
             InstanceName        = 'MSSQLSERVER'
             SourcePath          = '\\DC\Share\Software\SQLServer\2019\'
             Features            = 'SQLEngine'
-            SQLSysAdminAccounts = 'domain\jpomfret'
+            SQLSysAdminAccounts = 'pomfret\jpomfret'
             SQLUserDBDir        = $ConfigurationData.NonNodeData.DataDir
             SQLUserDBLogDir     = $ConfigurationData.NonNodeData.LogDir
             InstallSharedDir    = $ConfigurationData.NonNodeData.InstallDir
