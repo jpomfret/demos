@@ -52,3 +52,4 @@ Select-Object SqlInstance, Total, MaxValue, RecommendedValue
 
 ## Dbachecks - automate checking your estate
 # https://github.com/sqlcollaborative/dbachecks
+Invoke-DbcCheck -SqlInstance mssql1, mssql2 -Check DatabaseStatus
