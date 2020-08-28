@@ -1,0 +1,40 @@
+version: "3"
+services:
+    mssql1:
+      build: ./mssql1
+      volumes:
+        - mydata:/var/opt/backups
+        - sharedpath:/sharedpath
+        - logship1:/var/opt/logship
+      environment:
+          SA_PASSWORD: "Password1234!"
+          ACCEPT_EULA: "Y"
+          MSSQL_BACKUP_DIR: /var/opt/backups
+          TZ: America/New_York
+          MSSQL_AGENT_ENABLED: "True"
+      ports:
+        - "2500:1433"
+      container_name: mssql1
+      hostname: mssql1
+    mssql2:
+      image: "mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04"
+      volumes:
+        - mydata:/var/opt/backups
+        - sharedpath:/sharedpath
+        - logship2:/var/opt/logship
+      environment:
+          SA_PASSWORD: "Password1234!"
+          ACCEPT_EULA: "Y"
+          MSSQL_BACKUP_DIR: /var/opt/backups
+          MSSQL_AGENT_ENABLED: "True"
+          TZ: America/New_York
+      ports:
+          - "2600:1433"
+      container_name: mssql2
+      hostname: mssql2
+
+volumes:
+  mydata:
+  sharedpath:
+  logship1:
+  logship2:
