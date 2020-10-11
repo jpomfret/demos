@@ -1,0 +1,8 @@
+# Ignore database files
+Docker/mssql1/AdventureWorks/*
+
+# Ignore export folder
+Export*
+
+# ignore generated masking file
+masking/mssql1*

@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/mssql/server:2017-latest
+COPY . /
+
+RUN mkdir /var/opt/sqlserver
+#COPY setup.sh /var/opt/sqlserver
+
+# copy in AdventureWorks database files
+COPY AdventureWorks/AdventureWorks2017.mdf /var/opt/sqlserver
+COPY AdventureWorks/AdventureWorks2017_log.ldf /var/opt/sqlserver
+
+ENTRYPOINT /setup.sh & /opt/mssql/bin/sqlservr
