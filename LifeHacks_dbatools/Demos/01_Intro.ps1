@@ -21,7 +21,7 @@ Save-Module dbatools c:\temp
 Update-Module dbatools
 
 ## 3. Import a module
-Import-Module dbatools
+Import-Module dbatools -RequiredVersion 1.0.113
 
 ## 4. List modules currently imported into your session
 Get-Module dbatools

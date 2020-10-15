@@ -40,7 +40,7 @@
     Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check Databasestatus, PageVerify -Show Fails
 
 # 5 - The Dashboard - V1
-    Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check Databasestatus, PageVerify -Passthru | Update-DbcPowerBiDataSource
+    Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check Databasestatus, PageVerify -Passthru | Update-DbcPowerBiDataSource -Environment Test
     Start-DbcPowerBi
 
 # 6 - Store the checks in a database!

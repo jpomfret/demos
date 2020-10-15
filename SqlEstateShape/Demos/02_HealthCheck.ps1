@@ -31,4 +31,6 @@ Write-DbcTable @dbatoolsDest
 
 Start-DbcPowerBi -FromDatabase
 
-# 33 
+## go update the database
+
+# 33

@@ -21,9 +21,20 @@ $maintInstall = @{
 Install-DbaMaintenanceSolution @maintInstall
 # or local file - should probably have file saved somewhere for backup
 
-Get-DbaAgentJob -SqlInstance $SqlInstances -Category 'Database Maintenance' | Out-GridView -PassThru | Start-DbaAgentJob
+# Run the full backups
+Get-DbaAgentJob -SqlInstance $SqlInstances -Category 'Database Maintenance' |
+Out-GridView -PassThru |
+Start-DbaAgentJob
 
-# 40:00
+# Run the Integrity Checks
+Get-DbaAgentJob -SqlInstance $SqlInstances -Category 'Database Maintenance' |
+Where-Object Name -like 'DatabaseIntegrityCheck*' |
+Start-DbaAgentJob |
+Select-Object SqlInstance, Name
 
 # second time to compare?
 Invoke-DbcCheck -SqlInstance $SqlInstances -Check $MaintChecks -Show Fails
+
+# Rerun the health check
+
+# 40:00
