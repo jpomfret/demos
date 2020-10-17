@@ -141,8 +141,8 @@ Describe "Check what's running" {
         It "Slack is not running" {
             ($processes | Where-Object ProcessName -eq 'Slack') | Should BeNullOrEmpty
         }
-        It "Teams is not running" {
-            ($processes | Where-Object ProcessName -eq 'Teams') | Should BeNullOrEmpty
+        It "Teams is running" {
+            ($processes | Where-Object ProcessName -eq 'Teams') | Should Not BeNullOrEmpty
         }
     }
 }

@@ -1,3 +1,9 @@
+# 0 - Get the Module
+    Install-Module dbachecks
+    Save-Module dbachecks -Path C:\temp\dbachecks
+
+    Import-Module dbachecks
+
 # 1 - Check out the commands
     Get-Command -Module dbachecks
 
