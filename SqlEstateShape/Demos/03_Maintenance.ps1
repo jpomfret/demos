@@ -4,8 +4,8 @@ $SqlInstances = 'mssql1','mssql2','mssql3'
 
 Invoke-DbcCheck -SqlInstance $SqlInstances -Check $MaintChecks -Show Fails
 <#
-Tests completed in 15.6s
-Tests Passed: 17, Failed: 37, Skipped: 0, Pending: 0, Inconclusive: 0
+Tests completed in 13.49s
+Tests Passed: 14, Failed: 31, Skipped: 0, Pending: 0, Inconclusive: 0 
 #>
 
 Find-DbaCommand *ola*
@@ -35,6 +35,6 @@ Select-Object SqlInstance, Name
 # second time to compare?
 Invoke-DbcCheck -SqlInstance $SqlInstances -Check $MaintChecks -Show Fails
 
-# Rerun the health check
+# Rerun the health check - 1:17
 
 # 40:00

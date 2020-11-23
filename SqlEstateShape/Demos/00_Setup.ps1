@@ -1,7 +1,7 @@
 Import-Module dbatools
 Import-Module dbachecks
 
-start-process C:\Temporary\ZoomIt\ZoomIt.exe
+start-process ZoomIt.exe
 
 #Get-Process slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
 Get-Process teams, slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue

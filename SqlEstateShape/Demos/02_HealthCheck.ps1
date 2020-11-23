@@ -14,17 +14,17 @@ $dbatoolsDest = @{
 Set-dbcconfig -Name skip.security.sadisabled -Value $False
 Set-dbcconfig -Name skip.security.guestuserconnect -Value $False
 
-# Security
+# Security - 50
 Invoke-DbcCheck -SqlInstance $SqlInstances -Check $SecurityChecks -PassThru |
 Convert-DbcResult -Label 'FitnessTest-Security' |
 Write-DbcTable @dbatoolsDest
 
-# Performance
+# Performance - 14
 Invoke-DbcCheck -SqlInstance $SqlInstances -Check $PerfChecks -PassThru |
 Convert-DbcResult -Label 'FitnessTest-Performance' |
 Write-DbcTable @dbatoolsDest
 
-# Maintenance
+# Maintenance - 17
 Invoke-DbcCheck -SqlInstance $SqlInstances -Check $MaintChecks -PassThru |
 Convert-DbcResult -Label 'FitnessTest-Maintenance' |
 Write-DbcTable @dbatoolsDest

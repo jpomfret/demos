@@ -40,17 +40,16 @@
     Invoke-DbcCheck -SqlInstance mssql1 -Check Databasestatus
 
     # Multiple checks against multiple machines
-    Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check Databasestatus, PageVerify
-
     # Only really care about the issues
     Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check Databasestatus, PageVerify -Show Fails
 
 # 5 - The Dashboard - V1
-    Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check Databasestatus, PageVerify -Passthru | Update-DbcPowerBiDataSource -Environment Test
+    Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check Databasestatus, PageVerify -Passthru | 
+    Update-DbcPowerBiDataSource -Environment Test
     Start-DbcPowerBi
 
 # 6 - Store the checks in a database!
-    Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check LastBackup -PassThru |
+    Invoke-DbcCheck -SqlInstance mssql1,mssql2 -Check LastFullBackup -PassThru |
     Convert-DbcResult -Label 'dbachecks-Jess' |
     Write-DbcTable -SqlInstance mssql1 -Database 'DatabaseAdmin' -Table BackupChecks
 

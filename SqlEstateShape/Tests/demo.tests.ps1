@@ -7,11 +7,11 @@ Describe "Module is good to go" {
         It "Module was imported" {
             $module | Should Not BeNullOrEmpty
         }
-        It "Module version is 1.0.124" {
-            $module.Version | Should Be "1.0.124"
+        It "Module version is 1.0.131" {
+            $module.Version | Should Be "1.0.131"
         }
-        It "Module should import 586 commands" {
-            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 586
+        It "Module should import 589 commands" {
+            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 589
         }
     }
     Context "dbachecks imports" {
@@ -52,10 +52,11 @@ Describe "Credentials exist" {
     }
 }
 # two instances
-Describe "Two instances are available" {
-    Context "Two instances are up" {
+Describe "SqlInstances are available" {
+    Context "SqlInstances are up" {
         $mssql1 = Connect-DbaInstance -SqlInstance mssql1
         $mssql2 = Connect-DbaInstance -SqlInstance mssql2
+        $mssql3 = Connect-DbaInstance -SqlInstance mssql3
         It "mssql1 is available" {
             $mssql1.Name | Should Not BeNullOrEmpty
             $mssql1.Name | Should Be 'mssql1'
@@ -64,13 +65,17 @@ Describe "Two instances are available" {
             $mssql2.Name | Should Not BeNullOrEmpty
             $mssql2.Name | Should Be 'mssql2'
         }
+        It "mssql3 is available" {
+            $mssql3.Name | Should Not BeNullOrEmpty
+            $mssql3.Name | Should Be 'mssql3'
+        }
     }
 }
 # mssql1 has 2 databases
 Describe "mssql1 databases are good" {
     Context "AdventureWorks2017 is good" {
         $db = Get-DbaDatabase -SqlInstance mssql1
-        $adventureWorks = $db | where name -eq 'AdventureWorks2017'
+        $adventureWorks = $db | Where-Object name -eq 'AdventureWorks2017'
         It "AdventureWorks2017 is available" {
             $adventureWorks | Should Not BeNullOrEmpty
         }
@@ -83,7 +88,7 @@ Describe "mssql1 databases are good" {
     }
     Context "DatabaseAdmin is good" {
         $db = Get-DbaDatabase -SqlInstance mssql1
-        $DatabaseAdmin = $db | where name -eq 'DatabaseAdmin'
+        $DatabaseAdmin = $db | Where-Object name -eq 'DatabaseAdmin'
         It "DatabaseAdmin is available" {
             $DatabaseAdmin | Should Not BeNullOrEmpty
         }
@@ -108,7 +113,7 @@ Describe "mssql1 databases are good" {
             $app2.AutoClose | Should be $true
         }
         It "There are non trusted Fks " {
-            (Get-DbaDbForeignKey -SqlInstance mssql1 -Database AdventureWorks2017 | where { -not $_.ischecked }) | Should -Not -BeNullOrEmpty
+            (Get-DbaDbForeignKey -SqlInstance mssql1 -Database AdventureWorks2017 | Where-Object { -not $_.ischecked }) | Should -Not -BeNullOrEmpty
         }
     }
 }
@@ -141,7 +146,7 @@ Describe "Check what's running" {
         It "Slack is not running" {
             ($processes | Where-Object ProcessName -eq 'Slack') | Should BeNullOrEmpty
         }
-        It "Teams is running" {
+        It "Teams is running" -skip {
             ($processes | Where-Object ProcessName -eq 'Teams') | Should Not BeNullOrEmpty
         }
     }
