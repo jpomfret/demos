@@ -1,0 +1,20 @@
+Use Master
+
+CREATE DATABASE ImportantAppDW;
+ALTER DATABASE ImportantAppDW SET AUTO_CLOSE ON;
+
+
+CREATE DATABASE DatabaseAdmin
+GO
+
+GO
+
+-- Turn off PAGE_VERIFY
+ALTER DATABASE [ImportantAppDb2] SET PAGE_VERIFY NONE WITH NO_WAIT;
+GO
+
+-- guest connect access
+USE DatabaseAdmin
+GO
+GRANT CONNECT TO Guest
+

@@ -37,7 +37,7 @@ Get-DbaLogin @loginSplat |
 # Get Processes
 $processSplat = @{
     SqlInstance = "mssql1"
-    Database    = "DatabaseAdmin"
+    Database    = $dbs.name
 }
 Get-DbaProcess @processSplat |
     Select-Object Host, login, Program

@@ -1,0 +1,7 @@
+FROM mcr.microsoft.com/mssql/server:2017-latest
+COPY . /
+
+RUN mkdir /var/opt/sqlserver
+#COPY setup.sh /var/opt/sqlserver
+
+ENTRYPOINT /setup.sh & /opt/mssql/bin/sqlservr
