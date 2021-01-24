@@ -5,3 +5,5 @@ This repo will be scripts that I've used in blog posts on www.jesspomfret.com.
 - 03_PSDscRunAsCredentials.ps1 - [Desired State Configuration: A few warnings when using PSDscRunAsCredentials](https://jesspomfret.com/dsc-psdscrunascredentials-warnings/- )
 - 04_Find-WhatDayIsThis.ps1 - [Anyone know what day it is?](https://jesspomfret.com/what-day/)
 - 05_TruncateAllTables.ps1 - [Truncate all the Tables](https://jesspomfret.com/truncate-all-the-tables)
+- 06_dbachecksToExcel.ps1 - [dbachecks To Excel](https://jesspomfret.com/dbachecks-importexcel/)
+- 07_PermisssionsGrantedViaADGroups.ps1 - [Discover SQL Server Permissions hidden via AD Group Membership](https://jesspomfret.com/sql-server-permissions-via-ad/)
