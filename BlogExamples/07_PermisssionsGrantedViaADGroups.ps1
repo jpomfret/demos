@@ -1,5 +1,5 @@
-# Blog examples for 
-# Discovery AD 
+# Blog examples for
+# Discovery AD
 
 Import-Module dbatools, ActiveDirectory
 
@@ -12,10 +12,20 @@ Import-Module dbatools, ActiveDirectory
     get-aduser -filter {created -gt $date} | select name
 
     # create a new Ad group
-    New-ADGroup -Name AdventureWorksReadOnly -GroupCategory Security -GroupScope Global -Path 'CN=Users,DC=pomfret,DC=com'
+    $newAdGroup = @{
+        Name          = 'AdventureWorksReadOnly'
+        GroupCategory = 'Security'
+        GroupScope    = 'Global'
+        Path          = 'CN=Users,DC=pomfret,DC=com'
+    }
+    New-ADGroup @newAdGroup
 
     # add users to group
-    Add-ADGroupMember -Identity AdventureWorksReadOnly -Members pomfretj, jonesP
+    $addMemberGroup = @{
+        Identity = 'AdventureWorksReadOnly'
+        Members = 'pomfretj', 'jonesP'
+    }
+    Add-ADGroupMember @addMemberGroup
 
 # setup - grant permissions to ad users\groups using dbatools
 
@@ -30,7 +40,7 @@ Import-Module dbatools, ActiveDirectory
     Add-DbaDbRoleMember -SqlInstance dscsvr1 -Database AdventureWorks2017 -Role db_owner -User 'Pomfret\smithA' -Confirm:$false
 
 # view database users that have access to database
-    Get-DbaDbUser -SqlInstance dscsvr1 -Database AdventureWorks2017 -ExcludeSystemUser | 
+    Get-DbaDbUser -SqlInstance dscsvr1 -Database AdventureWorks2017 -ExcludeSystemUser |
     Select-Object SqlInstance, Database, Login, LoginType, HasDbAccess
 
 # view database users that are members of database roles
@@ -40,5 +50,5 @@ Get-DbaDbRoleMember -SqlInstance dscsvr1 -Database AdventureWorks2017 | Select-O
     Get-DbaServerRoleMember -SqlInstance dscsvr1 | Select-Object SqlInstance, Name, Role
 
 # view who has permissions via AD groups
-    Get-DbaDbRoleMember -SqlInstance dscsvr1 -Database AdventureWorks2017 | 
+    Get-DbaDbRoleMember -SqlInstance dscsvr1 -Database AdventureWorks2017 |
     Select-Object SqlInstance, Database, Role, LoginType, Login, @{l='GroupMembers';e={ (Get-AdGroupMember -Identity ($_.Login).Split('\')[1]).Name }}
