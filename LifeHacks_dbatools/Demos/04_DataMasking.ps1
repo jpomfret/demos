@@ -11,9 +11,9 @@
 
 ## Find sensitive data in your database
 $piiSplat = @{
-    SqlInstance     = "mssql1"
-    Database        = "AdventureWorks2017"
-    Table           = "Employee"
+    SqlInstance = "mssql1"
+    Database    = "AdventureWorks2017"
+    Table       = "Employee"
 }
 Invoke-DbaDbPiiScan @piiSplat | Out-GridView
 
@@ -35,11 +35,11 @@ Get-DbaRandomizedValue -RandomizerType address -RandomizerSubType zipcode -Forma
 # Mask the data
 ## generate a file
 $maskConfig = @{
-    SqlInstance   = "mssql1"
-    Database      = 'AdventureWorks2017'
-    Table         = "Employee"
-    Column        = "NationalIDNumber", "loginid", "birthdate", "jobtitle"
-    Path          = ".\masking\"
+    SqlInstance = "mssql1"
+    Database    = 'AdventureWorks2017'
+    Table       = "Employee"
+    Column      = "NationalIDNumber", "loginid", "birthdate", "jobtitle"
+    Path        = ".\masking\"
 }
 New-DbaDbMaskingConfig @maskConfig
 
@@ -49,21 +49,21 @@ New-DbaDbMaskingConfig @maskConfig
 Test-DbaDbDataMaskingConfig  -FilePath .\masking\masking_composite.json
 
 <#
-Table    Column           Value    Error
------    ------           -----    -----
-Employee NationalIDNumber KeepNull The column does not contain all the required properties. Please check the column
-Employee LoginID          KeepNull The column does not contain all the required properties. Please check the column
-Employee BirthDate        KeepNull The column does not contain all the required properties. Please check the column
-Employee JobTitle         KeepNull The column does not contain all the required properties. Please check the column
+Table    Column           Value  Error
+-----    ------           -----  -----
+Employee NationalIDNumber Action The column does not contain all the required properties. Please check the column
+Employee LoginID          Action The column does not contain all the required properties. Please check the column
+Employee BirthDate        Action The column does not contain all the required properties. Please check the column
+Employee JobTitle         Action The column does not contain all the required properties. Please check the column
 #>
 
 # View data before!
 
 # Mask the data
 $maskData = @{
-    SqlInstance   = "mssql1"
-    Database      = "AdventureWorks2017"
-    FilePath      = '.\masking\masking_composite.json'
-    Confirm       = $false
+    SqlInstance = "mssql1"
+    Database    = "AdventureWorks2017"
+    FilePath    = '.\masking\masking_composite.json'
+    Confirm     = $false
 }
 Invoke-DbaDbDataMasking @maskData -Verbose

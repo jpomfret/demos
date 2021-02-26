@@ -24,15 +24,15 @@ $datatbaseSplat = @{
     OutVariable   = "dbs"        # OutVariable to also capture this to use later
 }
 Get-DbaDatabase @datatbaseSplat |
-    Select-Object Name, Status, RecoveryModel, Owner, Compatibility |
-    Format-Table
+Select-Object Name, Status, RecoveryModel, Owner, Compatibility |
+Format-Table
 
 # Get Logins
 $loginSplat = @{
     SqlInstance = "mssql1"
 }
 Get-DbaLogin @loginSplat |
-    Select-Object SqlInstance, Name, LoginType
+Select-Object SqlInstance, Name, LoginType
 
 # Get Processes
 $processSplat = @{
@@ -40,7 +40,7 @@ $processSplat = @{
     Database    = "DatabaseAdmin"
 }
 Get-DbaProcess @processSplat |
-    Select-Object Host, login, Program
+Select-Object Host, login, Program
 
 # Kill Processes
 Get-DbaProcess @processSplat | Stop-DbaProcess
@@ -80,7 +80,7 @@ $compatSplat = @{
     SqlInstance = "mssql2"
 }
 Get-DbaDbCompatibility @compatSplat |
-    Select-Object SqlInstance, Database, Compatibility
+Select-Object SqlInstance, Database, Compatibility
 
 $compatSplat.Add('Database', 'DatabaseAdmin')
 $compatSplat.Add('TargetCompatibility', '15')
