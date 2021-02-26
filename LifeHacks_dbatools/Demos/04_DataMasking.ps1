@@ -63,7 +63,8 @@ Employee JobTitle         Action The column does not contain all the required pr
 $maskData = @{
     SqlInstance = "mssql1"
     Database    = "AdventureWorks2017"
-    FilePath    = '.\masking\masking_composite.json'
+    FilePath    = '.\masking\masking_AdventureWorks.json'
     Confirm     = $false
 }
 Invoke-DbaDbDataMasking @maskData -Verbose
+

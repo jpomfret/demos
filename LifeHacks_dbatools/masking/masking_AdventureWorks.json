@@ -1,0 +1,73 @@
+{
+    "Name": "AdventureWorks2017",
+    "Type": "DataMaskingConfiguration",
+    "Tables": [
+        {
+            "Name": "Employee",
+            "Schema": "HumanResources",
+            "Columns": [
+                {
+                    "Name": "NationalIDNumber",
+                    "ColumnType": "nvarchar",
+                    "CharacterString": "0123456789",
+                    "MinValue": 9,
+                    "MaxValue": 9,
+                    "MaskingType": "Random",
+                    "SubType": "String2",
+                    "Format": null,
+                    "Deterministic": false,
+                    "Nullable": false,
+                    "KeepNull": true,
+                    "Action": null,
+                    "Composite": null
+                },
+                {
+                    "Name": "LoginID",
+                    "ColumnType": "varchar",
+                    "CharacterString": null,
+                    "MinValue": null,
+                    "MaxValue": null,
+                    "MaskingType": "Internet",
+                    "SubType": "UserName",
+                    "Format": null,
+                    "Deterministic": false,
+                    "Nullable": false,
+                    "KeepNull": true,
+                    "Action": null,
+                    "Composite": null
+                },
+                {
+                    "Name": "BirthDate",
+                    "ColumnType": "nvarchar",
+                    "CharacterString": null,
+                    "MinValue": "1950/1/1",
+                    "MaxValue": "2000/1/1",
+                    "MaskingType": "Date",
+                    "SubType": "Past",
+                    "Format": null,
+                    "Deterministic": false,
+                    "Nullable": false,
+                    "KeepNull": true,
+                    "Action": null,
+                    "Composite": null
+                },
+                {
+                    "Name": "JobTitle",
+                    "ColumnType": "nvarchar",
+                    "CharacterString": null,
+                    "MinValue": null,
+                    "MaxValue": 15,
+                    "MaskingType": "Name",
+                    "SubType": "JobTitle",
+                    "Format": null,
+                    "Deterministic": false,
+                    "Nullable": false,
+                    "KeepNull": true,
+                    "Action": null,
+                    "Composite": null
+                }
+            ],
+            "HasUniqueIndex": true
+        }
+    ]
+}
