@@ -7,3 +7,4 @@ This repo will be scripts that I've used in blog posts on www.jesspomfret.com.
 - 05_TruncateAllTables.ps1 - [Truncate all the Tables](https://jesspomfret.com/truncate-all-the-tables)
 - 06_dbachecksToExcel.ps1 - [dbachecks To Excel](https://jesspomfret.com/dbachecks-importexcel/)
 - 07_PermisssionsGrantedViaADGroups.ps1 - [Discover SQL Server Permissions hidden via AD Group Membership](https://jesspomfret.com/sql-server-permissions-via-ad/)
+- 08_ExecuteFolderOfScripts.ps1 - [Execute a folder of SQL scripts against a SQL Server](https://jesspomfret.com/execute-folder-of-scripts)
