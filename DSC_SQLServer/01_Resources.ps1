@@ -21,7 +21,7 @@ Get-DscResource -Name File -Syntax
     }
 #>
 
-## Look at what makes up a resource 
+## Look at what makes up a script resource 
 Get-DscResource -Name Service -Module PSDesiredStateConfiguration | Select-Object *
 code C:\Windows\system32\WindowsPowershell\v1.0\Modules\PsDesiredStateConfiguration\DSCResources\MSFT_ServiceResource\MSFT_ServiceResource.psm1
 ## Open Path - look at Get, Test, Set

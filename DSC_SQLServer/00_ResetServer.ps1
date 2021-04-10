@@ -1,6 +1,6 @@
 
 ## is SQL installed
-if(Get-Service *sql* -cn dscsvr2) {
+if(Invoke-Command -ComputerName dscsvr2 -ScriptBlock {Get-Service *SQL*}) {
     ## Uninstall SQL Server
     invoke-command -ComputerName dscsvr2 -ScriptBlock {
         C:\temp\2019\Setup.exe /ACTION=Uninstall /FEATURES=SQLENGINE /INSTANCENAME=MSSQLSERVER /Q
@@ -81,11 +81,12 @@ ResetServer -Output .\output\
 
 Start-DscConfiguration -Path .\output\ -ComputerName DscSvr2 -Wait -Verbose -force
 
-Restart-Computer dscsvr2 -Force
+Restart-Computer dscsvr2 -Force -Wait
 
 ## Empty Output folder
 Remove-Item .\output\*
 
+$env:PSModulePath += ';C:\github\demos\DSC_SQLServer'
 
 ## Test it
 Import-Module Pester -RequiredVersion 4.9.0

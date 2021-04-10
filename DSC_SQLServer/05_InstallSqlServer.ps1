@@ -1,4 +1,4 @@
-#Get-Service *sql* -Cn DSCSVR2
+# Invoke-Command -ComputerName DSCSVR2 -ScriptBlock {Get-Service *SQL*}
 
 ## 1) Look at MOF File
 ## 2) Config file
@@ -17,25 +17,13 @@ Configuration InstallSqlServer {
         #    Ensure              = 'Present'
         #}
 
-        File CreateInstallDir {
-            DestinationPath     = $ConfigurationData.NonNodeData.InstallDir
-            Ensure              = 'Present'
-            Type                = 'Directory'
-        }
-        File CreateInstanceDir {
-            DestinationPath     = $ConfigurationData.NonNodeData.InstanceDir
-            Ensure              = 'Present'
-            Type                = 'Directory'
-        }
-        File CreateDataDir {
-            DestinationPath     = $ConfigurationData.NonNodeData.DataDir
-            Ensure              = 'Present'
-            Type                = 'Directory'
-        }
-        File CreateLogsDir {
-            DestinationPath     = $ConfigurationData.NonNodeData.LogDir
-            Ensure              = 'Present'
-            Type                = 'Directory'
+        jpSqlFolderStructure createSQLFolders {
+            InstallPath        = $ConfigurationData.NonNodeData.InstallDir
+            InstancePath       = $ConfigurationData.NonNodeData.InstanceDir
+            UserDataPath       = $ConfigurationData.NonNodeData.DataDir
+            UserLogPath        = $ConfigurationData.NonNodeData.LogDir
+            TempDbDataPath     = $ConfigurationData.NonNodeData.TempDbDataDir
+            TempDbLogPath      = $ConfigurationData.NonNodeData.TempDbLogDir
         }
 
         SqlSetup InstallSql {
@@ -47,9 +35,10 @@ Configuration InstallSqlServer {
             SQLUserDBLogDir     = $ConfigurationData.NonNodeData.LogDir
             InstallSharedDir    = $ConfigurationData.NonNodeData.InstallDir
             InstanceDir         = $ConfigurationData.NonNodeData.InstanceDir
+            SQLTempDBDir        = $ConfigurationData.NonNodeData.TempDbDataDir
+            SQLTempDBLogDir     = $ConfigurationData.NonNodeData.SQLTempDBLogDir
             SecurityMode        = 'SQL'
             SAPwd               = $saCred
-
         }
 
         SqlServerNetwork EnableTcpIp {
