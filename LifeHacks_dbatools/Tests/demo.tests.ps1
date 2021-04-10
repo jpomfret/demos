@@ -7,11 +7,11 @@ Describe "Module is good to go" {
         It "Module was imported" {
             $module | Should Not BeNullOrEmpty
         }
-        It "Module version is 1.0.113" {
-            $module.Version | Should Be "1.0.113"
+        It "Module version is 1.0.139" {
+            $module.Version | Should Be "1.0.139"
         }
-        It "Module should import 584 commands" {
-            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 584
+        It "Module should import 594 commands" {
+            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 594
         }
     }
 }
@@ -95,7 +95,7 @@ Describe "mssql1 databases are good" {
 Describe "Backups worked" {
     Context "AdventureWorks was backed up" {
         $instanceSplat = @{
-            SqlInstance   = 'mssql1'
+            SqlInstance = 'mssql1'
         }
         It "AdventureWorks has backup history" {
             Get-DbaDbBackupHistory @instanceSplat | Should Not BeNullOrEmpty
