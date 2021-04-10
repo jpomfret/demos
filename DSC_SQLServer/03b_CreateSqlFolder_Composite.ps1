@@ -8,7 +8,6 @@ Configuration CreateSqlFolder {
         jpSqlFolderStructure sqlFolders {
             UserDataPath        = "C:\SQL2019\SQLData\"
             UserLogPath         = "C:\SQL2019\SQLLogs\"
-
         }
     }
 }

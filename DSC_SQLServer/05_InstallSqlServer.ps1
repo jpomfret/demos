@@ -1,4 +1,4 @@
-# Invoke-Command -ComputerName DSCSVR2 -ScriptBlock {Get-Service *SQL*}
+# Get-Service *SQL* -ComputerName DscSvr2
 
 ## 1) Look at MOF File
 ## 2) Config file
@@ -7,6 +7,7 @@
 Configuration InstallSqlServer {
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration
+    Import-DscResource -ModuleName CompositeResources
     Import-DscResource -ModuleName SqlServerDsc
 
     $saCred = (Get-Credential -Credential sa)
