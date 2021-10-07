@@ -2,7 +2,7 @@
 Get-DscLocalConfigurationManager -CimSession dscsvr2
 
 Get-DscLocalConfigurationManager -CimSession dscsvr2  |
-Select-Object ActionAfterReboot, RefreshMode, ConfigurationModeFrequencyMins
+Select-Object ActionAfterReboot, RefreshMode, ConfigurationModeFrequencyMins, @{l='SourcePath';e={$_.ResourceModuleManagers.SourcePath}}
 
 ## Write the meta configuration
 [DSCLocalConfigurationManager()]
@@ -34,5 +34,4 @@ Set-DscLocalConfigurationManager -Path .\output\ -ComputerName dscsvr2 -Verbose
 
 ## Get New settings
 Get-DscLocalConfigurationManager -CimSession dscsvr2  |
-Select-Object ActionAfterReboot, RefreshMode, ConfigurationModeFrequencyMins
-
+Select-Object ActionAfterReboot, RefreshMode, ConfigurationModeFrequencyMins, @{l='SourcePath';e={$_.ResourceModuleManagers.SourcePath}}

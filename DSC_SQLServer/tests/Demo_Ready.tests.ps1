@@ -35,7 +35,7 @@ Describe "$server is not configured" {
     }
     Context "SQL isn't installed" {
         It "SQL Should not be Installed" {
-            $svcs = get-service -cn $server
+            $svcs = (Invoke-Command -ComputerName $server -ScriptBlock {Get-Service *SQL*})
             $svcs.Name | Should -Not -Contain "MSSQLSERVER"
         }
     }
