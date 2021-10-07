@@ -48,7 +48,7 @@ $pwdSplat = @{
 Set-DbaLogin @pwdSplat
 
 # Read in logins from csv
-## PS4 syntax!
+## PS4+ syntax!
 (Import-Csv .\users.csv).foreach{
     $server = Connect-DbaInstance -SqlInstance $psitem.Server
     New-DbaLogin -SqlInstance $server -Login $psitem.User -Password ($psitem.Password | ConvertTo-SecureString -asPlainText -Force)

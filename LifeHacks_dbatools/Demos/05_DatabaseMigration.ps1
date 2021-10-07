@@ -83,7 +83,7 @@ Get-DbaDbCompatibility @compatSplat |
 Select-Object SqlInstance, Database, Compatibility
 
 $compatSplat.Add('Database', 'DatabaseAdmin')
-$compatSplat.Add('TargetCompatibility', '15')
+$compatSplat.Add('Compatibility', '150')
 
 Set-DbaDbCompatibility @compatSplat
 
