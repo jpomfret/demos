@@ -31,4 +31,4 @@ Get-DbaProcess @snapshotSplat | Stop-DbaProcess
 Restore-DbaDbSnapshot @snapshotSplat
 
 # clean up snapshot
-Get-DbaDbSnapshot @snapshotSplat | Remove-DbaDbSnapshot
+Get-DbaDbSnapshot @snapshotSplat | Remove-DbaDbSnapshot -Confirm:$false
