@@ -1,0 +1,1 @@
+# VM is registered with IAAS provider
