@@ -6,7 +6,7 @@
 #>
 
 
-Set-Location C:\github\demos\PASS_AzureSql\bicep
+Set-Location C:\github\demos\PASS_AzureSql\04_bicep
 $resourceGroupName = 'PASSdemo'
 
 New-AzResourceGroup -Name $resourceGroupName -Location uksouth

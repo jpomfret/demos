@@ -3,12 +3,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "tfSqlDb"
+  name     = "PASSdemo"
   location = "UK South"
 }
 
 resource "azurerm_mssql_server" "example" {
-  name                         = "tf-sqlserver"
+  name                         = "jesssqlserver7"
   resource_group_name          = azurerm_resource_group.example.name
   location                     = azurerm_resource_group.example.location
   version                      = "12.0"
@@ -17,7 +17,7 @@ resource "azurerm_mssql_server" "example" {
 }
 
 resource "azurerm_mssql_database" "test" {
-  name           = "tf-db-t"
+  name           = "tfdb"
   server_id      = azurerm_mssql_server.example.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
@@ -30,5 +30,4 @@ resource "azurerm_mssql_database" "test" {
     test      = "true"
     CreatedBy = "terraform"
   }
-
 }

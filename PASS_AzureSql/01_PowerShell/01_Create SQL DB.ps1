@@ -1,4 +1,3 @@
-
 # view databases
 $getDbSplat = @{
     ResourceGroupName   = 'PASSdemo'
