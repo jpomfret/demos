@@ -1,18 +1,17 @@
+#Requires -Version 6.0
 <# 00_Setup.ps1
 
 - deploys...
 
-
 #>
 
-
-Set-Location C:\github\demos\PASS_AzureSql\04_bicep
+Set-Location C:\github\demos\PASS_AzureSql\00_Setup\bicep
 $resourceGroupName = 'PASSdemo'
 
 New-AzResourceGroup -Name $resourceGroupName -Location uksouth
 
 # if you do not store them in secrets management use this
-$adminCredentials = New-Object System.Management.Automation.PSCredential ('jpomfret ', (ConvertTo-SecureString -String 'P@ssword1234!' -AsPlainText -Force))
+$adminCredentials = New-Object System.Management.Automation.PSCredential ('jpomfret', (ConvertTo-SecureString -String 'P@ssword1234!' -AsPlainText -Force))
 
 $date = Get-Date -Format yyyyMMddHHmmsss
 
@@ -40,7 +39,8 @@ $deploymentConfig = @{
 New-AzResourceGroupDeployment @deploymentConfig # -WhatIf  # uncomment what if to see "what if" !!
 
 # register VM with IaaS Provider for SQL Server
-.\PASS_AzureSql\Register VM with IaaS Provider.ps1
+& 'C:\github\demos\PASS_AzureSql\00_Setup\01_Register VM with IaaS Provider.ps1'
+
 
 # add inbound network security rule
     $myIp = (Invoke-WebRequest -Uri "https://ipv4.icanhazip.com/").Content
@@ -66,7 +66,7 @@ New-AzResourceGroupDeployment @deploymentConfig # -WhatIf  # uncomment what if t
     # Update the NSG.
     $nsg | Set-AzNetworkSecurityGroup
 
-<# SQL MI #>
+<# SQL MI
 $sqlMIName = 'sqlMI'
 $deploymentName = 'deploy_sqlmi_{0}_{1}' -f $sqlMIName, $date # name of the deployment seen in the activity log
 $deploymentConfig = @{
@@ -85,7 +85,7 @@ $deploymentConfig = @{
     }
 }
 New-AzResourceGroupDeployment @deploymentConfig 
-
+ #>
 <# SQL Server & DB #>
 $deploymentName = 'deploy_db_{0}_{1}' -f $ResourceGroupName, $date # name of the deployment seen in the activity log
 $deploymentConfig = @{

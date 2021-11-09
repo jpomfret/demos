@@ -2,23 +2,23 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "PASSdemo" {
   name     = "PASSdemo"
   location = "UK South"
 }
 
-resource "azurerm_mssql_server" "example" {
+resource "azurerm_mssql_server" "jesssqlserver" {
   name                         = "jesssqlserver7"
-  resource_group_name          = azurerm_resource_group.example.name
-  location                     = azurerm_resource_group.example.location
+  resource_group_name          = azurerm_resource_group.PASSdemo.name
+  location                     = azurerm_resource_group.PASSdemo.location
   version                      = "12.0"
-  administrator_login          = "4dm1n157r470r"
-  administrator_login_password = "4-v3ry-53cr37-p455w0rd"
+  administrator_login          = "jpomfret"
+  administrator_login_password = "P@ssword1234!"
 }
 
-resource "azurerm_mssql_database" "test" {
+resource "azurerm_mssql_database" "tfdb" {
   name           = "tfdb"
-  server_id      = azurerm_mssql_server.example.id
+  server_id      = azurerm_mssql_server.jesssqlserver.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   max_size_gb    = 4

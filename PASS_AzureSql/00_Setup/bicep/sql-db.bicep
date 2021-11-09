@@ -9,6 +9,7 @@ param adminUsername string
 @secure()
 param adminPassword string
 
+
 resource sqlserver 'Microsoft.Sql/servers@2021-02-01-preview' = {
   name: serverName
   location: resourceGroup().location
@@ -31,3 +32,4 @@ resource sqldb 'Microsoft.Sql/servers/databases@2021-02-01-preview' = {
     licenseType: licenseType
   }
 }
+
