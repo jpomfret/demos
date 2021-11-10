@@ -3,7 +3,7 @@ $getDbSplat = @{
     ResourceGroupName   = 'PASSdemo'
     ServerName          = 'JessSqlServer7'
 }
-Get-AzSqlDatabase @getDbSplat | select DatabaseName, Location, Edition, CollationName, Status, SkuName | ft
+Get-AzSqlDatabase @getDbSplat | Select-Object DatabaseName, Location, Edition, CollationName, Status, SkuName | ft
 
 # create a database
 $dbSplat = @{
