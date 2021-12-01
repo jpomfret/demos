@@ -7,11 +7,11 @@ Describe "Module is good to go" {
         It "Module was imported" {
             $module | Should Not BeNullOrEmpty
         }
-        It "Module version is 1.1.22" {
-            $module.Version | Should Be "1.1.22"
+        It "Module version is 1.1.39" {
+            $module.Version | Should Be "1.1.39"
         }
-        It "Module should import 646 commands" {
-            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 646
+        It "Module should import 651 commands" {
+            (get-command -module dbatools -CommandType Function | Measure).Count | Should Be 651
         }
     }
 }
@@ -72,9 +72,6 @@ Describe "mssql1 databases are good" {
         $empIndexes = (Get-DbaDbTable -SqlInstance mssql1 -Database AdventureWorks2017 -Table Employee).indexes | select name, IsUnique
         It "There are now just two indexes" {
             $empIndexes.Count | Should Be 2
-        }
-        It "There should be no unique indexes" {
-            $empIndexes.IsUnique | Should BeFalse
         }
     }
     Context "DatabaseAdmin is good" {

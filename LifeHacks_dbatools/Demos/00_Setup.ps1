@@ -1,10 +1,11 @@
+Import-Module Pester -RequiredVersion 4.10.1
 Import-Module dbatools
 Import-Module dbachecks
 
-start-process C:\Temporary\ZoomIt\ZoomIt.exe
+start-process C:\ProgramData\chocolatey\lib\zoomit\tools\ZoomIt.exe
 
 #Get-Process slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
-Get-Process teams, slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
+#Get-Process teams, slack -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
 
 Set-Location C:\github\demos\LifeHacks_dbatools
 
